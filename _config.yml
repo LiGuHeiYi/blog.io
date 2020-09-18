@@ -21,7 +21,7 @@ twitter_username:
 github_username: LiGuHeiYi
 facebook_username: 
 weibo_username: 
-zhihu_username: 木人青山
+zhihu_username: 木人青
 
 # Build settings  
 # use Github Flavored Markdown !important  
@@ -41,7 +41,7 @@ defaults:
     scope: 
       path: ""
       type: "posts"
-    values:
+      values:
       layout: "post"
       author: "Liloog" # 你的名字
       header-img: "img/orange.jpg" # We don't want posts without a header image, that whould mean white on white
