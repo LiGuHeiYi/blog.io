@@ -13,8 +13,8 @@ owner:
   bio: "我仍忘不了她" # 填写作者信息：博客描述
 
 # Data
-gavatar: img/head.png # 浏览器地址栏小图标，可自定义更改
-favicon: img/head.png # 浏览器地址栏小图标，可自定义更改
+gavatar: img/dragon.png # 浏览器地址栏小图标，可自定义更改
+favicon: img/dragon.png # 浏览器地址栏小图标，可自定义更改
 
 douban_username:  # 你的豆瓣id
 twitter_username: 
@@ -44,7 +44,7 @@ defaults:
       values:
       layout: "post"
       author: "Liloog" # 你的名字
-      header-img: "img/orange.jpg" # We don't want posts without a header image, that whould mean white on white
+      header-img: "img/Hey warrior.png" # We don't want posts without a header image, that whould mean white on white
 
 # Comments 
 comments :
