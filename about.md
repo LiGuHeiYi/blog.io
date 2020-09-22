@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "这是我的简陋的博客 " 
-header-img: "img/green.jpg"
+header-img: "img/black.jpg"
 ---
 
 <!-- 这一页填写你的自我介绍。 -->
