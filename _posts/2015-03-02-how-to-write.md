@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 这是一篇博客文章模板
+title: Busy life or busy die
 date: 2020-3-02
 categories: blog
-tags: [标签一,标签二]
-description: 文章金句。
+tags: [开场白,人生感悟]
+description: 有的人死了，他还活着；有的人活着，他心如死灰。
 ---
 
-这里是博客正文。
+正文。
 
 
 
