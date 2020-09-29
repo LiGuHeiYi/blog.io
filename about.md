@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "About"
-description: "这是我的简陋的博客 " 
+description: "这是我的还很简陋的博客 " 
 header-img: "img/black.jpg"
 ---
 
