@@ -141,7 +141,7 @@ unset() 函数用于释放指定的 session 变量：
 ?>
 ```
 
-## Cookie和Session
+# Cookie和Session
 
 cookie储存在用户计算机中且可查询可更改，session处在网站服务器中可见但不可随意更改，从这个角度来说，session比cookie更加安全”一些“。
 
