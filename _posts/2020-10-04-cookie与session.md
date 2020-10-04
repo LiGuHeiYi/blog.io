@@ -155,4 +155,26 @@ session ID即服务器中保存的session文件的名字，一般形如这样：
 
 形如 ：www.xxx.com?PHPSESSID=4c83638b3b0dbf65583181c2f89168ec
 
+```php
+<?php
+//  保存一天
+$lifeTime = 24 * 3600;
+//  取得当前 Session 名，默认为 PHPSESSID
+$sessionName = session_name();
+//  取得 Session ID
+$sessionID = $_GET[$sessionName];
+//  使用 session_id() 设置获得的 Session ID
+session_id($sessionID);
+
+session_set_cookie_params($lifeTime);
+session_start();
+$_SESSION['admin'] = true;
+?>
+```
+
 或者使用隐藏表单来传输session，自动在表单中添加一个属性为"hidden"的<input>,里面提交的是服务器为用户生成的session值。
+
+```html
+<input type="hidden" name="PHPSESSID" value="4c83638b3b0dbf65583181c2f89168ec">
+```
+
