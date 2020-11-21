@@ -1,3 +1,14 @@
+---
+layout: post
+title: 在kali上使用mysql时遇到的一些情况
+date: 2020-11-11
+categories: blog
+tags: [web,kali]
+description: 一个有用小知识
+typora-copy-images-to: ..\img
+---
+
+
 # 在kali上使用mysql时遇到的一些情况
 
 ### 如何重启MySQL，正确启动MySQL
