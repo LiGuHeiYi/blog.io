@@ -10,7 +10,7 @@ url: "https://liloong3t.com"  # 此处填写你的博客地址
 owner: 
   name: "Liloong" # 填写作者信息：名字
   email: loong3t@gmail.com # 填写作者信息：邮箱
-  bio: "我仍忘不了她" # 填写作者信息：博客描述
+  bio: "小webdog一条" # 填写作者信息：博客描述
 
 # Data
 gavatar: img/dragon.png # 浏览器地址栏小图标，可自定义更改
