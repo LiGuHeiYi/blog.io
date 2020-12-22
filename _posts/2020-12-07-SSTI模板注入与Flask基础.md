@@ -33,7 +33,7 @@ Flask基于**Werkzeug WSGI**工具包和**Jinja2**模板引擎。
 
 **Jinjia模板引擎特点**
 
-![img](/img/GWPZOU`R82WY3%4ST{W[}JI.png)
+![img](/img/jinja2语法.png)
 
 **控制语句**
 
