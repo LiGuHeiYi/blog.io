@@ -1,0 +1,1720 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="古典密码从0到1, Liloong3t的博客">
+    <meta name="baidu-site-verification" content="code-5WkfinfGVW">
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <meta name="description" content="[toc]
+古典密码从0到1
+古典密码和现代密码的区别：古典密码是密码学中的其中一个类型，其大部分加密方式都是利用替换式密码或移项式密码，有时则是两者的混合。其于历史中经常使用，但现代已经很少使用，大部分的已经不再使用了。一般而言，经典密码">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>古典密码从0到1 | Liloong3t的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- 
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+     -->
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liloong3t的博客</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liloong3t的博客</div>
+        <div class="logo-desc">
+            
+            武汉科技大学 | 计算机科学与技术 | 信息安全
+            
+        </div>
+    </div>
+
+    
+
+    <!-- <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友链
+            </a>
+        </li>
+        
+        
+    </ul> -->
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友链
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul>
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        古典密码从0到1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CTF/" target="_blank">
+                                <span class="chip bg-color">CTF</span>
+                            </a>
+                        
+                            <a href="/tags/密码学/" target="_blank">
+                                <span class="chip bg-color">密码学</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-02
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        Liloong3t
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        4.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        19 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[toc]</p>
+<h1 id="古典密码从0到1"><a href="#古典密码从0到1" class="headerlink" title="古典密码从0到1"></a>古典密码从0到1</h1><p><strong><img src="https://pic1.zhimg.com/80/v2-f483400333b7ccaa8689e9cfc0c3e8dc_720w.jpg" alt="img"></strong></p>
+<h2 id="古典密码和现代密码的区别："><a href="#古典密码和现代密码的区别：" class="headerlink" title="古典密码和现代密码的区别："></a><strong>古典密码和现代密码的区别：</strong></h2><p>古典密码是密码学中的其中一个类型，其大部分加密方式都是利用替换式密码或移项式密码，有时则是两者的混合。其于历史中经常使用，但现代已经很少使用，大部分的已经不再使用了。一般而言，经典密码是基于一个拼音字母（像是 A-Z）、动手操作或是简单的设备。它们可能是一种简单的密码法，以致于不可信赖的地步，特别是有新技术被发展出来后。</p>
+<p>现代的方法是用电脑或是其它数字科技，基于比特和字节上操作。许多经典密码被受尊重的人使用，像是尤利乌斯·凯撒和拿破仑，他们创造了一些常被人们使用的密码。许多密码起源于军事上，相同立场的人常使用来寄送秘密消息。经典的方法常攻击密码文，有时候甚至不知其密码系统，也可以使用工具，像是频率分析法。有些经典密码是使用先进的机器或是机电密码机器，像是恩尼格玛密码机。                           —维基</p>
+<p>其中，古典密码学，作为一种实用性艺术存在，其编码和破译通常依赖于设计者和敌手的创造力与技巧，并没有对密码学原件进行清晰的定义。古典密码学主要包含以下几个方面：</p>
+<p>单表替换加密（Monoalphabetic Cipher）</p>
+<p>多表替换加密（Polyalphabetic Cipher）</p>
+<p>奇奇怪怪的加密方式                                             –ctf wiki</p>
+<h2 id="凯撒密码："><a href="#凯撒密码：" class="headerlink" title="凯撒密码："></a><strong>凯撒密码：</strong></h2><p>​    凯撒曾经使用这种密码与其将军们来联系，所以用凯撒来命名这种密码。</p>
+<p>根据图片来了解加密原理。凯撒密码一般适用于26个英文字母。根据偏移量来进行加密。如图所示，当偏移量=3。即是A-D,B-E。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-ab311b6e604849f12c19e5e96818a925_720w.jpg" alt="img"></p>
+<p>​    把字母转成数学，数学公式如下。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-f77f29985ee9014f3df11575682ac180_720w.jpg" alt="img"></p>
+<h3 id="在线加解密网站："><a href="#在线加解密网站：" class="headerlink" title="在线加解密网站："></a><strong>在线加解密网站：</strong></h3><p><a href="https://link.zhihu.com/?target=https%3A//www.qqxiuzi.cn/bianma/kaisamima.php" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/kaisamima.php</a></p>
+<p><a href="https://link.zhihu.com/?target=http%3A//www.metools.info/code/c70.html" target="_blank" rel="noopener">http://www.metools.info/code/c70.html</a></p>
+<p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D778" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=778</a></p>
+<h2 id="仿射密码："><a href="#仿射密码：" class="headerlink" title="仿射密码："></a><strong>仿射密码：</strong></h2><p>数学加密公式：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-1a7aeab7e90203fc056e398344ce2b7a_720w.jpg" alt="img"></p>
+<p>仿射密码中解密需要用到求逆元</p>
+<p>直接给出python解密脚本：</p>
+<pre class="line-numbers language-text"><code class="language-text">import primefac
+def affine_decode(c,a,b,origin="abcdefghijklmnopqrstuvwxyz"):
+    r=""
+    n=len(origin)
+    ai=primefac.modinv(a,n)%n
+    for i in c:
+        if origin.find(i)!=1:
+            r+=origin[(ai*(origin.index(i)-b))%n]
+        else:
+            r+=i
+    return r
+print affine_decode("ihhwvcswfrcp",5,8)
+
+def affine_guessab(m1,c1,m2,c2,origin="abcdefghijklmnopqrstuvwxyz"):
+    x1=origin.index(m1)
+    x2=origin.index(m2)
+    y1=origin.index(c1)
+    y2=origin.index(c2)
+    n=len(origin)
+    dxi=primefac.modinv(x1-x2,n)%n
+    a=dxi*(y1-y2) % n
+    b=(y1-a*x1)%n
+    return a,b
+print affine_guessab("a","i","f","h")<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="仿射密码在线加解密网站："><a href="#仿射密码在线加解密网站：" class="headerlink" title="仿射密码在线加解密网站："></a>仿射密码在线加解密网站：</h3><p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D911" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=911</a></p>
+<h5 id="仿射密码真题-one："><a href="#仿射密码真题-one：" class="headerlink" title="仿射密码真题-one："></a>仿射密码真题-one：</h5><p>Buuctf- Crypto-[GKCTF2020]小学生的密码学</p>
+<p>e(x)=11x+6(mod26)</p>
+<p>密文：welcylk</p>
+<p>（flag为base64形式）</p>
+<p><img src="https://pic4.zhimg.com/80/v2-cf93192b800a57815bc7b5c050f8c673_720w.jpg" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-b9d84b6e31edf9ebe9931c5174eba819_720w.jpg" alt="img"></p>
+<h2 id="四方密码："><a href="#四方密码：" class="headerlink" title="四方密码："></a><strong>四方密码：</strong></h2><p>四方密码是一种对称式加密法，由法国人Felix Delastelle（1840年–1902年）发明。</p>
+<p>这种方法将字母两个一组，然后采用多字母替换密码。</p>
+<p>四方密码用4个5×5的矩阵来加密。每个矩阵都有25个字母（通常会取消Q或将I,J视作同一样，或改进为6×6的矩阵，加入10个数字）。</p>
+<p>选两个密钥，example和keyword。去掉重复的字母。就是example变成exampl。余下的字母顺序存入矩阵即可</p>
+<p>加密矩阵放右上和左下。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-7f9734b21e0caee6689d77d9de7e1b6c_720w.jpg" alt="img"></p>
+<p>加密步骤。把字符串按两个字母一组分开</p>
+<p>Helloworld</p>
+<p>He ll ow or ld</p>
+<p>找第一组第一个字母在左上角矩阵的位置：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-c210fedc80540995f608f795a073acda_720w.jpg" alt="img"></p>
+<p>找第一组第二个字母在右下角矩阵的位置：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-165d0ff7602b3b7801cd2e050cc948e0_720w.jpg" alt="img"></p>
+<p>先找和一个字母同横的，和第二个字母同直的</p>
+<p><img src="https://pic1.zhimg.com/80/v2-9df900be2dee2b0602d420ff290a5adc_720w.jpg" alt="img"></p>
+<p>第一个字母同直，第二个字母同横的</p>
+<p><img src="https://pic4.zhimg.com/80/v2-01dc7c7890019f58beef4ade3bd5eab7_720w.jpg" alt="img"></p>
+<p>得到he加密后为FY</p>
+<p>如此可得接下来，最后就是</p>
+<p>he lp me ob iw an ke no bi</p>
+<p>FY GM KY HO BX MF KK KI MD</p>
+<h5 id="四方密码真题-one："><a href="#四方密码真题-one：" class="headerlink" title="四方密码真题-one："></a>四方密码真题-one：</h5><p>Buuctf-crypo-四面八方</p>
+<p>四方密码：</p>
+<p>wiki上了解四方密码如何加解密的一个过程</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E5%9B%9B%E6%96%B9%E5%AF%86%E7%A2%BC" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E5%9B%9B%E6%96%B9%E5%AF%86%E7%A2%BC</a></p>
+<p>密钥存阵</p>
+<p>通常在题目中会给定2个密钥，我们要去掉Q或者把I和J当成一个。按照26个英文字母。秘钥中出现的不填。补充成5*5的矩阵</p>
+<p><img src="https://pic4.zhimg.com/80/v2-bf5760187447c0cdd17602207d2b8453_720w.jpg" alt="img"></p>
+<p>这题直接填充即可</p>
+<p>securityabdfghjklmnopvwxz</p>
+<p>securityadbfghjklmnopvwxz</p>
+<p>abcdefghijklmnopqrstuvwxyz</p>
+<p>informatn</p>
+<p>informatbcdeghjklpsuvwxyz</p>
+<p>abcdefghijklmnopqrstuvwxyz</p>
+<h3 id="在线解密工具："><a href="#在线解密工具：" class="headerlink" title="在线解密工具："></a><strong>在线解密工具：</strong></h3><p><a href="https://link.zhihu.com/?target=http%3A//ctf.ssleye.com/four.html" target="_blank" rel="noopener">http://ctf.ssleye.com/four.html</a></p>
+<p>根据题目说的解出来的语句是个通顺的句子，那肯定排序就有点问题</p>
+<p><img src="https://pic1.zhimg.com/80/v2-6dfcefe68d59545916e53be11cfebb3c_720w.jpg" alt="img"></p>
+<p><strong>接下来可以拿出词频分析。</strong></p>
+<p>这边分割可以多试试。可以看出来个success，其他位置试</p>
+<p><strong><a href="https://link.zhihu.com/?target=https%3A//quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a></strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-8a82b177919a7e61bcc1d84ff940acb2_720w.jpg" alt="img"></p>
+<h3 id="四方密码在线加解密网站："><a href="#四方密码在线加解密网站：" class="headerlink" title="四方密码在线加解密网站："></a>四方密码在线加解密网站：</h3><p><a href="https://link.zhihu.com/?target=http%3A//ctf.ssleye.com/four.html" target="_blank" rel="noopener">http://ctf.ssleye.com/four.html</a></p>
+<h2 id="培根密码："><a href="#培根密码：" class="headerlink" title="培根密码："></a><strong>培根密码：</strong></h2><p>培根密码直接根据表中的字母进行转换。</p>
+<p>密文一般只含有a和b字母</p>
+<p><img src="https://pic1.zhimg.com/80/v2-9e23a167e68739049ecb21cdde085a98_720w.jpg" alt="img"></p>
+<p>培根密码在线解密：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//tool.bugku.com/peigen/" target="_blank" rel="noopener">https://tool.bugku.com/peigen/</a></p>
+<p>培根密码真题-one：</p>
+<p>攻防世界crypto新手-不仅仅是morse</p>
+<p><img src="https://pic4.zhimg.com/80/v2-bc8cc8808aa0560f4811c4e0c2283a3f_720w.jpg" alt="img"></p>
+<p>把/转换成空格。直接拿出morse解密</p>
+<p><img src="https://pic3.zhimg.com/80/v2-7712dc9ce03f0cbad6f2e3cf68b19062_720w.jpg" alt="img"></p>
+<p>在看后面一段像培根密码，根据题目提示是食物加密。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8f60398906141bf4062ade9faa45787d_720w.jpg" alt="img"></p>
+<h2 id="标准银河字母："><a href="#标准银河字母：" class="headerlink" title="标准银河字母："></a><strong>标准银河字母：</strong></h2><p>标准银河字母（Standard Galactic Alphabet）出自游戏《指挥官基恩》系列。是系列中使用的书写系统。这是一个简单的替代暗号，用不同的符号取代拉丁字母。SGA可以在不同的语言中使用，比如在游戏《Minecraft》，《指挥官基恩》中。</p>
+<p>如果遇到这类题。直接根据题目来进行图翻-&gt;字母</p>
+<p><img src="https://pic3.zhimg.com/80/v2-ba0f6c12d8d4c71bc1f36c0faa472272_720w.jpg" alt="img"></p>
+<h2 id="圣堂武士密码："><a href="#圣堂武士密码：" class="headerlink" title="圣堂武士密码："></a><strong>圣堂武士密码：</strong></h2><p>圣堂武士密码(Templar Cipher)是共济会的“猪圈密码”的一个变种,一直被共济会圣殿骑士用。</p>
+<p>直接根据图片上的直接翻译出字母即可</p>
+<p><img src="https://pic1.zhimg.com/80/v2-1fbce927928b8189a662418fa9655394_720w.jpg" alt="img"></p>
+<h2 id="猪圈密码："><a href="#猪圈密码：" class="headerlink" title="猪圈密码："></a><strong>猪圈密码：</strong></h2><p>猪圈密码（亦称朱高密码、共济会暗号、共济会密码或共济会员密码），是一种以格子为基础的简单替代式密码。即使使用符号，也不会影响密码分析，亦可用在其它替代式的方法。</p>
+<p>直接图片替换字母即可</p>
+<p><img src="https://pic4.zhimg.com/80/v2-c20685d002fe2653944302a1c12a5327_720w.jpg" alt="img"></p>
+<h3 id="猪圈密码在线解密网站："><a href="#猪圈密码在线解密网站：" class="headerlink" title="猪圈密码在线解密网站："></a><strong>猪圈密码在线解密网站：</strong></h3><p><a href="https://link.zhihu.com/?target=http%3A//www.metools.info/code/c90.html" target="_blank" rel="noopener">http://www.metools.info/code/c90.html</a></p>
+<p>猪圈密码真题：</p>
+<p>Buuctf-crypto-萌萌哒的八戒</p>
+<p><img src="https://pic4.zhimg.com/80/v2-64cefda059f2f55f522ad0ca6e81f74f_720w.jpg" alt="img"></p>
+<p>直接解密</p>
+<p><img src="https://pic4.zhimg.com/80/v2-87186735e3b7ee8e57ca015e5cecddd3_720w.jpg" alt="img"></p>
+<p>猪圈密码-圣堂武士密码-标准银河字母-栅栏密码真题：</p>
+<p>Buuctf-Crypto- [MRCTF2020]古典密码知多少</p>
+<p><img src="https://pic4.zhimg.com/80/v2-52004a0174178967f87f54236b8d01bf_720w.jpg" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-1b31253a3056562005cb5f6ac911ed30_720w.jpg" alt="img"></p>
+<p>图上的蓝色就是猪圈密码，橙色的是圣堂武士密码，黑色的是银河字母。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-61739e1b2e5a4eed51c7bf7abb7a3f26_720w.jpg" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-c7a82d3ea6d815257627ee9273676061_720w.jpg" alt="img"></p>
+<h2 id="当铺密码："><a href="#当铺密码：" class="headerlink" title="当铺密码："></a><strong>当铺密码：</strong></h2><p>当铺密码就是一种将中文和数字进行转化的密码，算法相当简单:当前汉字有多少笔画出头，就是转化成数字几。例如：</p>
+<p>口 0    田 0    由 1    中 2    人 3    工 4</p>
+<p>大 5    王 6    夫 7    井 8    羊 9</p>
+<p>具体映射可查看：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//www.cnblogs.com/cc11001100/p/9357263.html" target="_blank" rel="noopener">https://www.cnblogs.com/cc11001100/p/9357263.html</a></p>
+<p>当铺密码真题：</p>
+<p>Buuctf-crypto-GKCTF2020汉字的秘密</p>
+<p><img src="https://pic2.zhimg.com/80/v2-9abe603c0eef1e0746f91ec04dc24aad_720w.jpg" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-fb9478ec0839e5017f8cd83cef8bfbb7_720w.jpg" alt="img"></p>
+<p>直接解码发现不对。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-65054bc4d94d218e47c6b7229e799357_720w.jpg" alt="img"></p>
+<p>翻看ascii码。改进一下脚本：</p>
+<p>自己猜一下flag开头为flag。可以看到ascii嘛每一位都是递增的。</p>
+<p>差为1,2,3,4</p>
+<p><img src="https://pic3.zhimg.com/80/v2-f2ccb7e18e9b325dc067e5d977740536_720w.jpg" alt="img"></p>
+<h2 id="跳舞的小人密码："><a href="#跳舞的小人密码：" class="headerlink" title="跳舞的小人密码："></a><strong>跳舞的小人密码：</strong></h2><p>跳舞的人，讲的是一个黑帮发明的一种密码，其密码就是用一个一个的跳舞的小人组成的，一个小人是一个字母。有人用这种密码进行通信，来威胁某人，福尔摩斯后来破解了这个密码，抓住了坏人。</p>
+<p>这题直接根据表来进行转换即可。加解密同</p>
+<p><img src="https://pic1.zhimg.com/80/v2-bfa0f0835ce4a7ec0dae25be5c3d40a4_720w.jpg" alt="img"></p>
+<p>这题感觉是做过的。但没翻到例题。就不放了。</p>
+<h2 id="希尔密码（hill）："><a href="#希尔密码（hill）：" class="headerlink" title="希尔密码（hill）："></a><strong>希尔密码（hill）：</strong></h2><p>希尔密码（Hill Cipher）是运用基本矩阵论原理的替换密码，由Lester S. Hill在1929年发明。每个字母当作26进制数字：A=0, B=1, C=2… 一串字母当成n维向量，跟一个n×n的矩阵相乘，再将得出的结果MOD26。</p>
+<p>直接给出网上的脚本可以参考：</p>
+<pre class="line-numbers language-text"><code class="language-text">import numpy as np
+
+m = 'YOURPINNOISFOURONETWOSIX'  #明文
+a = np.matrix([[11,2,19],[5,23,25],[20,7,17]])  #密钥LCTFXZUHR
+num_m = []
+temp = []
+count = 1
+for i in m:  #将明文分为三个一组
+    temp.append(ord(i)-ord('A'))
+    if count % 3 == 0:
+        num_m.append(temp)
+        temp = []
+    count += 1
+mat_m = [np.matrix(i).T for i in num_m]  #将明文分组转换为向量形式
+mat_c = [a * i % 26 for i in mat_m]  #得到密文分组的向量形式
+num_c = []
+temp = []
+for i in mat_c:  #将密文向量转换为列表形式，且合并到一个列表
+    temp = i.tolist()
+    for j in range(3):
+        num_c.append(temp[j][0])
+c = [chr(i+ord('A')) for i in num_c]
+print(''.join(c))  #连接成字符串,输出密文<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="希尔密码在线加解密："><a href="#希尔密码在线加解密：" class="headerlink" title="希尔密码在线加解密："></a><strong>希尔密码在线加解密：</strong></h3><p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D914" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=914</a></p>
+<h2 id="维吉尼亚密码："><a href="#维吉尼亚密码：" class="headerlink" title="维吉尼亚密码："></a><strong>维吉尼亚密码：</strong></h2><p>维吉尼亚密码（又译维热纳尔密码）是使用一系列凯撒密码组成密码字母表的加密算法，属于多表密码的一种简单形式。</p>
+<p>维吉尼亚加解密表格：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0256b1f8fe704260074c03e4b2696ef5_720w.jpg" alt="img"></p>
+<p>当明文为</p>
+<p>ATTACKATDAWN</p>
+<p>选择某一关键词并重复而得到密钥，如关键词为LEMON时，密钥为：</p>
+<p>LEMONLEMONLE</p>
+<p>对于明文的第一个字母A，对应密钥的第一个字母L，于是使用表格中L行字母表进行加密，得到密文第一个字母L。类似地，明文第二个字母为T，在表格中使用对应的E行进行加密，得到密文第二个字母X。以此类推，可以得到：</p>
+<p>明文：ATTACKATDAWN</p>
+<p>密钥：LEMONLEMONLE</p>
+<p>密文：LXFOPVEFRNHR</p>
+<h3 id="维吉尼亚密码在线加解密："><a href="#维吉尼亚密码在线加解密：" class="headerlink" title="维吉尼亚密码在线加解密："></a><strong>维吉尼亚密码在线加解密：</strong></h3><p><a href="https://link.zhihu.com/?target=https%3A//www.qqxiuzi.cn/bianma/weijiniyamima.php" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/weijiniyamima.php</a></p>
+<p>维吉尼亚密码真题-one：</p>
+<p>BUUCTF-Crypto-[BJDCTF 2nd]燕言燕语-y1ng</p>
+<p>小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说:</p>
+<p>79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20</p>
+<p>16进制转字符串</p>
+<p><img src="https://pic1.zhimg.com/80/v2-8a3764498e3bbb3b136a4ff59ac70ba0_720w.jpg" alt="img"></p>
+<p>维吉尼亚在线直接解</p>
+<p><img src="https://pic3.zhimg.com/80/v2-2aa851be441a5f864a0b1306eac29392_720w.jpg" alt="img"></p>
+<h2 id="棋盘密码（Polybius）："><a href="#棋盘密码（Polybius）：" class="headerlink" title="棋盘密码（Polybius）："></a><strong>棋盘密码（Polybius）：</strong></h2><p>波利比奥斯棋盘（Polybius Checkerboard）是棋盘密码的一种，是利用波利比奥斯方阵(Polybius  Square)进行加密的密码方式，产生于公元前两世纪的希腊，相传是世界上最早的一种密码。简单的来说就是把字母排列好，用坐标的形式表现出来。字母是密文，明文便是字母的坐标。</p>
+<p>借鉴知乎上的图</p>
+<p><img src="https://pic3.zhimg.com/80/v2-095ef336986fd39db6580115c3a78792_720w.jpg" alt="img"></p>
+<p>先看纵向，在看横向。得到密文</p>
+<p>明文HELLO 密文：23 15 31 31 34</p>
+<h2 id="普莱费尔密码（playfair）："><a href="#普莱费尔密码（playfair）：" class="headerlink" title="普莱费尔密码（playfair）："></a><strong>普莱费尔密码（playfair）：</strong></h2><p>选取一个英文字作密钥。除去重复出现的字母。将密钥的字母逐个逐个加入5×5的矩阵内，剩下的空间将未加入的英文字母依a-z的顺序加入。（将Q去除，或将I和J视作同一字。）</p>
+<p>将要加密的讯息分成两个一组。若组内的字母相同，将X（或Q）插入两字母之间，重新分组（例如 HELLO 将分成 HE LX LO）。若剩下一个字，也加入X字。</p>
+<p>在每组中，找出两个字母在矩阵中的地方。</p>
+<p>若两个字母不在同一直行或同一横列，在矩阵中找出另外两个字母，使这四个字母成为一个长方形的四个角。</p>
+<p>若两个字母在同一横列，取这两个字母右方的字母（若字母在最右方则取最左方的字母）。</p>
+<p>若两个字母在同一直行，取这两个字母下方的字母（若字母在最下方则取最上方的字母）。</p>
+<p>取playfair example为密钥。即可得到表</p>
+<p>P L A Y F</p>
+<p>I R E X M</p>
+<p>B C D G H</p>
+<p>K N O Q S</p>
+<p>T U V W Z</p>
+<p>需要加密的为Hide the gold</p>
+<p>HI DE TH EG OL</p>
+<p>加密后为</p>
+<p>BM OD ZB XD</p>
+<h3 id="在线普莱费尔加解密："><a href="#在线普莱费尔加解密：" class="headerlink" title="在线普莱费尔加解密："></a><strong>在线普莱费尔加解密：</strong></h3><p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D912" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=912</a></p>
+<p><a href="https://link.zhihu.com/?target=http%3A//rumkin.com/tools/cipher/playfair.php" target="_blank" rel="noopener">http://rumkin.com/tools/cipher/playfair.php</a></p>
+<p>普莱费尔真题-one：</p>
+<p>Buuctf-crypto-cipher</p>
+<p>还能提示什么呢？公平的玩吧（密钥自己找） Dncnoqqfliqrpgeklwmppu 注意：得到的 flag 请包上 flag{} 提交, flag{小写字母}</p>
+<p><a href="https://link.zhihu.com/?target=http%3A//rumkin.com/tools/cipher/playfair.php" target="_blank" rel="noopener">http://rumkin.com/tools/cipher/playfair.php</a></p>
+<p><img src="https://pic2.zhimg.com/80/v2-2be2d0bcb297711754a46296432e8f3d_720w.jpg" alt="img"></p>
+<h2 id="Nihilist密码："><a href="#Nihilist密码：" class="headerlink" title="Nihilist密码："></a><strong>Nihilist密码：</strong></h2><p>Nihilist跟polybius密码差不多</p>
+<p>相同的先看纵向，在看横向。</p>
+<p>例如a=[2,3]=23</p>
+<p><img src="https://pic2.zhimg.com/80/v2-929026378b34e6fd342567e8adf92a2d_720w.jpg" alt="img"></p>
+<h2 id="Keyboard密码："><a href="#Keyboard密码：" class="headerlink" title="Keyboard密码："></a><strong>Keyboard密码：</strong></h2><p>Keyboard密码在ctf中应该是分多种类型的。这里提两种。即9键表和26键包含</p>
+<p>9键表就是通过九键上多次字母来进行字母提取</p>
+<p>26键包含通过明文多个字符对应一个密文</p>
+<p>9键表真题：</p>
+<p>直接放两道题来理解</p>
+<p>Buuctf- Crypto-[NCTF2019]Keyboard</p>
+<p><img src="https://pic1.zhimg.com/80/v2-7ab75ce548f7ec78fb0dcc1c305d78b8_720w.jpg" alt="img"></p>
+<p>分析第一个字符串，ooo，o在键盘上对应的是9，有3个o，表示第9个格子的第三个字母，就是y。那yyy就是指字母o</p>
+<p><img src="https://pic1.zhimg.com/80/v2-5579f6bceb2f7b7be87c13a30ae19628_720w.jpg" alt="img"></p>
+<p>cipher=”ooo yyy ii w uuu ee uuuu yyy uuuu y w uuu i i rr w i i rr rrr uuuu rrr uuuu t ii uuuu i w u rrr ee www ee yyy eee www w tt ee”</p>
+<p>base=” qwertyuiop”</p>
+<p>a=[“ “,” “,”abc”,”def”,”ghi”,”jkl”,”mno”,”pqrs”,”tuv”,”wxyz”]</p>
+<p>#print(base.index(“q”))</p>
+<p>for part in cipher.split(“ “):</p>
+<p>  s=base.index(part[0])</p>
+<p>  count=len(part)</p>
+<p>  #print(a[9][2],end=””)</p>
+<p>  print(a[s][count-1],end=””)</p>
+<p>第一步：</p>
+<p><strong>构造3个需要的值，变量和列表</strong></p>
+<p><strong>cipher就是题目附件的字符串</strong></p>
+<p><strong>base就是键盘上一行对应的数字，第一个为空。因为索引的时候，第一个为0。使得q正好为1</strong></p>
+<p><strong>a列表第一个的空格字符串同理。也是0。如下走下来空格对应九格键盘上的1，abc就对应九格键盘上的数字2，def对应3。</strong></p>
+<p>第二步：</p>
+<p>index就是索引的值，就是取键盘上的数字</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8370c8c5599d16c927c2a7216487abdd_720w.jpg" alt="img"></p>
+<p><strong>a[][]。列表的两次，就直接取对应的字母了。end是为了不换行。</strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-24e40bf3a20626da1ee809fac0c5637e_720w.jpg" alt="img"></p>
+<p><strong>count的减1，还是因为第一个是0</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-e307810ec18c982899f092d77449e2f3_720w.jpg" alt="img"></p>
+<p>Buuctf- Crypo-[MRCTF2020]keyboard</p>
+<p>得到的flag用</p>
+<p>MRCTF{xxxxxx}形式上叫</p>
+<p>都为小写字母</p>
+<p>6</p>
+<p>666</p>
+<p>22</p>
+<p>444</p>
+<p>555</p>
+<p>33</p>
+<p>7</p>
+<p>44</p>
+<p>666</p>
+<p>66</p>
+<p>3</p>
+<p><img src="https://pic1.zhimg.com/80/v2-857b995784eef5b15242292fdc9d57d4_720w.jpg" alt="img"></p>
+<p>str=”6 666 22 444 555 33 7 44 666 66 3”</p>
+<p>a=[“ “,” “,”abc”,”def”,”ghi”,”jkl”,”mno”,”pqrs”,”tuv”,”wxyz”]</p>
+<p>for i in str.split(“ “):</p>
+<p>  s=int(i[0])</p>
+<p>  count=len(i)</p>
+<p>  print(a[s][count-1],end=””)</p>
+<p><strong>这边解出来最后一个字母是d。但提交不上。搜一下这个单词就知道最后一个应该打错了。是e</strong></p>
+<p>26键包含真题：</p>
+<p>实验吧-密码学-keyword</p>
+<p><img src="https://pic4.zhimg.com/80/v2-e070e8a0e26fa380290d53e7d2704093_720w.jpg" alt="img"></p>
+<p>根据题目hint：应该。是键盘包围，或者画图</p>
+<p>BHUK,LP TGBNHGYT BHUK,LP UYGBN TGBNHGYT BHUK,LP BHUK,LP TGBNHGYT BHUK,LP TGBNHGYT UYGBN</p>
+<p>空格划组 逗号也算一个里面</p>
+<p>直接画出来</p>
+<p>NBNCBNNBNBC</p>
+<h2 id="栅栏密码："><a href="#栅栏密码：" class="headerlink" title="栅栏密码："></a><strong>栅栏密码：</strong></h2><p>栅栏密码是典型的置换密码。把明文分成n个1组。在进行连接。根据如何连接，又分为普通栅栏密码（|||栅栏密码）和W型栅栏密码。</p>
+<p>普通栅栏密码（|||栅栏密码）</p>
+<p>值和n：</p>
+<p>fslda1g2{3a}</p>
+<p>n=2</p>
+<p>按2个分组</p>
+<p>fs  ld  a1  g2  {3  a}</p>
+<p>取第一个</p>
+<p>flag{a</p>
+<p>在取全部</p>
+<p>flag{asd123}</p>
+<p>普通栅栏密码（|||栅栏密码）真题-one：</p>
+<p>Buuctf-Crypto-篱笆墙的影子</p>
+<p>直接两栏获得flag</p>
+<p><img src="https://pic1.zhimg.com/80/v2-ecb70e84f97468a9c5eed6923bc6a2f0_720w.jpg" alt="img"></p>
+<p>w型栅栏密码</p>
+<p>写成W型的栅栏密码。但读取还是按行从左往右读取。</p>
+<p>值和n：</p>
+<p>flag{asd123}</p>
+<p>n=2</p>
+<p>照样是2个分组</p>
+<p>f.a.{.s.1.3</p>
+<p>.l.g.a.d.2.}</p>
+<p>直接从左往右读取</p>
+<p>fa{s13lgad2}</p>
+<p>W型栅栏密码真题-one：</p>
+<p>攻防世界Crypto新手-Railfence</p>
+<p>根据题目名和题目描述可知是栅栏密码。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-bb5b130d16c4a1530b1a1d0403ee7e8f_720w.jpg" alt="img"></p>
+<p>但不是普通的|||型栅栏密码</p>
+<p>是变种的W型栅栏密码</p>
+<h3 id="在线解密："><a href="#在线解密：" class="headerlink" title="在线解密："></a><strong>在线解密：</strong></h3><p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D777" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777</a></p>
+<p><img src="https://pic3.zhimg.com/80/v2-090a754d2d59387491b0becd12bf1c92_720w.jpg" alt="img"></p>
+<p>手解：</p>
+<p>把值按照W型进行横排排列，把明文的第一个填充到密文的第一行第1个位置，把明文的第二个填充到密文的第一行第9个位置。在把明文的第三个填充到密文的第17个位置。在把明文的第四个填充到密文的第25个位置。在把明文的第五个填充到密文的第33个位置。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-bdccd3e6610deff7b3399f83385cd15c_720w.jpg" alt="img"></p>
+<p>当len=35，key=5时（这个就自己画一画吧）然后你就会发现：首行和尾行的间隔依旧不变，假设行数为i，当当前数为第2行的奇数的时候，下一个数字为2+6=8也就是（key-i）<em>2,若当前数为第二行偶数的时候，下一个数字为8+2=10也就是(i-1)</em>2。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-02d6283fe27ea56f8d866bd028d3189f_720w.jpg" alt="img"></p>
+<h4 id="普通栅栏密码加解密："><a href="#普通栅栏密码加解密：" class="headerlink" title="普通栅栏密码加解密："></a>普通栅栏密码加解密：</h4><p><a href="https://link.zhihu.com/?target=https%3A//www.qqxiuzi.cn/bianma/zhalanmima.php" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<h4 id="W型栅栏密码在线加解密："><a href="#W型栅栏密码在线加解密：" class="headerlink" title="W型栅栏密码在线加解密："></a>W型栅栏密码在线加解密：</h4><p><a href="https://link.zhihu.com/?target=http%3A//www.atoolbox.net/Tool.php%3FId%3D777" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777</a></p>
+<h2 id="云影密码："><a href="#云影密码：" class="headerlink" title="云影密码："></a><strong>云影密码：</strong></h2><p>有1，2，4，8这四个数字，可以通过加法来用这四个数字表示0-9中的任何一个数字，列如0=28， 也就是0=2+8，同理7=124，  9=18。这样之后再用1-26来表示26个英文字母，就有了密文与明文之间的对应关系。引入0来作为间隔，以免出现混乱。所以云影密码又叫“01248密码”。</p>
+<p>也给出一个python脚本地址：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//www.jianshu.com/p/b5aa5cf60f83" target="_blank" rel="noopener">https://www.jianshu.com/p/b5aa5cf60f83</a></p>
+<pre class="line-numbers language-text"><code class="language-text">#!/usr/bin/python
+# -*- coding=utf8 -*-
+"""
+# @Author : pig
+# @CreatedTime:2019-11-2423:54:02
+# @Description : 
+"""
+
+
+def de_code(c):
+    dic = [chr(i) for i in range(ord("A"), ord("Z") + 1)]
+    flag = []
+    c2 = [i for i in c.split("0")]
+    for i in c2:
+        c3 = 0
+        for j in i:
+            c3 += int(j)
+        flag.append(dic[c3 - 1])
+    return flag
+
+def encode(plaintext):
+    dic = [chr(i) for i in range(ord("A"), ord("Z") + 1)]
+    m = [i for i in plaintext]
+    tmp = [];flag = []
+    for i in range(len(m)):
+        for j in range(len(dic)):
+            if m[i] == dic[j]:
+                tmp.append(j + 1)
+    for i in tmp:
+        res = ""
+        if i >= 8:
+            res += int(i/8)*"8"
+        if i%8 >=4:
+            res += int(i%8/4)*"4"
+        if i%4 >=2:
+            res += int(i%4/2)*"2"
+        if i%2 >= 1:
+            res += int(i%2/1)*"1"
+        flag.append(res + "0")
+    print ("".join(flag)[:-1])
+
+c = input("输入要解密的数字串:")
+print (de_code(c))
+m_code = input("请输入要加密的数字串:")
+encode(m_code)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="简单位移密码："><a href="#简单位移密码：" class="headerlink" title="简单位移密码："></a><strong>简单位移密码：</strong></h2><p>这个密码是我在《ctf特训营》这本书上看到的。自己并没有在题目中做到过</p>
+<p>实例借鉴书中</p>
+<p>m=flag{easy_easy_crypto}</p>
+<p>k=”3124”</p>
+<p>len(k)=4，切分m。</p>
+<p>flay {eas y_ea sy_c rypt o}</p>
+<p>按照3124直接排列</p>
+<p>Lafg ea{s _eya y_sc yprt }o</p>
+<p>密文：</p>
+<p>Lafgea{s_eyay_scyprt}o</p>
+<p>解密代码：</p>
+<pre class="line-numbers language-text"><code class="language-text">def shift_decrypt(c,k):
+    l=len(k)
+    m=""
+    for i in range(0,len(c),l):
+        tmp_m=[""]*l
+        if i+l>=len(c):
+            tmp_c=c[i:]
+            use=[]
+            for kindex in range(len(tmp_c)):
+                use.append(int(k[kindex])-l)
+            use.sort()
+            for kindex in range(len(tmp_c)):
+                tmp_m[kindex]=tmp_c[use.index(int(k[kindex])-l)]
+        else:
+            tmp_c=c[i:i+l]
+            for kindex in range(len(tmp_c)):
+                tmp_m[kindex]=tmp_c[int(k[kindex])-1]
+        m+="".join(tmp_m)
+    return m
+c="lafgea{s_eyay_scyprt}o"
+k="3124"
+print shift_decrypt(c,k)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="曲路密码："><a href="#曲路密码：" class="headerlink" title="曲路密码："></a><strong>曲路密码：</strong></h2><p>按照事先约定的原则把明文填入表中</p>
+<p>例如：明文为HelloWorldab</p>
+<p><img src="https://pic3.zhimg.com/80/v2-c8e5bd0d1dfa3ececd04d2d2bd49863a_720w.jpg" alt="img"></p>
+<p>按照一定的顺序进行遍历</p>
+<p>密文就是lrbaoleWdloH</p>
+<p><strong>CTF crypto线下工具推荐：</strong></p>
+<p><strong>CTFCrackTools</strong></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//github.com/Acmesec/CTFCrackTools" target="_blank" rel="noopener">https://github.com/Acmesec/CTFCrackTools</a></p>
+<p><img src="https://pic4.zhimg.com/80/v2-1131910e2546d1455cf91261f8369e73_720w.jpg" alt="img"></p>
+<p><strong>CyberChef</strong></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//www.chinabaiker.com/cyberchef.htm" target="_blank" rel="noopener">https://www.chinabaiker.com/cyberchef.htm</a></p>
+<p>直接可以下载到本地</p>
+<p><img src="https://pic1.zhimg.com/80/v2-aa7579316f632a3a6351bb73f1bf9840_720w.jpg" alt="img"></p>
+<p><strong>参考：</strong></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//ctf-wiki.github.io/ctf-wiki/crypto" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/crypto</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//baike.baidu.com" target="_blank" rel="noopener">https://baike.baidu.com</a></p>
+<p>《ctf特训营》</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//buuoj.cn/" target="_blank" rel="noopener">https://buuoj.cn/</a></p>
+<p><strong>相关实验：</strong></p>
+<p>相关实验：密码学原理</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//sourl.cn/9cMsyV" target="_blank" rel="noopener">课程:密码学原理(合天网安实验室)</a></p>
+<p>（密码学是研究如何隐密地传递信息的学科。通过本课程实验掌握密码学的相关知识。）</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2020/10/02/2020-10-01-gu-dian-mi-ma-cong-ling-dao-yi/" class="b-link-green">古典密码从0到1</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1a8a4f8abcc406ec4fbe',
+        clientSecret: '529512c7d39b76c520620149388bbc37d34c52ea',
+        repo: 'LiGuHeiYi.github.io',
+        owner: 'LiGuHeiYi',
+        admin: ["LiGuHeiYi"],
+        id: '2020/10/02/2020-10-01-gu-dian-mi-ma-cong-ling-dao-yi/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/04/2020-10-04-cookie-yu-session/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="cookie与session">
+                        
+                        <span class="card-title">cookie与session</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            [toc]
+Cookiecookie是一种服务端配置在用户电脑上的小文件，用于保存用户信息。因为http(s)是无连接的，所以服务器没法记住同一个用户，从用户的cookie中获取一定的信息（主要用于识别用户），能够帮助服务端处理请求以及提升
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/php/" target="_blank">
+                        <span class="chip bg-color">php</span>
+                    </a>
+                    
+                    <a href="/tags/web/" target="_blank">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/01/2020-10-01-ctf-chang-jian-jia-mi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="ctf常见加密">
+                        
+                        <span class="card-title">ctf常见加密</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            [toc]
+CTF中常见的加密1.凯撒密码通过把字母移动一定的位数来实现加密和解密。明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。只需简单地统计字频就可以破译
+经典的凯撒加密算法是移动3位
+2.base6
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/" target="_blank">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                    <a href="/tags/密码学/" target="_blank">
+                        <span class="chip bg-color">密码学</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Liloong3t的博客<br />'
+            + '作者: Liloong3t<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 Liloong3t. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">72.9k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LiGuHeiYi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=857340909@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/mu-ren-qing-32" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=857340909&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        // var t1 = Date.UTC(2020, 10, 01, 00, 00, 00); //北京时间2020-10-1 00:00:00
+        // var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        // var diff = t2 - t1;
+        // var diffYears = Math.floor(diff / years);
+        // var diffDays = Math.floor((diff / days) - diffYears * 365);
+        // var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        // var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        // var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        //     minutes) / seconds);
+        // document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+        //     " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+
+        
+
+        <!-- 2021.02.01 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "喔哟，404啦！Σ(っ °Д °;)っ", clearTimeout(st)) : (document.title =
+                    "φ(゜▽゜*)♪咦，又好了！~", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  add 2019.09.09 -->
+        
+
+        <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效  add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效  add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具   add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义   add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带   add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带   add 2019.09.15-->
+        
+
+        <!-- 天气接口控件  add 2021.02.01 -->
+        
+            <script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+  </script>
+  <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+  
+  <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+    </script>
+        
+
+    </body>
+</html>

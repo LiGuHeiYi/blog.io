@@ -73,7 +73,7 @@ h6 {
     font-size: 1.1rem;
     line-height: 1.1rem;
 } */
-/* 洪卫 shw2018 modify 2019.08.31 */
+
 h1 {
     margin: 38px 0 22px -5px;
     font-size: 2.0rem;
@@ -422,9 +422,7 @@ header .go-back i {
 
 .bg-cover:after {
     -webkit-animation: rainbow 30s infinite;
-    /* 原值 60s, 洪卫 modify 2019.08*/
     animation: rainbow 30s infinite;
-    /* 原值 60s, 洪卫 modify 2019.08*/
 }
 
 .bg-cover:before,
@@ -544,7 +542,7 @@ header .go-back i {
         background: -webkit-linear-gradient(135deg, rgba(2233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
     }
 } */
-/* 换成:红橙黄绿青蓝紫 背景渐变 洪卫 shw2018  add  2019.08.30  */
+/* 换成:红橙黄绿青蓝紫 背景渐变  add  2019.08.30  */
 @keyframes rainbow {
     /* 0%,
     100% {
@@ -627,7 +625,7 @@ header .go-back i {
 /* .index-card .card .card-content {
     padding: 20px 40px;
 } */
-/* 洪卫 shw2018 modify 2019.08.31 */
+/* modify 2019.08.31 */
 .index-card .card .card-content {
     padding: 5px 5px;
 }
@@ -1033,7 +1031,7 @@ article .article-tags .chip {
         padding: 0 50px 20px 50px;
     }
 } */
-/* 洪卫 shw2018 modify 2019.08.31 */
+/* modify 2019.08.31 */
 @media only screen and (min-width: 993px) {
     #artDetail .article-card-content {
         padding: 0 25px 20px 25px;
