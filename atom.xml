@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-02-01T14:36:48.757Z</updated>
+  <updated>2021-02-01T15:08:58.216Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -21,37 +21,7 @@
     <link href="https://liloong3t.com/2021/02/01/2021-2-1-chong-jian-bo-ke/"/>
     <id>https://liloong3t.com/2021/02/01/2021-2-1-chong-jian-bo-ke/</id>
     <published>2021-02-01T03:41:03.000Z</published>
-    <updated>2021-02-01T14:36:48.757Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;简短介绍&quot;&gt;&lt;a href=&quot;#简短介绍&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="软件安装与配置" scheme="https://liloong3t.com/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    
-    
-      <category term="Hexo" scheme="https://liloong3t.com/tags/Hexo/"/>
-    
-      <category term="Github" scheme="https://liloong3t.com/tags/Github/"/>
-    
-      <category term="博客" scheme="https://liloong3t.com/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重建博客</title>
-    <link href="https://liloong3t.com/2021/02/01/blog-open-source/"/>
-    <id>https://liloong3t.com/2021/02/01/blog-open-source/</id>
-    <published>2021-02-01T03:41:03.000Z</published>
-    <updated>2021-02-01T13:04:57.700Z</updated>
+    <updated>2021-02-01T15:08:58.216Z</updated>
     
     <summary type="html">
     
@@ -222,9 +192,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   
@@ -266,9 +236,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   
@@ -288,9 +258,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   
@@ -461,6 +431,28 @@
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
       <category term="计算机网络" scheme="https://liloong3t.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>虚拟机网络：桥接、NAT和Host-Only模式</title>
+    <link href="https://liloong3t.com/2020/11/20/2020-11-20-xu-ni-ji-wang-luo-qiao-jie-nat-he-host-only-mo-shi/"/>
+    <id>https://liloong3t.com/2020/11/20/2020-11-20-xu-ni-ji-wang-luo-qiao-jie-nat-he-host-only-mo-shi/</id>
+    <published>2020-11-19T16:00:00.000Z</published>
+    <updated>2020-11-21T05:07:02.246Z</updated>
+    
+    <summary type="html">
+    
+      虚拟机网络知识
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="虚拟机" scheme="https://liloong3t.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
