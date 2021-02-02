@@ -1,18 +1,20 @@
+#  modify 2021.02.01
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
 title: Liloong3t的博客
-subtitle: 算法?不会！
+subtitle: Liloong3t的博客
 description: 武汉科技大学 | 计算机科学与技术 | 信息安全
-keywords: "最好不过"
-author: 李会清
+keywords: 
+author: Liloong3t
 language: zh-CN
-timezone:
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+# url: https://LiGuHeiYi.github.io/
 url: https://liloong3t.com
 root: /
 permalink: :year/:month/:day/:title/
@@ -48,7 +50,7 @@ prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
   line_number: true    # default false
-  custom_css:
+  custom_css: 
 
 search:
   path: search.xml
@@ -112,9 +114,20 @@ theme: matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repository: git@github.com:LiGuHeiYi/LiGuHeiYi.github.io
+  repo:
+    github: git@github.com:LiGuHeiYi/LiGuHeiYi.github.io.git
+    # coding: 
+    # gitee: 
   branch: master
 - type: baidu_url_submitter
+
+# baidu submit
+baidu_url_submit:
+  count: 80                                      # 提交最新的一个链接
+  host: liloong3t.com     # 在百度站长平台中注册的域名
+  token: CVU6UNmuEdkpPF39    # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt                # 文本文档的地址， 新链接会保存在此文本文档里
+
 
 
 live2d:
@@ -127,17 +140,40 @@ live2d:
   log: false
   model:
     use: live2d-widget-model-shizuku
+  # model:
+  #   use: live2d-widget-model-wanko
   display:
     position: left
-    width: 200
-    height: 400
+    width: 150
+    height: 200
   mobile:
     show: false
   react:
     opacity: 0.7
+   
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+    # font-size: 5em
+    # font-weight: bold
+  customEmojis:
 
-baidu_url_submit:
-  count: 100
-  host: liloong3t.com
-  token: jp7MKvOw74Yh3F09
-  path: baidu_urls.txt
+# marked:
+#   gfm: true
+#   pedantic: false
+#   breaks: true
+#   smartLists: true
+#   smartypants: true
+#   modifyAnchors: ''
+#   autolink: true
+#   sanitizeUrl: false
+#   headerIds: true
+
+# lazyload configuration  2019.08.14
+lazyload:
+  enable: false 
+  onlypost: true
+  loadingImg:     
+  # eg ./images/loading.gif

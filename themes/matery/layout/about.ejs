@@ -41,7 +41,9 @@
                     </div>
                 </div>
 
-                <div class="introduction center-align" data-aos="fade-up"><%= theme.profile.introduction %></div>
+                <div class="introduction center-align" data-aos="fade-up">
+                    <%= theme.profile.introduction %>
+                </div>
 
                 <%- partial('_widget/post-charts') %>
 
@@ -52,12 +54,10 @@
                 <% if (theme.mySkills && theme.mySkills.enable) { %>
                 <%- partial('_widget/my-skills') %>
                 <% } %>
-
-                <% if (theme.myGallery && theme.myGallery.enable) { %>
-                <%- partial('_widget/my-gallery') %>
-                <% } %>
+                
             </div>
         </div>
+
         <div class="card">
             <div class="card-content">
                 <div class="card-content article-card-content">
@@ -70,5 +70,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </main>

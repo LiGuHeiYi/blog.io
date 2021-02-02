@@ -1,3 +1,4 @@
+<!-- shw2018 洪卫  modify 2019.08.15-->
 <link rel="stylesheet" href="<%- theme.libs.css.dplayer %>">
 <div class="video-player">
     <% if (theme.video.showTitle) { %>
@@ -6,10 +7,12 @@
     </div>
     <% } %>
     <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s12">
+        <%# 注释语法 原主题控件样式 %>
+        <div class="col l8 offset-l2 m10 offset-m1 s12"> 
             <div id="dplayer" class="dplayer-video"
                     <% if (theme.video.height) { %> style="height: <%- theme.video.height %>px;"<% } %>></div>
         </div>
+
     </div>
 </div>
 

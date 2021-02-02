@@ -7,6 +7,7 @@ archives: Archives
 about: About
 friends: Friends
 contact: Contact
+guestbook: Guestbook
 startRead: Start
 recommendedPosts: Recommended Posts
 publishDate: Publish Date
@@ -70,3 +71,16 @@ noreprint: This article is not allowed to reprint.
 payreprint: Please contact the author to pay for reprinting.
 pleaseFollowReprintPolicy: Copied successfully, please follow the reprint policy of this article
 checkPolicy: more
+
+# 2019.08.15
+copy_button: Copy
+copy_success: Copied
+copy_failure: Copy failed
+
+article: Article
+
+# 2019.08.28
+galleries: Galleries
+# 2019.09.17
+list: List
+

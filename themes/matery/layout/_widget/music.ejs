@@ -1,3 +1,4 @@
+<!-- modify 2019.08.15-->
 <%
 var audiosJson = JSON.stringify(site.data.musics);
 %>
@@ -10,7 +11,9 @@ var audiosJson = JSON.stringify(site.data.musics);
     </div>
     <% } %>
     <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s12">
+        <%# 注释语法 原主题控件样式 %>
+        <%# <div class="col l8 offset-l2 m10 offset-m1 s12"> %>
+        <div class="col s12 ">
             <div id="aplayer" class="music"></div>
         </div>
     </div>
@@ -18,19 +21,19 @@ var audiosJson = JSON.stringify(site.data.musics);
 
 <script src="<%- theme.libs.js.aplayer %>"></script>
 <script>
-$(function () {
-    new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: '<%- theme.music.fixed %>' === 'true',
-        autoplay: '<%- theme.music.autoplay %>' === 'true',
-        theme: '<%- theme.music.theme %>',
-        loop: '<%- theme.music.loop %>',
-        order: '<%- theme.music.order %>',
-        preload: '<%- theme.music.preload %>',
-        volume: Number('<%- theme.music.volume %>'),
-        listFolded: '<%- theme.music.listFolded %>' === 'true',
-        listMaxHeight: '<%- theme.music.listMaxHeight %>',
-        audio: JSON.parse('<%- audiosJson %>')
+    $(function () {
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: '<%- theme.music.fixed %>' === 'true',
+            autoplay: '<%- theme.music.autoplay %>' === 'true',
+            theme: '<%- theme.music.theme %>',
+            loop: '<%- theme.music.loop %>',
+            order: '<%- theme.music.order %>',
+            preload: '<%- theme.music.preload %>',
+            volume: Number('<%- theme.music.volume %>'),
+            listFolded: '<%- theme.music.listFolded %>' === 'true',
+            listMaxHeight: '<%- theme.music.listMaxHeight %>',
+            audio: JSON.parse('<%- audiosJson %>')
+        });
     });
-});
 </script>
