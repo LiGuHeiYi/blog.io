@@ -546,11 +546,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -674,7 +699,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="php连接mysql">
+                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="php连接mysql">
                                 
                                 <span class="card-title">php连接mysql</span>
                             </div>
@@ -738,7 +763,7 @@ connect_error)
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="常见漏洞原理">
+                                <img src="/medias/banner/1.jpg" class="responsive-img" alt="常见漏洞原理">
                                 
                                 <span class="card-title">常见漏洞原理</span>
                             </div>
@@ -802,7 +827,7 @@ connect_error)
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="php反序列化字符逃逸">
+                                <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="php反序列化字符逃逸">
                                 
                                 <span class="card-title">php反序列化字符逃逸</span>
                             </div>

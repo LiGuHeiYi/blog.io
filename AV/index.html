@@ -553,11 +553,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -681,8 +706,68 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         </div>
         
         <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/banner/nightcity.jpg">
-                <img src="/medias/banner/nightcity.jpg" class="responsive-img">
+            <div class="img-item" data-src="/medias/banner/ash.jpg">
+                <img src="/medias/banner/ash.jpg" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/ciri.png">
+                <img src="/medias/banner/ciri.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/geralt.png">
+                <img src="/medias/banner/geralt.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/Geralt_sword.png">
+                <img src="/medias/banner/Geralt_sword.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/elves.jpg">
+                <img src="/medias/banner/elves.jpg" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/jeckie.png">
+                <img src="/medias/banner/jeckie.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/maiden.jpg">
+                <img src="/medias/banner/maiden.jpg" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/nightcity.png">
+                <img src="/medias/banner/nightcity.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/princess.jpg">
+                <img src="/medias/banner/princess.jpg" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/silverhand.png">
+                <img src="/medias/banner/silverhand.png" class="responsive-img">
+            </div>
+        </div>
+        
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="/medias/banner/wlop.jpg">
+                <img src="/medias/banner/wlop.jpg" class="responsive-img">
             </div>
         </div>
         

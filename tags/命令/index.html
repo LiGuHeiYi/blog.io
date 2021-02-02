@@ -546,11 +546,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -622,20 +647,20 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/web/" title="web: 24">
+                <a href="/tags/密码学/" title="密码学: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="web" style="background-color: #82E0AA;">web
-                        <span class="tag-length">24</span>
+                            data-tagname="密码学" style="background-color: #82E0AA;">密码学
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/密码学/" title="密码学: 3">
+                <a href="/tags/web/" title="web: 24">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="密码学" style="background-color: #D7BDE2;">密码学
-                        <span class="tag-length">3</span>
+                            data-tagname="web" style="background-color: #D7BDE2;">web
+                        <span class="tag-length">24</span>
                     </span>
                 </a>
                 
@@ -818,7 +843,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="curl命令参数和用法">
+                            <img src="/medias/banner/0.jpg" class="responsive-img" alt="curl命令参数和用法">
                             
                             <span class="card-title">curl命令参数和用法</span>
                         </div>

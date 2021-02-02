@@ -546,11 +546,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -674,7 +699,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/19.jpg" class="responsive-img" alt=".htaccess文件">
+                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt=".htaccess文件">
                                 
                                 <span class="card-title">.htaccess文件</span>
                             </div>
@@ -737,7 +762,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
+                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
                                 
                                 <span class="card-title">2020-12-22-hash-HMAC算法</span>
                             </div>
@@ -800,7 +825,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/3.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
+                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
                                 
                                 <span class="card-title">2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）</span>
                             </div>
@@ -863,7 +888,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="文件包含+伪协议">
+                                <img src="/medias/banner/maiden.jpg" class="responsive-img" alt="文件包含+伪协议">
                                 
                                 <span class="card-title">文件包含+伪协议</span>
                             </div>
@@ -927,7 +952,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
+                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
                                 
                                 <span class="card-title">Windows上通过命令行查看端口和进程</span>
                             </div>
@@ -995,7 +1020,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="树和二叉树">
+                                <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="树和二叉树">
                                 
                                 <span class="card-title">树和二叉树</span>
                             </div>
@@ -1060,7 +1085,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/jeckie.png" class="responsive-img" alt="java学习笔记知识点">
+                                <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="java学习笔记知识点">
                                 
                                 <span class="card-title">java学习笔记知识点</span>
                             </div>
@@ -1126,7 +1151,7 @@ class a{}class b{}
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="HTTP和HTTPs知识点的个人总结">
+                                <img src="/medias/banner/3.jpg" class="responsive-img" alt="HTTP和HTTPs知识点的个人总结">
                                 
                                 <span class="card-title">HTTP和HTTPs知识点的个人总结</span>
                             </div>
@@ -1190,7 +1215,7 @@ class a{}class b{}
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/geralt.png" class="responsive-img" alt="WebSocket笔记">
+                                <img src="/medias/banner/ash.jpg" class="responsive-img" alt="WebSocket笔记">
                                 
                                 <span class="card-title">WebSocket笔记</span>
                             </div>
@@ -1252,7 +1277,7 @@ class a{}class b{}
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/elves.jpg" class="responsive-img" alt="Burpsuite拦截HTTPS过程与原理">
+                                <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="Burpsuite拦截HTTPS过程与原理">
                                 
                                 <span class="card-title">Burpsuite拦截HTTPS过程与原理</span>
                             </div>
@@ -1314,7 +1339,7 @@ class a{}class b{}
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="现阶段计算机网络知识笔记以及整合（不断整合）">
+                                <img src="/medias/banner/maiden.jpg" class="responsive-img" alt="现阶段计算机网络知识笔记以及整合（不断整合）">
                                 
                                 <span class="card-title">现阶段计算机网络知识笔记以及整合（不断整合）</span>
                             </div>
@@ -1376,7 +1401,7 @@ class a{}class b{}
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/Geralt_sword.png" class="responsive-img" alt="路由器和桥接器">
+                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="路由器和桥接器">
                                 
                                 <span class="card-title">路由器和桥接器</span>
                             </div>

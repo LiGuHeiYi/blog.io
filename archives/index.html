@@ -546,11 +546,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -674,7 +699,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="重建博客">
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="重建博客">
                                 
                                 <span class="card-title">重建博客</span>
                             </div>
@@ -747,7 +772,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/8.jpg" class="responsive-img" alt="MYSQL常用基础语法">
+                                <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MYSQL常用基础语法">
                                 
                                 <span class="card-title">MYSQL常用基础语法</span>
                             </div>
@@ -809,7 +834,7 @@ MyS
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/silverhand.png" class="responsive-img" alt="ctf手工SQL注入">
+                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ctf手工SQL注入">
                                 
                                 <span class="card-title">ctf手工SQL注入</span>
                             </div>
@@ -871,7 +896,7 @@ MyS
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/ash.jpg" class="responsive-img" alt="版本控制系统信息泄露分析">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="版本控制系统信息泄露分析">
                                 
                                 <span class="card-title">版本控制系统信息泄露分析</span>
                             </div>
@@ -934,7 +959,7 @@ MyS
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/ciri.png" class="responsive-img" alt="Http重定向">
+                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Http重定向">
                                 
                                 <span class="card-title">Http重定向</span>
                             </div>
@@ -997,7 +1022,7 @@ URL 重定向，也称为 URL 转发，是一种当实际资源，如单个页�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="curl命令参数和用法">
+                                <img src="/medias/banner/0.jpg" class="responsive-img" alt="curl命令参数和用法">
                                 
                                 <span class="card-title">curl命令参数和用法</span>
                             </div>
@@ -1062,7 +1087,7 @@ $ curl https://www.e
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="ctf中的信息泄露">
+                                <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ctf中的信息泄露">
                                 
                                 <span class="card-title">ctf中的信息泄露</span>
                             </div>
@@ -1135,7 +1160,7 @@ phpinfo在可以“有限”地执行php命令地地方执行phpinfo()函数，�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/19.jpg" class="responsive-img" alt=".htaccess文件">
+                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt=".htaccess文件">
                                 
                                 <span class="card-title">.htaccess文件</span>
                             </div>
@@ -1198,7 +1223,7 @@ phpinfo在可以“有限”地执行php命令地地方执行phpinfo()函数，�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
+                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
                                 
                                 <span class="card-title">2020-12-22-hash-HMAC算法</span>
                             </div>
@@ -1261,7 +1286,7 @@ phpinfo在可以“有限”地执行php命令地地方执行phpinfo()函数，�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/3.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
+                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
                                 
                                 <span class="card-title">2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）</span>
                             </div>
@@ -1324,7 +1349,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="文件包含+伪协议">
+                                <img src="/medias/banner/maiden.jpg" class="responsive-img" alt="文件包含+伪协议">
                                 
                                 <span class="card-title">文件包含+伪协议</span>
                             </div>
@@ -1388,7 +1413,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
+                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
                                 
                                 <span class="card-title">Windows上通过命令行查看端口和进程</span>
                             </div>

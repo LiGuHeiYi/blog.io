@@ -546,11 +546,36 @@
         </div>
     </div>
 </div>
-<script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
-</script>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
+<script>
+// 随机切换 banner 图.
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
+
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
 
     </div>
 </div>
@@ -674,7 +699,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="SQL注入总结">
+                                <img src="/medias/banner/5.jpg" class="responsive-img" alt="SQL注入总结">
                                 
                                 <span class="card-title">SQL注入总结</span>
                             </div>
@@ -737,7 +762,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/jeckie.png" class="responsive-img" alt="web常见漏洞防御基本原理">
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="web常见漏洞防御基本原理">
                                 
                                 <span class="card-title">web常见漏洞防御基本原理</span>
                             </div>
@@ -803,7 +828,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/0.jpg" class="responsive-img" alt="cookie与session">
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="cookie与session">
                                 
                                 <span class="card-title">cookie与session</span>
                             </div>
@@ -866,7 +891,7 @@ Cookiecookie是一种服务端配置在用户电脑上的小文件，用于保�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="古典密码从0到1">
+                                <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="古典密码从0到1">
                                 
                                 <span class="card-title">古典密码从0到1</span>
                             </div>
@@ -930,7 +955,7 @@ Cookiecookie是一种服务端配置在用户电脑上的小文件，用于保�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="ctf常见加密">
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ctf常见加密">
                                 
                                 <span class="card-title">ctf常见加密</span>
                             </div>
