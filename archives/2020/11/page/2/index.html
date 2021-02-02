@@ -674,7 +674,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="The SSRF">
+                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="The SSRF">
                                 
                                 <span class="card-title">The SSRF</span>
                             </div>
@@ -739,7 +739,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="PHP 伪协议">
+                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="PHP 伪协议">
                                 
                                 <span class="card-title">PHP 伪协议</span>
                             </div>
@@ -981,6 +981,14 @@ $(function () {
         
 
         <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
         
 
         <!-- 鼠标点击文字特效  add 2019.09.10-->

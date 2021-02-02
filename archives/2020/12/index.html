@@ -737,7 +737,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
+                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="2020-12-22-hash-HMAC算法">
                                 
                                 <span class="card-title">2020-12-22-hash-HMAC算法</span>
                             </div>
@@ -800,7 +800,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
+                                <img src="/medias/banner/3.jpg" class="responsive-img" alt="2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）">
                                 
                                 <span class="card-title">2020-12-07-SSTI模板注入与Flask基础（略带沙箱逃逸）</span>
                             </div>
@@ -863,7 +863,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="文件包含+伪协议">
+                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="文件包含+伪协议">
                                 
                                 <span class="card-title">文件包含+伪协议</span>
                             </div>
@@ -927,7 +927,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
+                                <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Windows上通过命令行查看端口和进程">
                                 
                                 <span class="card-title">Windows上通过命令行查看端口和进程</span>
                             </div>
@@ -1139,6 +1139,14 @@ $(function () {
         
 
         <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
         
 
         <!-- 鼠标点击文字特效  add 2019.09.10-->

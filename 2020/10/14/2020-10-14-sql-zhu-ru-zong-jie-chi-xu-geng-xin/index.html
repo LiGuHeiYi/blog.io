@@ -539,7 +539,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/wlop.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -913,7 +913,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="PHP 伪协议">
+                        <img src="/medias/banner/princess.jpg" class="responsive-img" alt="PHP 伪协议">
                         
                         <span class="card-title">PHP 伪协议</span>
                     </div>
@@ -973,7 +973,7 @@ allow_url_include :off/on
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="web常见漏洞防御基本原理">
+                        <img src="/medias/banner/jeckie.png" class="responsive-img" alt="web常见漏洞防御基本原理">
                         
                         <span class="card-title">web常见漏洞防御基本原理</span>
                     </div>
@@ -1324,6 +1324,14 @@ $(function () {
         
 
         <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
         
 
         <!-- 鼠标点击文字特效  add 2019.09.10-->

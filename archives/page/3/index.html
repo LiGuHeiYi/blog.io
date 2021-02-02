@@ -674,7 +674,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="The SSRF">
+                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="The SSRF">
                                 
                                 <span class="card-title">The SSRF</span>
                             </div>
@@ -739,7 +739,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="PHP 伪协议">
+                                <img src="/medias/banner/princess.jpg" class="responsive-img" alt="PHP 伪协议">
                                 
                                 <span class="card-title">PHP 伪协议</span>
                             </div>
@@ -813,7 +813,7 @@ allow_url_include :off/on
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SQL注入总结">
+                                <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="SQL注入总结">
                                 
                                 <span class="card-title">SQL注入总结</span>
                             </div>
@@ -876,7 +876,7 @@ allow_url_include :off/on
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="web常见漏洞防御基本原理">
+                                <img src="/medias/banner/jeckie.png" class="responsive-img" alt="web常见漏洞防御基本原理">
                                 
                                 <span class="card-title">web常见漏洞防御基本原理</span>
                             </div>
@@ -942,7 +942,7 @@ allow_url_include :off/on
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="cookie与session">
+                                <img src="/medias/banner/0.jpg" class="responsive-img" alt="cookie与session">
                                 
                                 <span class="card-title">cookie与session</span>
                             </div>
@@ -1005,7 +1005,7 @@ Cookiecookie是一种服务端配置在用户电脑上的小文件，用于保�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="古典密码从0到1">
+                                <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="古典密码从0到1">
                                 
                                 <span class="card-title">古典密码从0到1</span>
                             </div>
@@ -1069,7 +1069,7 @@ Cookiecookie是一种服务端配置在用户电脑上的小文件，用于保�
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="ctf常见加密">
+                                <img src="/medias/banner/2.jpg" class="responsive-img" alt="ctf常见加密">
                                 
                                 <span class="card-title">ctf常见加密</span>
                             </div>
@@ -1139,7 +1139,7 @@ CTF中常见的加密1.凯撒密码通过把字母移动一定的位数来实现
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="php连接mysql">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="php连接mysql">
                                 
                                 <span class="card-title">php连接mysql</span>
                             </div>
@@ -1203,7 +1203,7 @@ connect_error)
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="常见漏洞原理">
+                                <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="常见漏洞原理">
                                 
                                 <span class="card-title">常见漏洞原理</span>
                             </div>
@@ -1267,7 +1267,7 @@ connect_error)
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="php反序列化字符逃逸">
+                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="php反序列化字符逃逸">
                                 
                                 <span class="card-title">php反序列化字符逃逸</span>
                             </div>
@@ -1334,7 +1334,7 @@ connect_error)
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="你好，世界！">
+                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="你好，世界！">
                                 
                                 <span class="card-title">你好，世界！</span>
                             </div>
@@ -1571,6 +1571,14 @@ $(function () {
         
 
         <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
         
 
         <!-- 鼠标点击文字特效  add 2019.09.10-->
