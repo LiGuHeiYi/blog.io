@@ -139,7 +139,7 @@ code:
 # 是否激活文章末尾的打赏功能，默认激活（你替换为的你自己的微信、支付宝二维码图片、或者使用网络图片也可以）.
 reward:
   enable: false
-  title: 你的赏识是我前进的动力!
+  title: 你的赏识是我前进的助力!
   wechat: /medias/reward/wechat.png
   alipay: /medias/reward/alipay.jpg
 
@@ -149,7 +149,7 @@ reward:
 copyright:
   enable: true
   minCharNumber: 500 # 至少复制多少个字符就追加版权信息.
-  description: 本文章著作权归作者所有，任何形式的转载都请注明出处。
+  description: 本文章著作权归作者所有，转载请注明出处。
 
 # Whether to activate the mathjax, this is a global configuration, but the post still does not open the mathjax rendering.
 # Considering that the mathjax loading is time consuming,
@@ -171,10 +171,6 @@ wordCount:
   min2read: true
   totalCount: true
 
-# Whether to activate the 'love' effect of clicking on the page.
-# 是否激活点击页面的'爱心'效果，默认激活.
-clicklove:
-  enable: false
 
 # profile in about page, including avatars, career, and personal introductions.
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
@@ -210,7 +206,7 @@ myProjects:
 # If you don't want to display this `My Skills` content, you can deactivate or delete this configuration.
 # 在“关于”页面配置"我的技能"信息，如果你不需要这些信息则可以将其设置为不激活或者将其删除.
 mySkills:
-  enable: false
+  enable: true
   data:
     算法:
       background: 'linear-gradient(to right, #FF0066 0%, #FF00CC 100%)'
@@ -250,7 +246,17 @@ myGallery:
     - /medias/featureimages/8.jpg
     - /medias/featureimages/9.jpg
     - /medias/featureimages/10.jpg
-    - /medias/featureimages/nightcity.jpg
+    - /medias/banner/ash.jpg
+    - /medias/banner/ciri.png
+    - /medias/banner/geralt.png
+    - /medias/banner/Geralt_sword.png
+    - /medias/banner/elves.jpg
+    - /medias/banner/jeckie.png
+    - /medias/banner/maiden.jpg
+    - /medias/banner/nightcity.png
+    - /medias/banner/princess.jpg
+    - /medias/banner/silverhand.png
+    - /medias/banner/wlop.jpg
 
 
 # Whether to display post-calender in the `archive` page
@@ -434,6 +440,22 @@ featureImages:
 - /medias/featureimages/21.jpg
 - /medias/featureimages/22.jpg
 - /medias/featureimages/23.jpg
+- /medias/banner/0.jpg
+- /medias/banner/1.jpg
+- /medias/banner/2.jpg
+- /medias/banner/3.jpg
+- /medias/banner/4.jpg
+- /medias/banner/5.jpg
+- /medias/banner/6.jpg
+- /medias/banner/7.jpg
+- /medias/banner/8.jpg
+- /medias/banner/9.jpg
+- /medias/banner/10.jpg
+- /medias/banner/ash.jpg
+- /medias/banner/elves.jpg
+- /medias/banner/maiden.jpg
+- /medias/banner/princess.jpg
+- /medias/banner/wlop.jpg
 
   # default configs that the default policy for every articles/posts
   # default 配置文章的默认转载规则
@@ -455,12 +477,18 @@ featureImages:
   # noreprint（不允许转载 not allowed to reprint）
   # pay（付费转载 pay for reprinting）
 
+# whether enable reprint section 是否启用“转载规则限定模块”
 reprint:
-  enable: fasle # whether enable reprint section 是否启用“转载规则限定模块”
+  enable: true 
   default: cc_by
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: true
+
+# Whether to activate the 'love' effect of clicking on the page.
+# 是否激活点击页面的'爱心'效果，默认激活.
+clicklove:
+  enable: false
 
 # 页面樱花飘落动效
 sakura:
