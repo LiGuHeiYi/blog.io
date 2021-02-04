@@ -1,0 +1,1448 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="2021-2-4-初步了解XML, Liloong3t的博客">
+    <meta name="baidu-site-verification" content="code-5WkfinfGVW">
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <meta name="description" content="初步了解XML简介
+
+XML 被设计用来传输和存储数据。
+HTML 被设计用来显示数据。
+
+HTML是超文本标记语言，XML 指扩展标记语言（EXtensible Markup Language）
+它们俩乍一看很像，但他们的功能侧重点是不一">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>2021-2-4-初步了解XML | Liloong3t的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- 
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+     -->
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liloong3t的博客</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liloong3t的博客</div>
+        <div class="logo-desc">
+            
+            武汉科技大学 | 计算机科学与技术 | 信息安全
+            
+        </div>
+    </div>
+
+    
+
+    <!-- <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友链
+            </a>
+        </li>
+        
+        
+    </ul> -->
+
+   
+   
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友链
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul>
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/10.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        2021-2-4-初步了解XML
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web/" target="_blank">
+                                <span class="chip bg-color">web</span>
+                            </a>
+                        
+                            <a href="/tags/blog/" target="_blank">
+                                <span class="chip bg-color">blog</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-04
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        Liloong3t
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        7 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="初步了解XML"><a href="#初步了解XML" class="headerlink" title="初步了解XML"></a>初步了解XML</h1><p><strong>简介</strong></p>
+<blockquote>
+<p>XML 被设计用来传输和存储数据。</p>
+<p>HTML 被设计用来显示数据。</p>
+</blockquote>
+<p>HTML是超文本标记语言，XML 指扩展标记语言（EXtensible Markup Language）</p>
+<p>它们俩乍一看很像，但他们的功能侧重点是不一样的</p>
+<p>HTML着重于<strong>显示信息</strong>，而XML着重于<strong>存储信息</strong>。</p>
+<p>XML与HTML最大的区别是<strong>XML的标签没有预定义，用户自行定义XML文档中的标签</strong>，我们需要专门编程来显示这些自定义标签中的信息。</p>
+<h3 id="XML-把数据从-HTML-分离"><a href="#XML-把数据从-HTML-分离" class="headerlink" title="XML 把数据从 HTML 分离"></a>XML 把数据从 HTML 分离</h3><p>如果需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。</p>
+<p>通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。</p>
+<p>通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。</p>
+<h2 id="XML数据结构"><a href="#XML数据结构" class="headerlink" title="XML数据结构"></a>XML数据结构</h2><p>XML是“树”结构的。</p>
+<pre class="line-numbers language-XMl"><code class="language-XMl"><?xml version="1.0" encoding="UTF-8"?>
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一行是XML声明，版本1.0，编码 utf-8</p>
+<p>第二行<note>是根元素</note></p>
+<p>XML 文档<strong>必须</strong>包含<strong>根元素</strong>。该元素是所有其他元素的父元素。</p>
+<p>XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端。</p>
+<p>当两个元素互相包含，外层的是父元素，内层的子元素，同层的元素互称同胞（兄弟或姐妹），这与数据结构中树的定义没有什么不同的。</p>
+<h2 id="XML语法规则"><a href="#XML语法规则" class="headerlink" title="XML语法规则"></a>XML语法规则</h2><p>XML没有预定义标签，所以它只有一些必须遵守的语法规则，而没有像HTML那样的标准语法。</p>
+<h4 id="XML-声明"><a href="#XML-声明" class="headerlink" title="XML 声明"></a>XML 声明</h4><p>XML 声明文件的可选部分，如果存在需要放在文档的第一行，如下所示：</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>以上实例包含 XML 版本（</p>
+<p>UTF-8 也是 HTML5, CSS, JavaScript, PHP, 和 SQL 的默认编码。</p>
+</blockquote>
+<hr>
+<h4 id="所有的-XML-元素都必须有一个关闭标签"><a href="#所有的-XML-元素都必须有一个关闭标签" class="headerlink" title="所有的 XML 元素都必须有一个关闭标签"></a>所有的 XML 元素都必须有一个关闭标签</h4><p>在 HTML 中，某些元素不必有一个关闭标签：</p>
+<pre><code>&lt;p&gt;This is a paragraph.
+&lt;br&gt;</code></pre><p>在 XML 中，省略关闭标签是非法的。所有元素都<strong>必须</strong>有关闭标签：</p>
+<pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;br /&gt;</code></pre><p><strong>注释：</strong>从上面的实例中，您也许已经注意到 XML 声明没有关闭标签。这不是错误。声明不是 XML 文档本身的一部分，它没有关闭标签。</p>
+<hr>
+<h4 id="XML-标签对大小写敏感"><a href="#XML-标签对大小写敏感" class="headerlink" title="XML 标签对大小写敏感"></a>XML 标签对大小写敏感</h4><p><strong>XML 标签对大小写敏感</strong>。标签 <letter> 与标签 <letter> 是不同的。</letter></letter></p>
+<p>必须使用相同的大小写来编写打开标签和关闭标签：</p>
+<pre><code>&lt;Message&gt;这是错误的&lt;/message&gt;
+&lt;message&gt;这是正确的&lt;/message&gt;</code></pre><p><strong>注释：</strong>打开标签和关闭标签通常被称为开始标签和结束标签。不论您喜欢哪种术语，它们的概念都是相同的。</p>
+<hr>
+<h4 id="XML-必须正确嵌套"><a href="#XML-必须正确嵌套" class="headerlink" title="XML 必须正确嵌套"></a>XML 必须正确嵌套</h4><p>在 HTML 中，常会看到没有正确嵌套的元素：</p>
+<pre><code>&lt;b&gt;&lt;i&gt;This text is bold and italic&lt;/b&gt;&lt;/i&gt;</code></pre><p>在 XML 中，所有元素都<strong>必须</strong>彼此正确地嵌套：</p>
+<pre><code>&lt;b&gt;&lt;i&gt;This text is bold and italic&lt;/i&gt;&lt;/b&gt;</code></pre><p>在上面的实例中，正确嵌套的意思是：由于 <i> 元素是在 <b> 元素内打开的，那么它必须在 <b> 元素内关闭。</b></b></i></p>
+<hr>
+<hr>
+<h4 id="XML-属性值必须加引号"><a href="#XML-属性值必须加引号" class="headerlink" title="XML 属性值必须加引号"></a>XML 属性值必须加引号</h4><p>与 HTML 类似，XML 元素也可拥有属性（名称/值的对）。</p>
+<p>在 XML 中，XML 的属性值必须加引号。<strong>单引号双引号均可。</strong></p>
+<p>请研究下面的两个 XML 文档。 第一个是错误的，第二个是正确的：</p>
+<pre><code>&lt;note date=12/11/2007&gt;
+&lt;to&gt;Tove&lt;/to&gt;
+&lt;from&gt;Jani&lt;/from&gt;
+&lt;/note&gt;</code></pre><pre><code>&lt;note date="12/11/2007"&gt;
+&lt;to&gt;Tove&lt;/to&gt;
+&lt;from&gt;Jani&lt;/from&gt;
+&lt;/note&gt;</code></pre><p>在第一个文档中的错误是，note 元素中的 date 属性没有加引号。</p>
+<hr>
+<h4 id="实体引用"><a href="#实体引用" class="headerlink" title="实体引用"></a>实体引用</h4><p>在 XML 中，一些字符拥有特殊的意义。</p>
+<p>如果您把字符 “&lt;” 放在 XML 元素中，会发生错误，这是因为解析器会把它当作新元素的开始。</p>
+<p>这样会产生 XML 错误：</p>
+<pre><code>&lt;message&gt;if salary &lt; 1000 then&lt;/message&gt;</code></pre><p>为了避免这个错误，请用<strong>实体引用</strong>来代替 “&lt;” 字符：</p>
+<pre><code>&lt;message&gt;if salary &amp;lt; 1000 then&lt;/message&gt;</code></pre><p>在 XML 中，有 5 个预定义的实体引用：</p>
+<table>
+<thead>
+<tr>
+<th>&lt;</th>
+<th>&lt;</th>
+<th>less than</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>&amp;</td>
+<td>ampersand</td>
+</tr>
+<tr>
+<td>'</td>
+<td>‘</td>
+<td>apostrophe</td>
+</tr>
+<tr>
+<td>"</td>
+<td>“</td>
+<td>quotation mark</td>
+</tr>
+</tbody></table>
+<p><strong>注释：</strong>在 XML 中，只有字符 “&lt;” 和 “&amp;” 确实是非法的。大于号是合法的，但是用实体引用来代替它是一个好习惯。</p>
+<hr>
+<h4 id="XML-中的注释"><a href="#XML-中的注释" class="headerlink" title="XML 中的注释"></a>XML 中的注释</h4><p>在 XML 中编写注释的语法与 HTML 的语法很相似。</p>
+<pre><code>&lt;!-- This is a comment --&gt;</code></pre><hr>
+<h4 id="在-XML-中，空格会被保留"><a href="#在-XML-中，空格会被保留" class="headerlink" title="在 XML 中，空格会被保留"></a>在 XML 中，空格会被保留</h4><p>HTML 会把多个连续的空格字符裁减（合并）为一个：</p>
+<table>
+<thead>
+<tr>
+<th>HTML:</th>
+<th><code>Hello           Tove</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输出结果:</td>
+<td>Hello Tove</td>
+</tr>
+</tbody></table>
+<p>在 XML 中，文档中的空格不会被删减，因为它是用来存储信息的，空格也是一种信息。</p>
+<hr>
+<h4 id="XML-以-LF-存储换行"><a href="#XML-以-LF-存储换行" class="headerlink" title="XML 以 LF 存储换行"></a>XML 以 LF 存储换行</h4><p>在 Windows 应用程序中，换行通常以一对字符来存储：回车符（CR）和换行符（LF）。</p>
+<p>在 Unix 和 Mac OSX 中，使用 LF 来存储新行。</p>
+<p>在旧的 Mac 系统中，使用 CR 来存储新行。</p>
+<p>XML 以 LF 存储换行。</p>
+<h3 id="XML元素"><a href="#XML元素" class="headerlink" title="XML元素"></a>XML元素</h3><p>一个元素可以包含：</p>
+<ul>
+<li>其他元素</li>
+<li>文本</li>
+<li>属性</li>
+<li>或混合以上所有</li>
+</ul>
+<h3 id="XML-命名规则"><a href="#XML-命名规则" class="headerlink" title="XML 命名规则"></a>XML 命名规则</h3><p>XML 元素必须遵循以下命名规则：</p>
+<ul>
+<li>名称可以包含字母、数字以及其他的字符</li>
+<li><strong>名称不能以数字或者标点符号开始</strong></li>
+<li>名称不能以字母 xml（或者 XML、Xml 等等）开始</li>
+<li>名称不能包含空格</li>
+</ul>
+<p>可使用任何名称，没有保留的字词。</p>
+<h3 id="XML-元素是可扩展的"><a href="#XML-元素是可扩展的" class="headerlink" title="XML 元素是可扩展的"></a>XML 元素是可扩展的</h3><p>XML 元素是可扩展，以携带更多的信息。</p>
+<p>请看下面的 XML 实例：</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>note</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>to</span><span class="token punctuation">></span></span>Tove<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>to</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>from</span><span class="token punctuation">></span></span>Jani<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>from</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>Don't forget me this weekend!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>note</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>让我们设想一下，我们创建了一个应用程序，可将 <to>、<from> 以及  元素从 XML 文档中提取出来，并产生以下的输出：</from></to></p>
+<blockquote>
+<p><strong>MESSAGE</strong></p>
+<p><strong>To:</strong> Tove<br><strong>From:</strong> Jani</p>
+<p>Don’t forget me this weekend!</p>
+</blockquote>
+<p>想象一下，XML 文档的作者添加的一些额外信息：</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>note</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>date</span><span class="token punctuation">></span></span>2008-01-10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>date</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>to</span><span class="token punctuation">></span></span>Tove<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>to</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>from</span><span class="token punctuation">></span></span>Jani<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>from</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>heading</span><span class="token punctuation">></span></span>Reminder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>heading</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>Don't forget me this weekend!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>note</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>那么这个应用程序会中断或崩溃吗？</p>
+<p>不会。这个应用程序仍然可以找到 XML 文档中的 <to>、<from> 以及  元素，并产生同样的输出。</from></to></p>
+<p>XML 的优势之一，就是可以在不中断应用程序的情况下进行扩展。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/02/04/2021-2-4-chu-bu-liao-jie-xml/" class="b-link-green">2021-2-4-初步了解XML</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1a8a4f8abcc406ec4fbe',
+        clientSecret: '135ec1ebd0158365190ca1e28c38ce36e857236b',
+        repo: 'LiGuHeiYi.github.io',
+        owner: 'LiGuHeiYi',
+        admin: ["LiGuHeiYi"],
+        id: '2021/02/04/2021-2-4-chu-bu-liao-jie-xml/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/02/04/2021-2-4-chu-bu-liao-jie-xml/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/banner/10.jpg" class="responsive-img" alt="2021-2-4-初步了解XML">
+                        
+                        <span class="card-title">2021-2-4-初步了解XML</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            经常看到XML文件，之前却没来得及认真去了解一下，就处于一个半懂不懂的状态，现在补上这方面知识
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web/" target="_blank">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/blog/" target="_blank">
+                        <span class="chip bg-color">blog</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="Git常用命令与教程">
+                        
+                        <span class="card-title">Git常用命令与教程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Git中有很多常用的命令，掌握好常用的命令就能事半功倍。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                    <a href="/tags/教程/" target="_blank">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Liloong3t的博客<br />'
+            + '作者: Liloong3t<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，转载请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 Liloong3t. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">75k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LiGuHeiYi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=857340909@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/mu-ren-qing-32" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=857340909&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        // var t1 = Date.UTC(2020, 10, 01, 00, 00, 00); //北京时间2020-10-1 00:00:00
+        // var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        // var diff = t2 - t1;
+        // var diffYears = Math.floor(diff / years);
+        // var diffDays = Math.floor((diff / days) - diffYears * 365);
+        // var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        // var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        // var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        //     minutes) / seconds);
+        // document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+        //     " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+
+        
+
+        <!-- 2021.02.01 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "喔哟，404啦！Σ(っ °Д °;)っ", clearTimeout(st)) : (document.title =
+                    "φ(゜▽゜*)♪咦，又好了！~", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  add 2019.09.09 -->
+        
+
+        <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效  add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效  add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具   add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义   add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带   add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带   add 2019.09.15-->
+        
+
+        <!-- 天气接口控件  add 2021.02.01 -->
+        
+            <script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+  </script>
+  <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+  
+  <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+    </script>
+        
+
+    </body>
+</html>
