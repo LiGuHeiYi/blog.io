@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liloong3t.com/2021/02/01/2021-2-1-chong-jian-bo-ke/</loc>
+    
+    <lastmod>2021-02-06T06:44:03.680Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liloong3t.com/2021/02/04/2021-2-4-chu-bu-liao-jie-xml/</loc>
     
-    <lastmod>2021-02-04T15:12:13.220Z</lastmod>
+    <lastmod>2021-02-04T15:14:14.680Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://liloong3t.com/2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/</loc>
     
     <lastmod>2021-02-02T14:21:30.387Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://liloong3t.com/2021/02/01/2021-2-1-chong-jian-bo-ke/</loc>
-    
-    <lastmod>2021-02-02T14:10:34.497Z</lastmod>
     
   </url>
   
@@ -289,14 +289,14 @@
   </url>
   
   <url>
-    <loc>https://liloong3t.com/categories/index.html</loc>
+    <loc>https://liloong3t.com/archives/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://liloong3t.com/archives/index.html</loc>
+    <loc>https://liloong3t.com/categories/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
     
