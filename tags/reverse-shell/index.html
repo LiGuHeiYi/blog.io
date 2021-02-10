@@ -5,14 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="路由器和桥接器, Liloong3t&#39;s Blog">
+    <meta name="keywords" content="标签: reverse shell, Liloong3t&#39;s Blog">
     <meta name="baidu-site-verification" content="code-5WkfinfGVW">
     <!-- <meta name="google-site-verification" content="" /> -->
-    <meta name="description" content="路由器路由器在网络层。
-路由器中的储存器里有一张路由表，里面存储着很多节点之间的最佳路由方案。但网络环境很复杂，有时还是需要动态路由。
-桥接器桥接器在在数据链路层。
-交换机就是多端口桥接器。
-桥接器在功能上与集线器等其他用于连接网段的设备类">
+    <meta name="description" content="标签: reverse shell | Liloong3t&#39;s Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>路由器和桥接器 | Liloong3t&#39;s Blog</title>
+    <title>标签: reverse shell | Liloong3t&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -525,544 +521,383 @@
 
 </header>
 
-        
-<script src="/libs/cryptojs/crypto-js.min.js"></script>
-<script>
-    (function() {
-        let pwd = '';
-        if (pwd && pwd.length > 0) {
-            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
-                alert('密码错误，将返回主页！');
-                location.href = '/';
-            }
-        }
-    })();
-</script>
-
-
-
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/2.jpg')">
+        <div class="bg-cover pd-header about-cover">
     <div class="container">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <div class="description center-align post-title">
-                        路由器和桥接器
-                    </div>
-                </div>
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                <!-- 
+                    Liloong3t&#39;s Blog
+                 -->
+                
+                    标签
+                
             </div>
+
+            <div class="description center-align">
+                
+                    <!-- 武汉科技大学 | 计算机科学与技术 | 信息安全 -->
+                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
+                
+            </div>
+            
+            
         </div>
     </div>
 </div>
+<!-- <script>
+// 每小时切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getHours() + '.jpg)');
+</script> -->
 
 
+<script>
+// 随机切换 banner 图.  Switch banner image randomly.   add  Liloong3t  2021.2.2
+var imgs =[
+"0.jpg",
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg",
+"6.jpg",
+"7.jpg",
+"8.jpg",
+"9.jpg",
+"10.jpg",
+"ash.jpg",
+"elves.jpg",
+"maiden.jpg",
+"princess.jpg",
+"wlop.jpg"
+];
 
-<main class="post-container content">
+var index=Math.floor(Math.random()*imgs.length);
+var img = imgs[index];
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
+</script>
+
+    </div>
+</div>
+
+<main class="content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
 
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #toc-content .is-active-link::before {
-        background-color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 20px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
-<div id="artDetail">
+<div id="tags" class="container chip-container">
     <div class="card">
-        <div class="card-content article-info">
-            <div class="row tag-cate">
-                <div class="col s7">
-                    
-                    <div class="article-tag">
-                        
-                            <a href="/tags/web/" target="_blank">
-                                <span class="chip bg-color">web</span>
-                            </a>
-                        
-                            <a href="/tags/计算机网络/" target="_blank">
-                                <span class="chip bg-color">计算机网络</span>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/blog/" class="post-category" target="_blank">
-                                blog
-                            </a>
-                        
-                    </div>
-                    
-                </div>
+        <div class="card-content">
+            <div class="tag-title center-align">
+                <i class="fa fa-tags"></i>&nbsp;&nbsp;文章标签
             </div>
-            
-            <div class="post-info">
-                <div class="post-date info-break-policy">
-                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-21
-                </div>
-
-                <div class="post-author info-break-policy">
-                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
-                    
-                        Liloong3t
-                    
-                </div>
-
-                
-                    
-                    <div class="info-break-policy">
-                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        733
-                    </div>
-                    
-
-                    
-                    <div class="info-break-policy">
-                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
-                    </div>
-                    
+            <div class="tag-chips">
                 
                 
-                
-
-            </div>
-        </div>
-        <hr class="clearfix">
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h1 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h1><p>路由器在网络层。</p>
-<p>路由器中的储存器里有一张路由表，里面存储着很多节点之间的最佳路由方案。但网络环境很复杂，有时还是需要动态路由。</p>
-<h1 id="桥接器"><a href="#桥接器" class="headerlink" title="桥接器"></a>桥接器</h1><p>桥接器在在数据链路层。</p>
-<p>交换机就是多端口桥接器。</p>
-<p>桥接器在功能上与<a href="https://zh.wikipedia.org/wiki/集线器" target="_blank" rel="noopener">集线器</a>等其他用于连接网段的设备类似，不过后者工作在<a href="https://zh.wikipedia.org/wiki/物理层" target="_blank" rel="noopener">物理层</a>（OSI模型第1层）。</p>
-<ul>
-<li>网桥能够识别数据链路层中的数据帧，并将这些数据帧临时存储于内存，再重新生成信号作为一个全新的数据帧转发给相连的另一个网段（network segment）。由于能够对数据帧拆包、暂存、重新打包（称为存储转发机制 store-and-forward），网桥能够连接不同技术参数传输速率的数据链路，如连接10BASE-T与100BASE-TX。</li>
-<li>数据帧中有一个位叫做FCS，用来通过<a href="https://zh.wikipedia.org/wiki/CRC32" target="_blank" rel="noopener">CRC</a>方式校验数据帧中的位。网桥可以检查FCS，将那些损坏的数据帧丢弃。</li>
-<li>网桥在向其他网段转发数据帧时会做冲突检测控制。</li>
-<li>网桥还能通过地址自学机制和过滤功能控制网络流量，具有OSI第2层<a href="https://zh.wikipedia.org/wiki/网络交换机" target="_blank" rel="noopener">网络交换机</a>功能。这称为transparent bridge，由<a href="https://zh.wikipedia.org/wiki/DEC" target="_blank" rel="noopener">DEC</a>在1980年代发明<a href="https://zh.wikipedia.org/wiki/橋接器#cite_note-4" target="_blank" rel="noopener">[4]</a>。其机制是网桥内部有一个数据库，最初没有数据。当网桥从一个网段收到一个数据帧，就会在数据库中登记（或者更新）数据帧的源地址属于这个网段，并检查数据包的目的地址。如果目的地址在数据库中属于另外一个网段，则网桥向该网段转发该数据帧；如果目的地址在数据库中没有记录，则网桥向除了源地址所在之外的其他所有网段转发（flood）该数据帧。</li>
-<li>桥接器仅仅在不同网络之间有数据传输的时候才将数据转发到其他网络，不是像集线器那样对所有数据都进行广播。对于<a href="https://zh.wikipedia.org/wiki/以太网" target="_blank" rel="noopener">以太网</a>，“桥接”这一术语正式的含义是指符合<a href="https://zh.wikipedia.org/wiki/IEEE_802.1D" target="_blank" rel="noopener">IEEE 802.1D</a>标准的设备，即“网络切换”。桥接器可以分割网段，不似集线器仍是在为同一<a href="https://zh.wikipedia.org/w/index.php?title=碰撞域&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">碰撞域</a>，所以对带宽耗损较大。因桥接器透过其内之MAC表格，让发送帧不会通过，所以其称之为数据链接层操作之网络组件，可隔离碰撞。</li>
-</ul>
-<p>若有通信频繁的机器，则应置于同区之内，否则性能将降低。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-            </div>
-            <hr/>
-
-            
-
-            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
-
-<div id="article-share">
-    
-    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
-    
-</div>
-
-<script src="/libs/share/js/social-share.min.js"></script>
-
-            
-            
-            
-            <div class="reprint1">
-                <p>
-                    <span class="reprint1-tip">
-                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                <a href="/tags/开场白/" title="开场白: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="开场白" style="background-color: #F9EBEA;">开场白
+                        <span class="tag-length">1</span>
                     </span>
-                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t's Blog</a>
-                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/11/21/2020-11-21-lu-you-qi-he-qiao-jie-qi/" class="b-link-green">路由器和桥接器</a>
-                </p>
+                </a>
+                
+                
+                <a href="/tags/人生感悟/" title="人生感悟: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="人生感悟" style="background-color: #F5EEF8;">人生感悟
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/CTF/" title="CTF: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="CTF" style="background-color: #D5F5E3;">CTF
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/php字符反序列化/" title="php字符反序列化: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="php字符反序列化" style="background-color: #E8F8F5;">php字符反序列化
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/php/" title="php: 5">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="php" style="background-color: #FEF9E7;">php
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/MySQL/" title="MySQL: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="MySQL" style="background-color: #F8F9F9;">MySQL
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/web/" title="web: 26">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="web" style="background-color: #82E0AA;">web
+                        <span class="tag-length">26</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/漏洞/" title="漏洞: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="漏洞" style="background-color: #D7BDE2;">漏洞
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/密码学/" title="密码学: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="密码学" style="background-color: #A3E4D7;">密码学
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/PHP/" title="PHP: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="PHP" style="background-color: #85C1E9;">PHP
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/数据库/" title="数据库: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="数据库" style="background-color: #F8C471;">数据库
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/kali/" title="kali: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="kali" style="background-color: #F9E79F;">kali
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/AWD/" title="AWD: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="AWD" style="background-color: #85C1E9;">AWD
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/虚拟机/" title="虚拟机: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="虚拟机" style="background-color: #F5EEF8;">虚拟机
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/计算机网络/" title="计算机网络: 5">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="计算机网络" style="background-color: #A3E4D7;">计算机网络
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/编程，数据结构/" title="编程，数据结构: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="编程，数据结构" style="background-color: #F8F9F9;">编程，数据结构
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/编程，java/" title="编程，java: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="编程，java" style="background-color: #FFF;">编程，java
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/笔记，cmd/" title="笔记，cmd: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="笔记，cmd" style="background-color: #F9EBEA;">笔记，cmd
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/哈希/" title="哈希: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="哈希" style="background-color: #85C1E9;">哈希
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/300状态码/" title="300状态码: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="300状态码" style="background-color: #F8C471;">300状态码
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/命令/" title="命令: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="命令" style="background-color: #F8F9F9;">命令
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/ctf/" title="ctf: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="ctf" style="background-color: #F9E79F;">ctf
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Hexo/" title="Hexo: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Hexo" style="background-color: #E8F8F5;">Hexo
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Github/" title="Github: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Github" style="background-color: #FEF9E7;">Github
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/blog/" title="blog: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="blog" style="background-color: #A3E4D7;">blog
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/web，mysql/" title="web，mysql: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="web，mysql" style="background-color: #F9EBEA;">web，mysql
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Git/" title="Git: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Git" style="background-color: #F9E79F;">Git
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/教程/" title="教程: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="教程" style="background-color: #D5F5E3;">教程
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/reverse-shell/" title="reverse shell: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            data-tagname="reverse shell" style="background-color: #F9E79F;">reverse shell
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
             </div>
-
         </div>
     </div>
-
-    
-        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
-
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
 </div>
 
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '1a8a4f8abcc406ec4fbe',
-        clientSecret: '135ec1ebd0158365190ca1e28c38ce36e857236b',
-        repo: 'LiGuHeiYi.github.io',
-        owner: 'LiGuHeiYi',
-        admin: ["LiGuHeiYi"],
-        id: '2020/11/21/2020-11-21-lu-you-qi-he-qiao-jie-qi/',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-<article id="prenext-posts" class="prev-next articles">
-    <div class="row article-row">
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2020/11/21/2020-11-21-burpsuite-lan-jie-https-guo-cheng-yu-yuan-li/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/banner/wlop.jpg" class="responsive-img" alt="Burpsuite拦截HTTPS过程与原理">
-                        
-                        <span class="card-title">Burpsuite拦截HTTPS过程与原理</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Burpsuite拦截HTTPS过程与原理SSL握手过程访问https网站，浏览器向服务器发送ssl client  hello请求，服务器进行响应发回自己的证书（是的每一次建立ssl连接服务器都会向客户端发送证书不要怀疑），浏览器收到服务
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-21
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
-                                </a>
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="web, reverse shell" data-aos="fade-up">
+                <div class="card">
+                    <a href="/2021/02/05/2021-2-5-chu-shi-fan-dan-shell/">
+                        <div class="card-image tag-image">
                             
                             
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web/" target="_blank">
-                        <span class="chip bg-color">web</span>
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="初识反弹shell">
+                            
+                            <span class="card-title">初识反弹shell</span>
+                        </div>
                     </a>
-                    
-                    <a href="/tags/计算机网络/" target="_blank">
-                        <span class="chip bg-color">计算机网络</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/11/21/2020-11-21-xian-jie-duan-xue-xi-guo-de-ji-suan-ji-wang-luo-zhi-shi-zheng-he-bi-ji/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/banner/maiden.jpg" class="responsive-img" alt="现阶段计算机网络知识笔记以及整合（不断整合）">
-                        
-                        <span class="card-title">现阶段计算机网络知识笔记以及整合（不断整合）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            现阶段计算机网络知识笔记以及整合OSI网络参考模型开放式系统互联模型（英语：Open System Interconnection Model，缩写：OSI；简称为OSI模型）是一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界
-                        
-                    </div>
-                    <div class="publish-info">
+                    <div class="card-content article-content">
+                        <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-21
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-05
                             </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
                                 </a>
-                            
-                            
-                        </span>
+                                
+                                
+                            </span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web/" target="_blank">
-                        <span class="chip bg-color">web</span>
-                    </a>
-                    
-                    <a href="/tags/计算机网络/" target="_blank">
-                        <span class="chip bg-color">计算机网络</span>
-                    </a>
-                    
-                </div>
-                
             </div>
+            
         </div>
-        
-    </div>
-</article>
-</div>
-
-
-<script>
-    $('#articleContent').on('copy', function (e) {
-        // IE8 or earlier browser is 'undefined'
-        if (typeof window.getSelection === 'undefined') return;
-
-        var selection = window.getSelection();
-        // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('500')) {
-            return;
-        }
-
-        // create a div outside of the visible area and fill it with the selected text.
-        var bodyElement = document.getElementsByTagName('body')[0];
-        var newdiv = document.createElement('div');
-        newdiv.style.position = 'absolute';
-        newdiv.style.left = '-99999px';
-        bodyElement.appendChild(newdiv);
-        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
-
-        // we need a <pre> tag workaround.
-        // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
-            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
-        }
-
-        var url = document.location.href;
-        newdiv.innerHTML += '<br />'
-            + '来源: Liloong3t's Blog<br />'
-            + '作者: Liloong3t<br />'
-            + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，转载请注明出处。';
-
-        selection.selectAllChildren(newdiv);
-        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
-    });
-</script>
-
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fa fa-list"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h1, h2, h3, h4, h5'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).slideUp(500);
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).slideDown(500);
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
-    
-
+    </article>
 </main>
 
 
