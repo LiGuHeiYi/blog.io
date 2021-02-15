@@ -538,7 +538,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -945,10 +945,10 @@
 <pre><code>id=1'</code></pre><p>这时单引号成功出现，输入闭合，绕过了转义函数或GPC，可以在后面添加执行sql注入语句了。</p>
 <p>这个的原理类似于上面的宽字节注入</p>
 <h2 id="HTTP头注入"><a href="#HTTP头注入" class="headerlink" title="HTTP头注入"></a>HTTP头注入</h2><h3 id="User-agent"><a href="#User-agent" class="headerlink" title="User-agent"></a>User-agent</h3><p>后台SQL语句中使用了HTTP头中的<code>User-agent</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>后台SQL语句中使用了HTTP头中<code>Cookie</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Refer"><a href="#Refer" class="headerlink" title="Refer"></a>Refer</h3><p>后台SQL语句中使用了HTTP头中的<code>Refer</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=3</code></pre><h3 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h3><p>后台SQL语句中使用了HTTP头中的<code>host</code>字段中的数据</p>
-<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level=5</code></pre><p>以上几种注入漏洞的执行原理非常“普通”，只不过注入点位置特殊而已，熟练运用sqlmap工具即可轻松解决</p>
+<pre><code>sqlmap &gt; py sqlmap.py -u “url” --user-agent "UA" --dbs --level 3</code></pre><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>后台SQL语句中使用了HTTP头中<code>Cookie</code>字段中的数据</p>
+<pre><code>sqlmap &gt; py sqlmap.py -u “url” --cookie "[cookie名]=[内容]" --dbs --level 2</code></pre><h3 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h3><p>后台SQL语句中使用了HTTP头中的<code>Refer</code>字段中的数据</p>
+<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level 5</code></pre><h3 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h3><p>后台SQL语句中使用了HTTP头中的<code>host</code>字段中的数据</p>
+<pre><code>sqlmap &gt; py sqlmap.py -u “url” --dbs --level 5</code></pre><p>以上几种注入漏洞的执行原理非常“普通”，只不过注入点位置特殊而已，熟练运用sqlmap工具即可轻松解决</p>
 <h2 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h2><p>上面的http头注入其实就是一种稍微特殊的post注入，<strong>post注入</strong>，顾名思义，就是注入点在post表单里的sql注入漏洞，一般手工注入需要借助工具（Burpsuite）抓包，然后修改post数据。</p>
 <p>利用sqlmap进行post注入有几种方式</p>
 <p><strong>1.普通的表单注入</strong></p>
@@ -1059,7 +1059,7 @@ sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MYSQL常用基础语法">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="MYSQL常用基础语法">
                         
                         <span class="card-title">MYSQL常用基础语法</span>
                     </div>
