@@ -698,7 +698,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        224
+                        277
                     </div>
                     
 
@@ -721,6 +721,13 @@
 <p>.htaccess是一个纯文本文件，它里面存放着Apache服务器配置相关的指令。</p>
 <p>可以帮我们实现：网页 301 重定向、自定义 404 错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。</p>
 <p>Apache的标准配置文件是httpd.conf,但这是Apache的配置文件，一旦修改，改的是网络服务器的全局配置。</p>
+<p>ctf中最常用的.htaccess文件</p>
+<pre class="line-numbers language-asp"><code class="language-asp"><FilesMatch "evil.gif">    
+
+SetHandler application/x-httpd-php
+
+</FilesMatch><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将evil.gif文件（只要包含”evil.gif”这个字符串的任意文件，无论扩展名是什么(没有也行)）按php文件解析</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1071,7 +1078,7 @@ phpinfo在可以“有限”地执行php命令地地方执行phpinfo()函数，�
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">82.8k</span> 字
+                <span class="white-color">85.8k</span> 字
             
 
             

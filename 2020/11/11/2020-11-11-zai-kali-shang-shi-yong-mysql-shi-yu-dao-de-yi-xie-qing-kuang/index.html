@@ -699,14 +699,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        370
+                        756
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        3 分
                     </div>
                     
                 
@@ -739,6 +739,44 @@
 <h4 id="Windows下重启MySQL的正确方法："><a href="#Windows下重启MySQL的正确方法：" class="headerlink" title="　　Windows下重启MySQL的正确方法："></a>　　Windows下重启MySQL的正确方法：</h4><p>　　1.点击“开始”-&gt;“运行”(快捷键Win+R)。</p>
 <p>　　2.启动：输入 net start mysql</p>
 <p>　　3.停止：输入 net stop mysql</p>
+<blockquote>
+<p>2021.2.20 发现新东西，来补充一下</p>
+</blockquote>
+<h3 id="安装Mysql-server"><a href="#安装Mysql-server" class="headerlink" title="安装Mysql server"></a>安装Mysql server</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> mysql-server mysql-client<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2-设置密码"><a href="#2-设置密码" class="headerlink" title="2.设置密码"></a>2.设置密码</h4><ul>
+<li><strong>查看系统自动安装的用户名密码</strong>（有时候第一次安装完，把密码忘了，可以看看有没有这个文件）</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cat</span> /etc/mysql/debian.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>用系统的用户名密码登陆</li>
+</ul>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql -u username -p
+
+mysql> show databases;
+mysql> use mysql;
+mysql> select host, user, password[authentication_string], plugin from user; //查看信息,注意mysql版本，自行选择password还是authentication_string
+
+// mysql 5.7.9以前版本修改密码
+mysql>update user set password=password('admin') where user='admin';
+// mysql 5.7.9及以后版本修改密码
+mysql> update user set authentication_string=PASSWORD("yourpassword") where user="root";
+如果报错就用下面这一条语句
+mysql> ALTER user 'root'@'localhost' IDENTIFIED BY 'yourpassword'
+
+mysql> update user set plugin="mysql_native_password"; //可有可无
+mysql> flush privileges;
+mysql> quit;//重启来生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>mysql 数据库下的 user 表中存储着用户的基本权限，可以使用 SELECT 语句来查看。SELECT 语句的代码如下：</strong></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql > SELECT * FROM mysql.user;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>要执行该语句，必须拥有对 user 表的查询权限。</p>
+<p>注意：新创建的用户只有登录 MySQL 服务器的权限，没有任何其它权限，不能查询 user 表。</p>
+<p>除了使用 SELECT 语句之外，还可以使用 SHOW GRANTS FOR 语句查看权限。其语法格式如下：</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">SHOW GRANTS FOR 'username'@'hostname';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中，username 表示用户名，hostname 表示主机名或主机 IP。</p>
+<p><strong>要获得当前用户的信息，使用user()函数，如下面的语句所示。</strong></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql> SELECT user();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>current_user 函数</strong></p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">mysql> SELECT current_user();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -831,23 +869,21 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/18/2020-11-18-shu-ju-ku-bei-fen-yu-huan-yuan/">
+                <a href="/2020/11/18/2020-11-18-hu-xiang-bei-xian-xia-awd-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="MySQL数据库备份与还原">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="湖湘杯AWD线下赛总结">
                         
-                        <span class="card-title">MySQL数据库备份与还原</span>
+                        <span class="card-title">湖湘杯AWD线下赛总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MySQL数据库备份与还原数据库文件默认在：cd /usr/share/mysql
-配置文件默认在：/etc/my.cnf
-
-数据库目录：/var/lib/mysql/
-配置文件：/usr/share/mysql(mysql.server命
+                            湖湘杯AWD线下赛总结第一次参加线下赛，之前看了很多资料做了很多准备，心里也确实紧张，去之前心里一直非常焦灼。
+对于没把握的事非常非常紧张，这或许是我个人的一个重大缺点，经常使我难以良好的做到临场发挥，并且在行动之前自暴自弃。
+比赛分上午下
                         
                     </div>
                     <div class="publish-info">
@@ -873,8 +909,8 @@
                         <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/数据库/" target="_blank">
-                        <span class="chip bg-color">数据库</span>
+                    <a href="/tags/AWD/" target="_blank">
+                        <span class="chip bg-color">AWD</span>
                     </a>
                     
                 </div>
@@ -1094,7 +1130,7 @@
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">82.8k</span> 字
+                <span class="white-color">85.8k</span> 字
             
 
             
