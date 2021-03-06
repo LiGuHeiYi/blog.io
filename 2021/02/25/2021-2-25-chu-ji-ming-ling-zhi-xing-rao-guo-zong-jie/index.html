@@ -736,8 +736,10 @@ $PS4代替+</code></pre><h2 id="命令分隔符"><a href="#命令分隔符" clas
 <pre><code>%00 
 
 %20#</code></pre><h2 id="黑名单绕过"><a href="#黑名单绕过" class="headerlink" title="黑名单绕过"></a>黑名单绕过</h2><p><strong>连接符</strong></p>
-<pre><code>··         //这是反引号，就是键盘esc下面那个
-/</code></pre><p>如果过滤的不严就可以用这俩填充到字符串中间来绕过黑名单</p>
+<pre><code>''        //单引号
+""        //双引号
+··         //这是反引号，就是键盘esc下面那个
+/</code></pre><p>如果过滤的不严就可以用这些填充到字符串中间来绕过黑名单</p>
 <pre><code>wh\o\ami    //反斜线绕过
 who"a"mi    //双引号绕过
 whoa'm'i    //单引号绕过
@@ -958,30 +960,29 @@ ls -t&gt;a</code></pre><p>附上大佬的详解</p>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/">
+                <a href="/2021/03/04/2021-3-4-ld-preload/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="初级命令执行绕过总结">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LD_PRELOAD">
                         
-                        <span class="card-title">初级命令执行绕过总结</span>
+                        <span class="card-title">LD_PRELOAD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            初级命令执行绕过方式总结
+                            构造一个带命令执行的`eval.os`文件，让其被`LD_PRELOAD`加载；然后在PHP中调用`mail`函数或`error_log`函数，函数内部会执行系统的`sendmail`命令；这样我们构造的`eval.os`就会加载并覆盖sendmail本应调用的库函数，达到命令执行的效果
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -994,16 +995,15 @@ ls -t&gt;a</code></pre><p>附上大佬的详解</p>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ctf/" target="_blank">
-                        <span class="chip bg-color">ctf</span>
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
                     </a>
                     
-                    <a href="/tags/RCE/" target="_blank">
-                        <span class="chip bg-color">RCE</span>
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
                     </a>
                     
                 </div>
@@ -1224,7 +1224,7 @@ ls -t&gt;a</code></pre><p>附上大佬的详解</p>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">85.8k</span> 字
+                <span class="white-color">89.5k</span> 字
             
 
             

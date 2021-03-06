@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-02-25T15:23:59.202Z</updated>
+  <updated>2021-03-06T17:09:48.395Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -17,11 +17,99 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>利用Apache mod_cgi进行bypass disabled_function攻击</title>
+    <link href="https://liloong3t.com/2021/03/06/2021-3-6-apache-cgi-mod/"/>
+    <id>https://liloong3t.com/2021/03/06/2021-3-6-apache-cgi-mod/</id>
+    <published>2021-03-06T15:54:32.000Z</published>
+    <updated>2021-03-06T17:09:48.395Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;利用Apache-mod-cgi进行bypass-disabled-function&quot;&gt;&lt;a href=&quot;#利用Apache-mod-cgi进行bypass-disabled-function&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="漏洞" scheme="https://liloong3t.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
+    
+      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shellshock漏洞原理浅析</title>
+    <link href="https://liloong3t.com/2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/"/>
+    <id>https://liloong3t.com/2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/</id>
+    <published>2021-03-05T05:54:32.000Z</published>
+    <updated>2021-03-05T08:42:25.629Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;浅析shellshock漏洞原理&quot;&gt;&lt;a href=&quot;#浅析shellshock漏洞原理&quot; class=&quot;headerlink&quot; title=&quot;浅析shellshock漏洞原理&quot;&gt;&lt;/a&gt;浅析shellshock漏洞原理&lt;/h1&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="漏洞" scheme="https://liloong3t.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
+    
+      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LD_PRELOAD</title>
+    <link href="https://liloong3t.com/2021/03/04/2021-3-4-ld-preload/"/>
+    <id>https://liloong3t.com/2021/03/04/2021-3-4-ld-preload/</id>
+    <published>2021-03-04T02:54:32.000Z</published>
+    <updated>2021-03-06T14:24:29.575Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;LD-PRELOAD&quot;&gt;&lt;a href=&quot;#LD-PRELOAD&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
+    
+      <category term="ctf" scheme="https://liloong3t.com/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初级命令执行绕过总结</title>
     <link href="https://liloong3t.com/2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/"/>
     <id>https://liloong3t.com/2021/02/25/2021-2-25-chu-ji-ming-ling-zhi-xing-rao-guo-zong-jie/</id>
     <published>2021-02-25T13:54:32.000Z</published>
-    <updated>2021-02-25T15:23:59.202Z</updated>
+    <updated>2021-02-26T03:23:00.147Z</updated>
     
     <summary type="html">
     
@@ -135,7 +223,7 @@
     <link href="https://liloong3t.com/2021/02/05/2021-2-5-chu-shi-fan-dan-shell/"/>
     <id>https://liloong3t.com/2021/02/05/2021-2-5-chu-shi-fan-dan-shell/</id>
     <published>2021-02-05T09:00:13.000Z</published>
-    <updated>2021-02-10T08:37:50.015Z</updated>
+    <updated>2021-03-06T06:46:10.138Z</updated>
     
     <summary type="html">
     
@@ -335,28 +423,6 @@
   </entry>
   
   <entry>
-    <title>Http重定向</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
-    <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T10:16:42.775Z</updated>
-    
-    <summary type="html">
-    
-      详解网页重定向
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
-      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ctf中的信息泄露</title>
     <link href="https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/"/>
     <id>https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/</id>
@@ -379,6 +445,28 @@
   </entry>
   
   <entry>
+    <title>Http重定向</title>
+    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
+    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
+    <published>2021-01-10T16:00:00.000Z</published>
+    <updated>2021-01-14T10:16:42.775Z</updated>
+    
+    <summary type="html">
+    
+      详解网页重定向
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>.htaccess文件</title>
     <link href="https://liloong3t.com/2020/12/23/2020-12-23-apache-de.htaccess-wen-jian/"/>
     <id>https://liloong3t.com/2020/12/23/2020-12-23-apache-de.htaccess-wen-jian/</id>
@@ -394,9 +482,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="php" scheme="https://liloong3t.com/tags/php/"/>
-    
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="php" scheme="https://liloong3t.com/tags/php/"/>
     
   </entry>
   
@@ -438,71 +526,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="php" scheme="https://liloong3t.com/tags/php/"/>
-    
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
-  </entry>
-  
-  <entry>
-    <title>文件包含+伪协议</title>
-    <link href="https://liloong3t.com/2020/12/07/2020-12-07-php-wei-xie-yi-zhuan-zi-my0n9s-da-lao/"/>
-    <id>https://liloong3t.com/2020/12/07/2020-12-07-php-wei-xie-yi-zhuan-zi-my0n9s-da-lao/</id>
-    <published>2020-12-06T16:00:00.000Z</published>
-    <updated>2020-12-07T02:56:13.234Z</updated>
-    
-    <summary type="html">
-    
-      转自Myon9s大佬
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows上通过命令行查看端口和进程</title>
-    <link href="https://liloong3t.com/2020/12/01/2020-12-01-windows-shang-shi-yong-ming-ling-xing-cha-kan-jin-cheng/"/>
-    <id>https://liloong3t.com/2020/12/01/2020-12-01-windows-shang-shi-yong-ming-ling-xing-cha-kan-jin-cheng/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-01T07:45:56.206Z</updated>
-    
-    <summary type="html">
-    
-      小知识，小笔记
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="笔记，cmd" scheme="https://liloong3t.com/tags/%E7%AC%94%E8%AE%B0%EF%BC%8Ccmd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>树和二叉树</title>
-    <link href="https://liloong3t.com/2020/11/24/2020-11-24-shu-he-er-cha-shu/"/>
-    <id>https://liloong3t.com/2020/11/24/2020-11-24-shu-he-er-cha-shu/</id>
-    <published>2020-11-23T16:00:00.000Z</published>
-    <updated>2020-11-28T08:18:37.446Z</updated>
-    
-    <summary type="html">
-    
-      应付数据结构课
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="编程，数据结构" scheme="https://liloong3t.com/tags/%E7%BC%96%E7%A8%8B%EF%BC%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   

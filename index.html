@@ -687,18 +687,18 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
     
     
     <div class="carousel-item amber white-text carousel-post bg-cover"
-            style="background-image: url('/medias/banner/wlop.jpg');">
+            style="background-image: url('/medias/banner/maiden.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <div class="title center-align">重建博客</div>
+                    <div class="title center-align">ssrf使用gopher协议</div>
                     <div class="description center-align">
                     
-                        倒腾了一两天把个人博客网站重建了，目前这个版本使用应该是够了，当然还有一些优化项和功能增加后续慢慢更新玩玩。至于为什么重建博客，这要从一个协会博客开始说起了，不过我也早就看不惯原来那个jkyll模板的博客了，功能过于简陋。这两天解决这些破问题还顺便速成了一下git。
+                        这几天串亲戚串得差不多了，终于有空刷了三道ssrf，对gopher协议算是有一点直观的理解了，赶紧记录一下
                     
                     </div>
                     <div class="cover-btns">
-                        <a href="/2021/02/01/2021-2-1-chong-jian-bo-ke/" class="waves-effect waves-light btn" target="_blank">
+                        <a href="/2021/02/16/2021-2-16-ssrf-shi-yong-gopher-xie-yi/" class="waves-effect waves-light btn" target="_blank">
                             <i class="icon fa fa-eye fa-fw"></i>阅读更多
                         </a>
                     </div>
@@ -731,18 +731,18 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
     
     
     <div class="carousel-item amber white-text carousel-post bg-cover"
-            style="background-image: url('/medias/banner/maiden.jpg');">
+            style="background-image: url('/medias/banner/wlop.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <div class="title center-align">ssrf使用gopher协议</div>
+                    <div class="title center-align">重建博客</div>
                     <div class="description center-align">
                     
-                        这几天串亲戚串得差不多了，终于有空刷了三道ssrf，对gopher协议算是有一点直观的理解了，赶紧记录一下
+                        倒腾了一两天把个人博客网站重建了，目前这个版本使用应该是够了，当然还有一些优化项和功能增加后续慢慢更新玩玩。至于为什么重建博客，这要从一个协会博客开始说起了，不过我也早就看不惯原来那个jkyll模板的博客了，功能过于简陋。这两天解决这些破问题还顺便速成了一下git。
                     
                     </div>
                     <div class="cover-btns">
-                        <a href="/2021/02/16/2021-2-16-ssrf-shi-yong-gopher-xie-yi/" class="waves-effect waves-light btn" target="_blank">
+                        <a href="/2021/02/01/2021-2-1-chong-jian-bo-ke/" class="waves-effect waves-light btn" target="_blank">
                             <i class="icon fa fa-eye fa-fw"></i>阅读更多
                         </a>
                     </div>
@@ -765,6 +765,94 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
                     </div>
                     <div class="cover-btns">
                         <a href="/2021/02/02/2021-2-2-git-chang-yong-ming-ling-yu-jiao-cheng/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/banner/maiden.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">shellshock漏洞原理浅析</div>
+                    <div class="description center-align">
+                    
+                        浅析shellshock漏洞原理
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/banner/maiden.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">LD_PRELOAD</div>
+                    <div class="description center-align">
+                    
+                        构造一个带命令执行的`eval.os`文件，让其被`LD_PRELOAD`加载；然后在PHP中调用`mail`函数或`error_log`函数，函数内部会执行系统的`sendmail`命令；这样我们构造的`eval.os`就会加载并覆盖sendmail本应调用的库函数，达到命令执行的效果
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2021/03/04/2021-3-4-ld-preload/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/banner/princess.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">初识反弹shell</div>
+                    <div class="description center-align">
+                    
+                        经常看到反弹shell，之前却没来得及认真去了解一下，就处于一个半懂不懂的状态，现在补上这方面知识
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2021/02/05/2021-2-5-chu-shi-fan-dan-shell/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/banner/maiden.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">利用Apache mod_cgi进行bypass disabled_function攻击</div>
+                    <div class="description center-align">
+                    
+                        利用Apache_cgi_mod进行bypass disabled_function攻击的简单原理解析和使用
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2021/03/06/2021-3-6-apache-cgi-mod/" class="waves-effect waves-light btn" target="_blank">
                             <i class="icon fa fa-eye fa-fw"></i>阅读更多
                         </a>
                     </div>
@@ -809,28 +897,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + img + ')');
                     </div>
                     <div class="cover-btns">
                         <a href="/2021/02/04/2021-2-4-chu-bu-liao-jie-xml/" class="waves-effect waves-light btn" target="_blank">
-                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="carousel-item amber white-text carousel-post bg-cover"
-            style="background-image: url('/medias/banner/princess.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <div class="title center-align">初识反弹shell</div>
-                    <div class="description center-align">
-                    
-                        经常看到反弹shell，之前却没来得及认真去了解一下，就处于一个半懂不懂的状态，现在补上这方面知识
-                    
-                    </div>
-                    <div class="cover-btns">
-                        <a href="/2021/02/05/2021-2-5-chu-shi-fan-dan-shell/" class="waves-effect waves-light btn" target="_blank">
                             <i class="icon fa fa-eye fa-fw"></i>阅读更多
                         </a>
                     </div>
@@ -1005,6 +1071,167 @@ $(function () {
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/03/06/2021-3-6-apache-cgi-mod/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="利用Apache mod_cgi进行bypass disabled_function攻击">
+                            
+                            <span class="card-title">利用Apache mod_cgi进行bypass disabled_function攻击</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            利用Apache_cgi_mod进行bypass disabled_function攻击的简单原理解析和使用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/漏洞/" target="_blank">
+                            <span class="chip bg-color">漏洞</span>
+                        </a>
+                        
+                        <a href="/tags/PHP/" target="_blank">
+                            <span class="chip bg-color">PHP</span>
+                        </a>
+                        
+                        <a href="/tags/Linux/" target="_blank">
+                            <span class="chip bg-color">Linux</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/03/05/2021-3-5-shellshock-lou-dong-yuan-li/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/banner/5.jpg" class="responsive-img" alt="shellshock漏洞原理浅析">
+                            
+                            <span class="card-title">shellshock漏洞原理浅析</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            浅析shellshock漏洞原理
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-05
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/漏洞/" target="_blank">
+                            <span class="chip bg-color">漏洞</span>
+                        </a>
+                        
+                        <a href="/tags/PHP/" target="_blank">
+                            <span class="chip bg-color">PHP</span>
+                        </a>
+                        
+                        <a href="/tags/Linux/" target="_blank">
+                            <span class="chip bg-color">Linux</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/03/04/2021-3-4-ld-preload/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LD_PRELOAD">
+                            
+                            <span class="card-title">LD_PRELOAD</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            构造一个带命令执行的`eval.os`文件，让其被`LD_PRELOAD`加载；然后在PHP中调用`mail`函数或`error_log`函数，函数内部会执行系统的`sendmail`命令；这样我们构造的`eval.os`就会加载并覆盖sendmail本应调用的库函数，达到命令执行的效果
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/PHP/" target="_blank">
+                            <span class="chip bg-color">PHP</span>
+                        </a>
+                        
+                        <a href="/tags/ctf/" target="_blank">
+                            <span class="chip bg-color">ctf</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -1475,163 +1702,6 @@ MyS
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/16/2021-1-16-sql-shou-gong-zhu-ru/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="ctf手工SQL注入">
-                            
-                            <span class="card-title">ctf手工SQL注入</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            SQL注入SQL注入是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令的 web攻击方式。权限大时可写入webshell，后门，系统命令执行，权限小时可通过注入获得系统敏感信息（管
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/web/" target="_blank">
-                            <span class="chip bg-color">web</span>
-                        </a>
-                        
-                        <a href="/tags/ctf/" target="_blank">
-                            <span class="chip bg-color">ctf</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/14/2021-1-14-ban-ben-kong-zhi-xi-tong-xin-xi-xie-lu-fen-xi/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="版本控制系统信息泄露分析">
-                            
-                            <span class="card-title">版本控制系统信息泄露分析</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            版本控制系统信息泄露分析.svn文件.svn文件是 Subversion系统的版本控制信息文件，当某个目录处于subversion的版本控制i时，在这个目录中就会.svn这个文件夹，这个.svn文件夹中的文件就是一些版本信息文件。
-黑客可以
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-14
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/web/" target="_blank">
-                            <span class="chip bg-color">web</span>
-                        </a>
-                        
-                        <a href="/tags/ctf/" target="_blank">
-                            <span class="chip bg-color">ctf</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/banner/princess.jpg" class="responsive-img" alt="curl命令参数和用法">
-                            
-                            <span class="card-title">curl命令参数和用法</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            curl命令参数和用法curl即“客户端（client）的url工具”，是一种非常常用的命令行工具，用于请求服务端资源。
-不带参数(查看源代码)不带有任何参数时，curl 就是发出 GET 请求。
-
-$ curl https://www.e
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/blog/" class="post-category" target="_blank">
-                                    blog
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/web/" target="_blank">
-                            <span class="chip bg-color">web</span>
-                        </a>
-                        
-                        <a href="/tags/命令/" target="_blank">
-                            <span class="chip bg-color">命令</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1677,7 +1747,7 @@ $ curl https://www.e
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">85.8k</span> 字
+                <span class="white-color">89.5k</span> 字
             
 
             

