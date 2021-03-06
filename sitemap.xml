@@ -4,7 +4,7 @@
   <url>
     <loc>https://liloong3t.com/2021/03/06/2021-3-6-apache-cgi-mod/</loc>
     
-    <lastmod>2021-03-06T17:12:23.970Z</lastmod>
+    <lastmod>2021-03-06T17:14:54.082Z</lastmod>
     
   </url>
   
@@ -345,13 +345,6 @@
   </url>
   
   <url>
-    <loc>https://liloong3t.com/archives/index.html</loc>
-    
-    <lastmod>2020-07-01T09:09:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://liloong3t.com/categories/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
@@ -359,7 +352,7 @@
   </url>
   
   <url>
-    <loc>https://liloong3t.com/galleries/index.html</loc>
+    <loc>https://liloong3t.com/archives/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
     
@@ -380,7 +373,7 @@
   </url>
   
   <url>
-    <loc>https://liloong3t.com/galleries/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%874/index.html</loc>
+    <loc>https://liloong3t.com/galleries/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
     
@@ -388,6 +381,13 @@
   
   <url>
     <loc>https://liloong3t.com/galleries/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%873/index.html</loc>
+    
+    <lastmod>2020-07-01T09:09:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://liloong3t.com/galleries/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%874/index.html</loc>
     
     <lastmod>2020-07-01T09:09:44.000Z</lastmod>
     

