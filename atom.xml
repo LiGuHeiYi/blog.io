@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-03-06T17:18:21.512Z</updated>
+  <updated>2021-03-07T04:44:07.287Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://liloong3t.com/2021/03/06/2021-3-6-apache-cgi-mod/"/>
     <id>https://liloong3t.com/2021/03/06/2021-3-6-apache-cgi-mod/</id>
     <published>2021-03-06T15:54:32.000Z</published>
-    <updated>2021-03-06T17:18:21.512Z</updated>
+    <updated>2021-03-07T04:44:07.287Z</updated>
     
     <summary type="html">
     
@@ -401,28 +401,6 @@
   </entry>
   
   <entry>
-    <title>Http重定向</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
-    <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T10:16:42.775Z</updated>
-    
-    <summary type="html">
-    
-      详解网页重定向
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
-      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
     <title>curl命令参数和用法</title>
     <link href="https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/"/>
     <id>https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/</id>
@@ -441,6 +419,28 @@
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
       <category term="命令" scheme="https://liloong3t.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Http重定向</title>
+    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
+    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
+    <published>2021-01-10T16:00:00.000Z</published>
+    <updated>2021-01-14T10:16:42.775Z</updated>
+    
+    <summary type="html">
+    
+      详解网页重定向
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
     
   </entry>
   
@@ -482,9 +482,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   
@@ -526,9 +526,9 @@
       <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
     
     
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
       <category term="php" scheme="https://liloong3t.com/tags/php/"/>
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   
