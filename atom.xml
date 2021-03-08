@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-03-08T08:52:34.427Z</updated>
+  <updated>2021-03-08T15:21:17.532Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>open_basedir详解</title>
+    <link href="https://liloong3t.com/2021/03/08/2021-3-8-open-basedir-xiang-jie/"/>
+    <id>https://liloong3t.com/2021/03/08/2021-3-8-open-basedir-xiang-jie/</id>
+    <published>2021-03-08T14:33:32.000Z</published>
+    <updated>2021-03-08T15:21:17.532Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;open-basedir详解&quot;&gt;&lt;a href=&quot;#open-basedir详解&quot; class=&quot;headerlink&quot; title=&quot;open_basedir详解&quot;&gt;&lt;/a&gt;open_basedir详解&lt;/h1&gt;&lt;p&gt;PHP 的 open_basedir 和
+        
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
+    
+      <category term="open_basedir" scheme="https://liloong3t.com/tags/open-basedir/"/>
+    
+  </entry>
   
   <entry>
     <title>FFI扩展 bypass disable functions</title>
@@ -100,9 +130,9 @@
     
       <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
     
-      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
-    
       <category term="bypass disable functions" scheme="https://liloong3t.com/tags/bypass-disable-functions/"/>
+    
+      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
     
   </entry>
   
@@ -132,9 +162,9 @@
     
       <category term="PHP" scheme="https://liloong3t.com/tags/PHP/"/>
     
-      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
-    
       <category term="bypass disable functions" scheme="https://liloong3t.com/tags/bypass-disable-functions/"/>
+    
+      <category term="Linux" scheme="https://liloong3t.com/tags/Linux/"/>
     
   </entry>
   
@@ -465,28 +495,6 @@
   </entry>
   
   <entry>
-    <title>curl命令参数和用法</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/</id>
-    <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T10:16:46.172Z</updated>
-    
-    <summary type="html">
-    
-      详解curl命令参数和用法
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
-      <category term="命令" scheme="https://liloong3t.com/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Http重定向</title>
     <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
     <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
@@ -509,6 +517,28 @@
   </entry>
   
   <entry>
+    <title>curl命令参数和用法</title>
+    <link href="https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/"/>
+    <id>https://liloong3t.com/2021/01/11/2021-1-11-curl-ming-ling-can-shu-he-yong-fa/</id>
+    <published>2021-01-10T16:00:00.000Z</published>
+    <updated>2021-01-14T10:16:46.172Z</updated>
+    
+    <summary type="html">
+    
+      详解curl命令参数和用法
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
+    
+      <category term="命令" scheme="https://liloong3t.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ctf中的信息泄露</title>
     <link href="https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/"/>
     <id>https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/</id>
@@ -527,28 +557,6 @@
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
       <category term="ctf" scheme="https://liloong3t.com/tags/ctf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>.htaccess文件</title>
-    <link href="https://liloong3t.com/2020/12/23/2020-12-23-apache-de.htaccess-wen-jian/"/>
-    <id>https://liloong3t.com/2020/12/23/2020-12-23-apache-de.htaccess-wen-jian/</id>
-    <published>2020-12-22T16:00:00.000Z</published>
-    <updated>2021-03-08T09:08:52.949Z</updated>
-    
-    <summary type="html">
-    
-      .htaccess文件作用与用法浅析
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="php" scheme="https://liloong3t.com/tags/php/"/>
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
   </entry>
   

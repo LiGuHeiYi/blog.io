@@ -5,12 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="虚拟机网络：桥接、NAT和Host-Only模式, Liloong3t&#39;s Blog">
+    <meta name="keywords" content="open_basedir详解, Liloong3t&#39;s Blog">
     <meta name="baidu-site-verification" content="code-5WkfinfGVW">
     <!-- <meta name="google-site-verification" content="" /> -->
-    <meta name="description" content="虚拟机网络：桥接、NAT和Host-Only模式
-上面这张图就是vmware虚拟网络编辑器上可以选择的三种虚拟机的网络模式：桥接，NAT和仅主机（Host-Only）
-桥接桥接模式就是VMware通过VMnet0虚拟交换机将物理网卡和虚拟网">
+    <meta name="description" content="open_basedir详解PHP 的 open_basedir 和 disable_functions 这两个配置在web中非常常见，前几天粗浅地研究了bypass disable_functions，再来了解一下open_basedir">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>虚拟机网络：桥接、NAT和Host-Only模式 | Liloong3t&#39;s Blog</title>
+    <title>open_basedir详解 | Liloong3t&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -540,13 +538,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        虚拟机网络：桥接、NAT和Host-Only模式
+                        open_basedir详解
                     </div>
                 </div>
             </div>
@@ -661,8 +659,12 @@
                                 <span class="chip bg-color">web</span>
                             </a>
                         
-                            <a href="/tags/虚拟机/" target="_blank">
-                                <span class="chip bg-color">虚拟机</span>
+                            <a href="/tags/PHP/" target="_blank">
+                                <span class="chip bg-color">PHP</span>
+                            </a>
+                        
+                            <a href="/tags/open-basedir/" target="_blank">
+                                <span class="chip bg-color">open_basedir</span>
                             </a>
                         
                     </div>
@@ -685,7 +687,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-20
+                    2021-03-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -699,14 +701,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.4k
+                        826
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        3 分
                     </div>
                     
                 
@@ -718,32 +720,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="虚拟机网络：桥接、NAT和Host-Only模式"><a href="#虚拟机网络：桥接、NAT和Host-Only模式" class="headerlink" title="虚拟机网络：桥接、NAT和Host-Only模式"></a>虚拟机网络：桥接、NAT和Host-Only模式</h1><p><img src="E:%5C%E6%96%87%E6%A1%A3%5CGithub%E4%BB%93%E5%BA%93%5CLiGuHeiYi%5CLiGuHeiYi.github.io%5Cimg%5Cimage-20201120131717280.png" alt="image-20201120131717280"></p>
-<p>上面这张图就是vmware虚拟网络编辑器上可以选择的三种虚拟机的网络模式：桥接，NAT和仅主机（Host-Only）</p>
-<h2 id="桥接"><a href="#桥接" class="headerlink" title="桥接"></a>桥接</h2><p>桥接模式就是VMware通过VMnet0虚拟交换机将物理网卡和虚拟网卡进行桥接，“桥接”就是在数据链路层上将两个网络拼接起来的技术（桥接器，交换机）。这样物理网卡和虚拟网卡在网络拓扑上地位相等，也就是相当于在一个网段，物理网卡和虚拟网卡的ip地址在一个局域网里。这里可以让VMware自动设置，也可以手动设置虚拟网卡的ip地址，让它不会和局域网内的其它联网设备ip冲突。</p>
-<p>这是物理机通过局域网ip访问本地网站（phpstudy默认主页），局域网ip为：192.168.0.106</p>
-<p><img src="/img/image-20201121121534108.png" alt=""></p>
-<p>这是ubuntu虚拟机通过局域网ip访问虚拟机本地网站（apache2默认主页），局域网ip为：192.168.0.107（这个ip紧跟物理机ip，它们在一个网段）</p>
-<p><img src="/img/image-20201121123258281.png" alt="image-20201121123258281"></p>
-<p>接下来放两张它们互相访问的图</p>
-<p><img src="/img/image-20201121123534968.png" alt="image-20201121123534968"></p>
-<p><img src="/img/image-20201121123559732.png" alt="image-20201121123559732"></p>
-<p>这就很直观了</p>
-<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>NAT英文全称是“Network Address Translation”，中文意思是“网络地址转换”，它是一个IETF(Internet Engineering Task  Force, Internet工程任务组)标准，允许一个整体机构以一个公用IP（Internet  Protocol）地址出现在Internet上。顾名思义，它是一种把内部私有网络地址（IP地址）翻译成合法网络IP地址的技术。</p>
-<p>通俗的讲，NAT可以使一个局域网中所有主机对外使用一个公网ip，对内使用不同私有ip。其实就是我们现在使用的绝大部分无线路由器默认开启的功能，这就是为什么我们能使用多台设备连接到一个WiFi上，并使用一个“宽带”原因。</p>
-<p>虚拟机的NAT模式下，我们的物理机就相当于这样以一个路由器，在虚拟机之间组成了一个“虚拟局域网”，所有NAT模式下的虚拟机拥有一个它们自己独有的，比物理机的私有ip更次一级的私有ip。</p>
-<p>它们之间可以通过这个“更次一级的私有ip”互相访问，</p>
-<p>kali虚拟机的ip为 192.168.197.129</p>
-<p><img src="/img/image-20201121125655138.png" alt="kali虚拟机ip"></p>
-<p>ubuntu虚拟机的ip为192.168.197.128，并访问kali的本地网站成功</p>
-<p><img src="/img/image-20201121125922772.png" alt="ubuntu访问kali主页"></p>
-<p><strong>但如果想要使物理机或局域网甚至外网访问虚拟机，必须在虚拟网络编辑器中设置静态端口映射</strong>，这在上一篇博客中已经写过了</p>
-<h3 id="NAT技术类型"><a href="#NAT技术类型" class="headerlink" title="NAT技术类型"></a>NAT技术类型</h3><p>　　NAT有三种类型：静态NAT(Static NAT)、动态地址NAT(Pooled NAT)、网络地址端口转换NAPT（Port－Level NAT）。</p>
-<pre><code>     根据不同的需要，三种NAT方案各有利弊。</code></pre><p>　　<strong>静态NAT</strong>设置起来是最为简单和最容易实现的一种，内部网络中的每个主机都被永久映射成外部网络中的某个合法的地址。而动态地址NAT则是在外部网络中定义了一系列的合法地址，采用动态分配的方法映射到内部网络。NAPT则是把内部地址映射到外部网络的一个IP地址的不同端口上。根据不同的需要，三种NAT方案各有利弊。</p>
-<p>　　<strong>动态地址NAT</strong>只是转换IP地址，它为每一个内部的IP地址分配一个<strong>临时的外部IP地址</strong>，主要应用于拨号，对于频繁的远程联接也可以采用动态NAT。当远程用户联接上之后，动态地址NAT就会分配给他一个IP地址，用户断开时，这个IP地址就会被释放而留待以后使用。</p>
-<p>　　<strong>网络地址端口转换NAPT</strong>（Network Address Port  Translation）是人们比较熟悉的一种转换方式（也就是上一篇文章写的设置静态端口映射的方式）。NAPT普遍应用于接入设备中，它可以将中小型的网络隐藏在一个合法的IP地址（私有或公有都行）后面。NAPT与动态地址NAT不同，它将内部连接映射到外部网络中的一个<strong>单独的IP地址</strong>上，同时在该地址上加上一个由NAT设备选定的TCP端口号。</p>
-<h2 id="Host-Only"><a href="#Host-Only" class="headerlink" title="Host-Only"></a><strong>Host-Only</strong></h2><p> 在Host-Only模式下，虚拟网络是一个全封闭的网络，它唯一能够访问的就是主机。其实Host-Only网络和NAT网络很相似，不同的地方就是Host-Only网络没有NAT服务，所以虚拟网络不能连接到Internet。主机和虚拟机之间的通信是通过VMware Network Adepter VMnet1虚拟网卡来实现的。</p>
-<p>　　Host-Only的宗旨就是建立一个与外界隔绝的内部网络，来提高内网的安全性。这个功能或许对普通用户来说没有多大意义，但大型服务商会常常利用这个功能。如果你想为VMnet1网段提供路由功能，那就需要使用RRAS，而不能使用XP或2000的ICS，因为ICS会把内网的IP地址改为192.168.0.1，但虚拟机是不会给VMnet1虚拟网卡分配这个地址的，那么主机和虚拟机之间就不能通信了。</p>
+                <h1 id="open-basedir详解"><a href="#open-basedir详解" class="headerlink" title="open_basedir详解"></a>open_basedir详解</h1><p>PHP 的 open_basedir 和 disable_functions 这两个配置在web中非常常见，前几天粗浅地研究了bypass disable_functions，再来了解一下open_basedir</p>
+<p><strong><code>open_basedir</code> 官方介绍</strong></p>
+<pre><code>open_basedir string</code></pre><p> 将 PHP 所能打开的文件限制在指定的目录树，包括文件本身。本指令不受安全模式打开或者关闭的影响。<br> 当一个脚本试图用例如 fopen() 或者 gzopen() 打开一个文件时，该文件的位置将被检查。<br> 当文件在指定的目录树之外时 PHP 将拒绝打开它。<br> 所有的符号连接都会被解析，所以不可能通过符号连接来避开此限制。<br> 特殊值 . 指明脚本的工作目录将被作为基准目录。但这有些危险，因为脚本的工作目录可以轻易被 chdir() 而改变。</p>
+<p>在 httpd.conf 文件中中，open_basedir 可以像其它任何配置选项一样用“php_admin_value open_basedir none”的方法关闭（例如某些虚拟主机中）。</p>
+<p>在 Windows 中，用分号分隔目录。在任何其它系统中用冒号分隔目录。作为 Apache 模块时，父目录中的 open_basedir 路径自动被继承。</p>
+<p><strong><em>用 open_basedir 指定的限制实际上是前缀，不是目录名</em></strong></p>
+<p> 也就是说“<code>open_basedir = /dir/incl</code>”也会允许访问“<code>/dir/include</code>”和“<code>/dir/incls</code>”，如果它们存在的话。</p>
+<p>如果要将访问限制在仅为指定的目录，用斜线结束路径名。例如：“<code>open_basedir = /dir/incl/</code>”。</p>
+<h2 id="有几种方式设置限制包含目录"><a href="#有几种方式设置限制包含目录" class="headerlink" title="有几种方式设置限制包含目录"></a>有几种方式设置限制包含目录</h2><p>1）php.ini  </p>
+<pre class="line-numbers language-ini"><code class="language-ini"><span class="token constant">open_basedir</span> <span class="token attr-value"><span class="token punctuation">=</span> /home/wwwroot/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p> 2）ini_set   注意：PHP &gt;5.2.3</p>
+<pre><code>+ PHP_INI_ALL # 不建议使用，这么设置太随意了。</code></pre><p> 3）apache 的 httpd.conf 中Directory配置</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token string">"php_admin_value open_basedir none"</span> <span class="token comment" spellcheck="true"># 关闭 </span>
+php_admin_value open_basedir <span class="token string">"/home/wwwroot/:/tmp/:/var/tmp/:/proc/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>httpd.conf中VirtualHost</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php_admin_value open_basedir <span class="token string">"/home/wwwroot/:/tmp/:/var/tmp/:/proc/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>4）nginx fastcgi.conf<br> <code>fastcgi_param PHP_VALUE "open_basedir=$document_root:/tmp/";</code></p>
+<p>5）.user.ini 文件<br> 设置方法同 1 </p>
+<pre class="line-numbers language-ini"><code class="language-ini"><span class="token constant">open_basedir</span> <span class="token attr-value"><span class="token punctuation">=</span> /home/wwwroot/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="CTF中利用方法举例"><a href="#CTF中利用方法举例" class="headerlink" title="CTF中利用方法举例"></a>CTF中利用方法举例</h3><p>执行系统命令，利用 php cli <strong>在目标机器本地开启一个新的web服务</strong>，然后再用受限制的 webshell <strong>转发请求到新开启的服务上</strong>去。</p>
+<pre class="line-numbers language-shell"><code class="language-shell">php -n -S 127.0.0.1:61111 -t /var/www/html/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>解释一下里面的几个参数：</p>
+<p><strong>-S 127.0.0.1:61111</strong> : 新web服务监听地址</p>
+<p><strong>-t /var/www/html/</strong> : 新http服务的Web根目录，可随便指，只要保证那个目录下面有个 php webshell 就行，建议是直接指定成 shell 当前目录</p>
+<p><strong>-n</strong> : 表示不使用 php.ini, 这个新的服务PHP用的是默认配置，核心所在</p>
+<p>当然思路不止这一种，还有用 反弹shell,python,perl 等等思路。</p>
+<p><strong>但设想一种比较极端的情况：</strong></p>
+<p>  目标机器<strong>无法主动外连</strong>，并且入站<strong>只有80端口可访问</strong>，目标机器上面<strong>不保证一定有python, 不一定有 perl</strong>。我们能肯定的是，应该是有php的，<strong>但美中不足的是PHP在5.4版本才引入了 -S 这个内置web服务器</strong></p>
+<p>  最终我们就把整个绕过暴力的简化成了绕过disable_functions</p>
+<p>这也是蚁剑插件中绕过bypass disable_functions的方法。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -788,7 +794,7 @@
                     </span>
                     <a href="https://liloong3t.com" class="b-link-green">Liloong3t's Blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/11/20/2020-11-20-xu-ni-ji-wang-luo-qiao-jie-nat-he-host-only-mo-shi/" class="b-link-green">虚拟机网络：桥接、NAT和Host-Only模式</a>
+                    <a href="/2021/03/08/2021-3-8-open-basedir-xiang-jie/" class="b-link-green">open_basedir详解</a>
                 </p>
             </div>
 
@@ -811,7 +817,7 @@
         repo: 'LiGuHeiYi.github.io',
         owner: 'LiGuHeiYi',
         admin: ["LiGuHeiYi"],
-        id: '2020/11/20/2020-11-20-xu-ni-ji-wang-luo-qiao-jie-nat-he-host-only-mo-shi/',
+        id: '2021/03/08/2021-3-8-open-basedir-xiang-jie/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -832,33 +838,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/21/2020-11-21-lu-you-qi-he-qiao-jie-qi/">
+                <a href="/2021/03/08/2021-3-8-open-basedir-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="路由器和桥接器">
+                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="open_basedir详解">
                         
-                        <span class="card-title">路由器和桥接器</span>
+                        <span class="card-title">open_basedir详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            路由器路由器在网络层。
-路由器中的储存器里有一张路由表，里面存储着很多节点之间的最佳路由方案。但网络环境很复杂，有时还是需要动态路由。
-桥接器桥接器在在数据链路层。
-交换机就是多端口桥接器。
-桥接器在功能上与集线器等其他用于连接网段的设备类
+                            open_basedir详解PHP 的 open_basedir 和 disable_functions 这两个配置在web中非常常见，前几天粗浅地研究了bypass disable_functions，再来了解一下open_basedir
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -871,6 +874,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -878,8 +882,12 @@
                         <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/计算机网络/" target="_blank">
-                        <span class="chip bg-color">计算机网络</span>
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                    <a href="/tags/open-basedir/" target="_blank">
+                        <span class="chip bg-color">open_basedir</span>
                     </a>
                     
                 </div>
@@ -893,25 +901,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/19/2020-11-19-wu-li-ji-yi-ji-wai-wang-fang-wen-xu-ni-ji-de-pei-zhi-fang-fa/">
+                <a href="/2021/03/08/2021-3-8-ffi-php-kuo-zhan-ren-yi-ming-ling-zhi-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="物理机以及外网访问虚拟机的配置方法">
+                        <img src="/medias/banner/3.jpg" class="responsive-img" alt="FFI扩展 bypass disable functions">
                         
-                        <span class="card-title">物理机以及外网访问虚拟机的配置方法</span>
+                        <span class="card-title">FFI扩展 bypass disable functions</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            物理机以及外网访问虚拟机的配置方法vmware虚拟机的虚拟网络配置有有三种模式：桥接、NAT和Host-Only。
-一般情况下，这三种方式都能被物理主机访问，但只有桥接和NAT模式能够被外网访问。三种网络模式我在下篇文章再写，这篇文章记录一
+                            FFI扩展 bypass disable functions介绍
+FFI（Foreign Function  Interface），即外部函数接口，允许从用户区调用C代码。当PHP所有的命令执行函数被禁用后，通过PHP  7.4的新特性FF
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-19
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
                             </span>
                         <span class="publish-author">
                             
@@ -932,8 +940,12 @@
                         <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/虚拟机/" target="_blank">
-                        <span class="chip bg-color">虚拟机</span>
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                    <a href="/tags/bypass-disable-functions/" target="_blank">
+                        <span class="chip bg-color">bypass disable functions</span>
                     </a>
                     
                 </div>

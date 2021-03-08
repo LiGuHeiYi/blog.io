@@ -698,7 +698,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        468
+                        479
                     </div>
                     
 
@@ -728,9 +728,9 @@ SetHandler application/x-httpd-php
 
 </FilesMatch><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>将evil.gif文件（只要包含”evil.gif”这个字符串的任意文件，无论扩展名是什么(没有也行)）按php文件解析</p>
-<p>php_value是.htaccess文件中可以用的指令之一。该指令允许我们使用PHP_INI_PERDIR标志修改此处列表里的任何设置。</p>
+<p><code>php_value</code>是.htaccess文件中可以用的指令之一。该指令允许我们使用PHP_INI_PERDIR标志修改此处列表里的任何设置。</p>
 <p>在这些设置中，有个auto_append_file，它允许我们在请求PHP文件时添加或包含一个文件。后来发现，auto_append_file还允许各种包装器，如php://</p>
-<pre><code>AddType application/x-httpd-php .cnm
+<pre><code>AddType application/x-httpd-php .cnm    //AddType和AddHandler 都可以添加解析规则
 php_value auto_append_file "php://filter/convert.base64-encode/resource=/etc/passwd"</code></pre><p>将以<code>.cnm</code>为文件后缀的文件解析为php文件，并且在请求它时，包含base64编码过的<code>/etc/passwd</code>文件的内容。</p>
 <p>这里可以大胆想象，如果能传入一个内容base64编码过的恶意php代码的文件，便可以利用.htaccess文件把它的内容读到<code>.cnm</code>后缀的文件中进行执行。</p>
 <script>
@@ -1083,7 +1083,7 @@ phpinfo在可以“有限”地执行php命令地地方执行phpinfo()函数，�
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">92.3k</span> 字
+                <span class="white-color">93.1k</span> 字
             
 
             
