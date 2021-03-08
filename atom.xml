@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-03-08T15:21:17.532Z</updated>
+  <updated>2021-03-08T15:40:17.296Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://liloong3t.com/2021/03/08/2021-3-8-open-basedir-xiang-jie/"/>
     <id>https://liloong3t.com/2021/03/08/2021-3-8-open-basedir-xiang-jie/</id>
     <published>2021-03-08T14:33:32.000Z</published>
-    <updated>2021-03-08T15:21:17.532Z</updated>
+    <updated>2021-03-08T15:40:17.296Z</updated>
     
     <summary type="html">
     
@@ -495,15 +495,15 @@
   </entry>
   
   <entry>
-    <title>Http重定向</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
+    <title>ctf中的信息泄露</title>
+    <link href="https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/"/>
+    <id>https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/</id>
     <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T10:16:42.775Z</updated>
+    <updated>2021-01-14T15:10:21.868Z</updated>
     
     <summary type="html">
     
-      详解网页重定向
+      详解ctf中的信息泄露
     
     </summary>
     
@@ -512,7 +512,7 @@
     
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
-      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+      <category term="ctf" scheme="https://liloong3t.com/tags/ctf/"/>
     
   </entry>
   
@@ -539,15 +539,15 @@
   </entry>
   
   <entry>
-    <title>ctf中的信息泄露</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-12-ctf-web-xin-xi-xie-lu/</id>
+    <title>Http重定向</title>
+    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
+    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
     <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T15:10:21.868Z</updated>
+    <updated>2021-01-14T10:16:42.775Z</updated>
     
     <summary type="html">
     
-      详解ctf中的信息泄露
+      详解网页重定向
     
     </summary>
     
@@ -556,7 +556,7 @@
     
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
-      <category term="ctf" scheme="https://liloong3t.com/tags/ctf/"/>
+      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
     
   </entry>
   

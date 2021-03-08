@@ -701,7 +701,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        826
+                        828
                     </div>
                     
 
@@ -730,14 +730,17 @@
 <p>如果要将访问限制在仅为指定的目录，用斜线结束路径名。例如：“<code>open_basedir = /dir/incl/</code>”。</p>
 <h2 id="有几种方式设置限制包含目录"><a href="#有几种方式设置限制包含目录" class="headerlink" title="有几种方式设置限制包含目录"></a>有几种方式设置限制包含目录</h2><p>1）php.ini  </p>
 <pre class="line-numbers language-ini"><code class="language-ini"><span class="token constant">open_basedir</span> <span class="token attr-value"><span class="token punctuation">=</span> /home/wwwroot/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p> 2）ini_set   注意：PHP &gt;5.2.3</p>
-<pre><code>+ PHP_INI_ALL # 不建议使用，这么设置太随意了。</code></pre><p> 3）apache 的 httpd.conf 中Directory配置</p>
+<p>2）在程序中使用</p>
+<pre><code>ini_set('open_basedir', '指定目录');
+1</code></pre><p>但不建议使用这种方法</p>
+<p> 3）apache 的 httpd.conf 中Directory配置</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token string">"php_admin_value open_basedir none"</span> <span class="token comment" spellcheck="true"># 关闭 </span>
 php_admin_value open_basedir <span class="token string">"/home/wwwroot/:/tmp/:/var/tmp/:/proc/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>httpd.conf中VirtualHost</p>
 <pre class="line-numbers language-bash"><code class="language-bash">php_admin_value open_basedir <span class="token string">"/home/wwwroot/:/tmp/:/var/tmp/:/proc/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>4）nginx fastcgi.conf<br> <code>fastcgi_param PHP_VALUE "open_basedir=$document_root:/tmp/";</code></p>
-<p>5）.user.ini 文件<br> 设置方法同 1 </p>
+<p>4）nginx fastcgi.conf</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> fastcgi_param PHP_VALUE <span class="token string">"open_basedir=<span class="token variable">$document_root</span>:/tmp/"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>5）.user.ini 文件<br> 设置方法同 1 ，即：</p>
 <pre class="line-numbers language-ini"><code class="language-ini"><span class="token constant">open_basedir</span> <span class="token attr-value"><span class="token punctuation">=</span> /home/wwwroot/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="CTF中利用方法举例"><a href="#CTF中利用方法举例" class="headerlink" title="CTF中利用方法举例"></a>CTF中利用方法举例</h3><p>执行系统命令，利用 php cli <strong>在目标机器本地开启一个新的web服务</strong>，然后再用受限制的 webshell <strong>转发请求到新开启的服务上</strong>去。</p>
 <pre class="line-numbers language-shell"><code class="language-shell">php -n -S 127.0.0.1:61111 -t /var/www/html/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
