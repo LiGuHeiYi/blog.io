@@ -697,14 +697,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        1.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -760,6 +760,14 @@
 <p>这时，构造name=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,pass=123456”;s:5:”pass2”;s:5:”Hello”;}</p>
 <p>这里面有24个’bbb’，经过filter后会缩短24个字符，刚好可以包裹 “;s:4:”pass”;s:6:”123456 这一段，于是后一段”;s:5:”pass2”;s:5:”Hello”;}就被当作另一个属性被读进去了，这样我们又能更改本来不能更改的属性的内容甚至添加属性了</p>
 <p>反序列化字符逃逸的应用条件十分苛刻，一般只有比赛的时候用的上，但终归是一种漏洞，其基本原理就在这里了</p>
+<p>更新知识点</p>
+<h2 id="public-、public、protected"><a href="#public-、public、protected" class="headerlink" title="public 、public、protected"></a>public 、public、protected</h2><p>​    访问修饰符，分别对应着类中的 公有、私有、受保护成员。<a href="https://blog.csdn.net/jiangnanqbey/article/details/81386527" target="_blank" rel="noopener">引用解释</a><br>​    不同的访问修饰符对应的序列化也有不同。<br>​<br>​    各访问修饰符序列化后的区别：</p>
+<pre><code>    public：属性被序列化的时候属性名还是原来的属性名，没有任何改变
+
+    protected：属性被序列化的时候属性名会变成 %00*%00属性名，长度跟随属性名长度而改变
+
+    private：属性被序列化的时候属性名会变成 %00类名%00属性名，长度跟随属性名长度而改变</code></pre><p>加<code>%00</code>的目的就是用于替代<code>\0</code> ，那为什么不直接加<code>\0</code>呢？<a href="https://blog.csdn.net/weixin_44077544/article/details/103542260" target="_blank" rel="noopener">引用解释</a></p>
+<p>直接在url输入框里输入%00即可,burpsuite也行，hackbar不行，hackbar还会再转码一次。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -852,21 +860,21 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/29/2020-09-29-chang-jian-lou-dong-yuan-li/">
+                <a href="/2020/09/29/2020-09-26-php-lian-jie-mysql/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="常见漏洞原理">
+                        <img src="/medias/banner/8.jpg" class="responsive-img" alt="php连接mysql">
                         
-                        <span class="card-title">常见漏洞原理</span>
+                        <span class="card-title">php连接mysql</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            [toc]
-常见web漏洞SQL注入SQL注入是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令de web攻击方式。
-由于WEB开发人员几乎不可能对所有输入进行检测，所以SQL注
+                            php连接MySQL用mysqli以面向对象的方式连接mysql数据库在本地网站建一个这样的index.php,就能连接到本地MySQL服务器了，以下代码纯手撸~ 可以自行输入服务器名，用户，密码
+connect_error)
+      
                         
                     </div>
                     <div class="publish-info">
@@ -888,12 +896,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CTF/" target="_blank">
-                        <span class="chip bg-color">CTF</span>
+                    <a href="/tags/php/" target="_blank">
+                        <span class="chip bg-color">php</span>
                     </a>
                     
-                    <a href="/tags/web/" target="_blank">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -1112,7 +1120,7 @@
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">95k</span> 字
+                <span class="white-color">95.2k</span> 字
             
 
             
