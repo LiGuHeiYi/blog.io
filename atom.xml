@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liloong3t.com/"/>
-  <updated>2021-03-08T15:40:17.296Z</updated>
+  <updated>2021-04-20T14:34:17.557Z</updated>
   <id>https://liloong3t.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>unicode详解以及有关的安全问题</title>
+    <link href="https://liloong3t.com/2021/04/20/2021-04-20-shen-qi-de-unicode/"/>
+    <id>https://liloong3t.com/2021/04/20/2021-04-20-shen-qi-de-unicode/</id>
+    <published>2021-04-20T14:33:32.000Z</published>
+    <updated>2021-04-20T14:34:17.557Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;unicode详解以及有关的安全问题&quot;&gt;&lt;a href=&quot;#unicode详解以及有关的安全问题&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
+    
+    
+      <category term="计算机科学技术" scheme="https://liloong3t.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="编码" scheme="https://liloong3t.com/tags/%E7%BC%96%E7%A0%81/"/>
+    
+      <category term="Unicode" scheme="https://liloong3t.com/tags/Unicode/"/>
+    
+  </entry>
   
   <entry>
     <title>open_basedir详解</title>
@@ -513,28 +543,6 @@
       <category term="web" scheme="https://liloong3t.com/tags/web/"/>
     
       <category term="命令" scheme="https://liloong3t.com/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Http重定向</title>
-    <link href="https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/"/>
-    <id>https://liloong3t.com/2021/01/11/2021-1-11-http-chong-ding-xiang/</id>
-    <published>2021-01-10T16:00:00.000Z</published>
-    <updated>2021-01-14T10:16:42.775Z</updated>
-    
-    <summary type="html">
-    
-      详解网页重定向
-    
-    </summary>
-    
-      <category term="blog" scheme="https://liloong3t.com/categories/blog/"/>
-    
-    
-      <category term="web" scheme="https://liloong3t.com/tags/web/"/>
-    
-      <category term="300状态码" scheme="https://liloong3t.com/tags/300%E7%8A%B6%E6%80%81%E7%A0%81/"/>
     
   </entry>
   

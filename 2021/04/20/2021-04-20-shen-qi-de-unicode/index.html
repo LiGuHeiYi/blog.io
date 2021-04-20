@@ -1,0 +1,1404 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="unicode详解以及有关的安全问题, Liloong3t&#39;s Blog">
+    <meta name="baidu-site-verification" content="code-5WkfinfGVW">
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <meta name="description" content="unicode详解以及有关的安全问题关于编码的几个关键问题
+1.文本编辑器是怎么将二进制形式翻译成字符的？
+2.字节是怎样分组的？
+3.一个或多个字节是怎么映射到字符上的？
+维基百科中这样解释：Character Encoding
+大致说来">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>unicode详解以及有关的安全问题 | Liloong3t&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- 
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+     -->
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liloong3t's Blog</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liloong3t's Blog</div>
+        <div class="logo-desc">
+            
+            武汉科技大学 | 计算机科学与技术 | 信息安全
+            
+        </div>
+    </div>
+
+    
+
+    <!-- <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友链
+            </a>
+        </li>
+        
+        
+    </ul> -->
+
+   
+   
+<!-- 支持二级菜单特性  modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友链
+                    </a>
+              
+            </li>
+        
+
+        
+    </ul>
+
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        unicode详解以及有关的安全问题
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/计算机科学技术/" target="_blank">
+                                <span class="chip bg-color">计算机科学技术</span>
+                            </a>
+                        
+                            <a href="/tags/编码/" target="_blank">
+                                <span class="chip bg-color">编码</span>
+                            </a>
+                        
+                            <a href="/tags/Unicode/" target="_blank">
+                                <span class="chip bg-color">Unicode</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                blog
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-20
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        Liloong3t
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+                
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="unicode详解以及有关的安全问题"><a href="#unicode详解以及有关的安全问题" class="headerlink" title="unicode详解以及有关的安全问题"></a>unicode详解以及有关的安全问题</h1><p><strong>关于编码的几个关键问题</strong></p>
+<p>1.文本编辑器是怎么将二进制形式翻译成字符的？</p>
+<p>2.字节是怎样分组的？</p>
+<p>3.一个或多个字节是怎么映射到字符上的？</p>
+<p>维基百科中这样解释：<a href="http://en.wikipedia.org/wiki/Character_encoding" target="_blank" rel="noopener"><strong>Character Encoding</strong></a></p>
+<p>大致说来，编码定义了两件事：</p>
+<p>1,字节是怎么分组的，如8 bits或16 bits一组，这也被称作编码单元。</p>
+<p>2,编码单元和字符之间的映射关系。例如，在ASCII码中，十进制65映射到字母A上</p>
+<p>字符编码和字符集之间有微小的区别。不过通常它和你无关，除非你在设计一个底层的库。</p>
+<p>(准确地说，utf-8是字符编码，unicode是字符集)</p>
+<p>区别在哪呢？来看看Python中将一个字符以unicode和utf-8输出有什么区别吧（linux上）</p>
+<p><img src="/img/image-20210420183639069.png" alt="image-20210420183639069"></p>
+<p>我自己本地没复现成功，Windows和Linux都没，合理猜测是python版本问题</p>
+<p><img src="/img/image-20210420183811069.png" alt="image-20210420183811069"></p>
+<p>这里unicode和utf-8体现出地区别在哪儿呢？</p>
+<p>区别在于，一个字符在unicode里，和ascii一样，只是由一个数字代表，而utf8则可以看到它的编码方式，一个中文的’我’字，由\xe6\x88\x91组成，这就是它在计算机内存里的表达方式，而在unicode里面，它仅仅只是由“6211”这个数字代表的字符。</p>
+<p>这就是字符集（unicode）和字符编码/编码规则（utf-8）的区别</p>
+<p>字符集：为每个字符分配一个’ID’，具体怎么实现不管（code point）</p>
+<p>编码规则：将（code point）转换为实体字符的规则（类似加密解密）</p>
+<blockquote>
+<p>Unicode并不涉及字符是怎么在字节中表示的，它仅仅指定了字符对应的数字，仅此而已。</p>
+<p>关于Unicode的其它误解包括：Unicode支持的字符上限是65536个，Unicode字符必须占两个字节。告诉你这些的人应该去换换脑子了。</p>
+<p>记住，Unicode只是一个用来映射字符和数字的标准。它对支持字符的数量没有限制，也不要求字符必须占两个、三个或者其它任意数量的字节。</p>
+<p>Unicode并不告诉你字符是怎么编码成字节的。这是被编码方案决定的，通过UTF来指定。</p>
+</blockquote>
+<h2 id="计算机编码的发展历史"><a href="#计算机编码的发展历史" class="headerlink" title="计算机编码的发展历史"></a>计算机编码的发展历史</h2><p>转自 <a href="https://www.freebuf.com/articles/web/25623.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/25623.html</a></p>
+<p>很久以前，计算机制造商有自己的表示字符的方式。他们并不需要担心如何和其它计算机交流，并提出了各自的方式来将字形渲染到屏幕上。随着计算机越来越流行，厂商之间的竞争更加激烈，在不同的计算机体系间转换数据变得十分蛋疼，人们厌烦了这种自定义造成的混乱。</p>
+<p>最终，计算机制造商一起制定了一个标准的方法来描述字符。他们定义使用一个字节的低7位来表示字符，并且制作了如上图所示的对照表来映射七个比特的值到一个字符上。例如，字母A是65，c是99，~是126等等， ASCII码就这样诞生了。原始的ASCII标准定义了从0到127 的字符，这样正好能用七个比特表示。不过好景不长。。。</p>
+<p>为什么选择了7个比特而不是8个来表示一个字符呢？我并不关心。但是一个字节是8个比特，这意味着1个比特并没有被使用，也就是从128到255的编码并没有被制定ASCII标准的人所规定，这些美国人对世界的其它地方一无所知甚至完全不关心。</p>
+<p>其它国家的人趁这个机会开始使用128到255范围内的编码来表达自己语言中的字符。例如，144在阿拉伯人的ASCII码中是<strong>گ</strong>，而在俄罗斯的ASCII码中是<strong>ђ</strong>。即使在美国，对于未使用区域也有各种各样的利用。IBM PC就出现了“OEM 字体”或”扩展ASCII码”，为用户提供漂亮的图形文字来绘制文本框并支持一些欧洲字符，例如英镑（£）符号。</p>
+<p><img src="https://image.3001.net/images/ue/76061392173334.png" alt="lpcec9qu3zw3u5uldh_bnawejbesszsmhiv2jm-pyemhgj2ky0vkvn0ousiaqvmv4kmsg_gmhhlhwcbem-uem4wcxkm5hcungr3r7bibhm1ievimyks2cxidbg"></p>
+<p>用IBM扩展字符集绘制的很酷的DOS启动画面</p>
+<p>再强调一遍，ASCII码的问题在于尽管所有人都在0-127号字符的使用上达成了一致，但对于128-255号字符却有很多很多不同的解释。你必须告诉计算机使用哪种风格的ASCII码才能正确显示128-255号的字符。</p>
+<p>这对于北美人和不列颠群岛的人来说不算什么问题，因为无论使用哪种风格的ASCII码，拉丁字母的显示都是一样的。英国人还需要面对的问题是原始的ASCII码中不包含英镑符号，但是这个已经无关紧要了。</p>
+<p>与此同时，在亚洲有更让人头疼的问题。亚洲语言有更多的字符和字形需要被存储，一个字节已经不够用了。所以他们开始使用两个字节来存储字符，这被称作DBCS（双字节编码方案）。在DBCS中，字符串操作变得很蛋疼，你应该怎么做str++或str–？</p>
+<p>这些问题成为了系统开发者的噩梦。例如，MS  DOS必须支持所有风格的ASCII码，因为他们想把软件卖到其他国家去。他们提出了「内码表」这一概念。例如，你需要告诉DOS（通过使用”chcp”命令）你想使用保加利亚语的内码表，它才能显示保加利亚字母。内码表的更换会应用到整个系统。这对使用多种语言工作的人来说是一个问题，因为他们必须频繁的在几个内码表之间来回切换。</p>
+<p>尽管内码表是一个好主意，但是它不是一个简洁的解决方案，它只是一个hack技术或者说是简单的修正来让编码系统可以工作。</p>
+<p><strong>进入Unicode的世界</strong></p>
+<p>最终，美国人意识到他们应该提出一种标准方案来展示世界上所有语言中的所有字符，以便缓解程序员的痛苦和避免字符编码引发的第三次世界大战。出于这个目的，Unicode诞生了。</p>
+<p>Unicode背后的想法非常简单，然而却被普遍的误解了。Unicode就像一个电话本，标记着字符和数字之间的映射关系。Joel称之为「神奇数字」，因为它们可能是随机指定的，而且不会给出任何解释。官方术语是码位(Code Point)，总是用U+开头。理论上每种语言中的每种字符都被Unicode协会指定了一个神奇数字。例如希伯来文中的第一个字母<strong>א</strong>，是U+2135，字母A是U+0061。</p>
+<p>Unicode并不涉及字符是怎么在字节中表示的，它仅仅指定了字符对应的数字，仅此而已。</p>
+<p>关于Unicode的其它误解包括：Unicode支持的字符上限是65536个，Unicode字符必须占两个字节。告诉你这些的人应该去换换脑子了。</p>
+<p>记住，Unicode只是一个用来映射字符和数字的标准。它对支持字符的数量没有限制，也不要求字符必须占两个、三个或者其它任意数量的字节。</p>
+<p>Unicode字符是怎样被编码成内存中的字节这是另外的话题，它是被UTF(Unicode Transformation Formats)定义的。</p>
+<p><strong>这里有个有趣的知识：没有纯文本这回事</strong></p>
+<p>既然没有「纯文本」文件这回事，那你的文本编辑器和浏览器为什么每次都能正确的显示内容呢？答案是，那些软件欺骗了你，这也是为什么那么多人对编码一无所知。当软件不能确定编码的时候，它会猜测。大部分时候，它会猜测是否是涵盖了ASCII码的UTF-8，还是ISO-8859-1，也有可能猜其他能想到的任意字符集。因为英文中使用的拉丁字母表在几乎所有的字符集中都能显示，包括UTF-8，所以即使编码猜错了，英文字母看起来也是正确的。</p>
+<p>但是，如果你在浏览网页时看到�符号，这意味着这个网页的编码不是你的浏览器猜测的那个。这时你可以点开浏览器的<em>查看</em>-&gt;<em>字符编码</em>菜单来尝试不同的编码。</p>
+<h2 id="Unicode欺骗"><a href="#Unicode欺骗" class="headerlink" title="Unicode欺骗"></a>Unicode欺骗</h2><p>上面已经将Unicode的意义讲透了，接下来就是实际技术了。</p>
+<p>这里有篇讲Unicode同形字引起的安全问题的文章：<a href="https://paper.seebug.org/77/" target="_blank" rel="noopener">https://paper.seebug.org/77/</a></p>
+<p>写过一些ctf题的应该都见过用外型类似的unicode字符代替原字符进行攻击的的题目。</p>
+<p>这里的问题是：</p>
+<p>Unicode字符无非也是一种字符而已，只要程序支持，应该不会有任何问题。为什么这个unicode字符在处理过程中变成了另外一个字符，而且是看起来很相似的字符，难道程序也跟人眼看一样，被相同的外表迷惑了？这显然是不可能的。</p>
+<p>这里有一篇很古老的文章提到了这个问题：<a href="https://www.peterbe.com/plog/unicode-to-ascii" target="_blank" rel="noopener">https://www.peterbe.com/plog/unicode-to-ascii</a></p>
+<p>大致原理其实是有专门的unicode转ascii函数，对unicode与同形的ascii之间有对应的map。会将一些类似的unicode字符转换成ascii字符。</p>
+<p>如上面这篇文章中的<code>unicodedata.normalize</code>函数。</p>
+<p>这里有一个大佬写的脚本，用于遍历这个函数中可用来替换ascii码的unicode同型字符。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+
+<span class="token keyword">import</span> json
+<span class="token keyword">from</span> unicodedata <span class="token keyword">import</span> normalize
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    debug <span class="token operator">=</span> <span class="token boolean">False</span>
+    tables <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0x10000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        src <span class="token operator">=</span> unichr<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        dst <span class="token operator">=</span> normalize<span class="token punctuation">(</span><span class="token string">'NFKC'</span><span class="token punctuation">,</span> src<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> ord<span class="token punctuation">(</span>dst<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">128</span> <span class="token operator">and</span> dst <span class="token operator">!=</span> src<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> debug<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"%s (\\u%s) -- normalize --> %s (\\x%s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>
+                        src<span class="token punctuation">,</span> hex<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>rjust<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                        dst<span class="token punctuation">,</span> hex<span class="token punctuation">(</span>dst<span class="token punctuation">.</span>charAt<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+                    <span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> dst <span class="token keyword">in</span> tables<span class="token punctuation">:</span>
+                    tables<span class="token punctuation">[</span>dst<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>src<span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    tables<span class="token punctuation">[</span>dst<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>src<span class="token punctuation">]</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>repr<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">"nfctable.txt"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fh<span class="token punctuation">:</span>
+        json<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>tables<span class="token punctuation">,</span> fh<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以用于Bypass某些WAF或过滤</p>
+<h3 id="其它技巧"><a href="#其它技巧" class="headerlink" title="其它技巧"></a>其它技巧</h3><p><strong>字符删除</strong></p>
+<p>例如 <code>\x3c\x73\x63\x72\xc2\x69\x70\x74\x3e</code> 这个字符串中，而 <code>\xc2</code> 并不是任何一个有效字符的子串，在一些处理逻辑中，可能会删除 <code>\xc2</code> 这个字符，从而导致问题。</p>
+<p><strong>字符替换</strong></p>
+<p>一些情况下，字符会被替换为其他的字符 如U+FFFF会被替换成 <code>?</code> 这在一些 <code>?</code> 有明确语义的情况下就会出现问题。不过关于这种利用只是存在理论上利用的可能性</p>
+<p><strong>缓冲区溢出</strong></p>
+<p>在一些大小写转换时，字符会变多，例如 <code>'ß'.toUpperCase()</code> 的运行结果是 <code>SS</code>。如果字符串的长度检查在大小写转换之前，就可能会存在缓冲区溢出问题。</p>
+<p><strong>这里有个buu的题目</strong></p>
+<p>[ASIS 2019]Unicorn shop <a href="https://buuoj.cn/challenges#[ASIS%202019]Unicorn%20shop" target="_blank" rel="noopener">https://buuoj.cn/challenges#[ASIS%202019]Unicorn%20shop</a></p>
+<p>题目就是后台有个<code>unicodedata.numeric()</code>函数，会将unicode字符转换成等价的数字。</p>
+<p>把一个值大于1337的unicode字符输进价格栏就行。</p>
+<p>wp各种花里胡哨的unicode字符，实际上只要用中文的”万”就行了，这也是unicode字符。</p>
+<p>post传参</p>
+<pre><code>id=4&amp;price=万</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://liloong3t.com" class="b-link-green">Liloong3t's Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2021/04/20/2021-04-20-shen-qi-de-unicode/" class="b-link-green">unicode详解以及有关的安全问题</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1a8a4f8abcc406ec4fbe',
+        clientSecret: '135ec1ebd0158365190ca1e28c38ce36e857236b',
+        repo: 'LiGuHeiYi.github.io',
+        owner: 'LiGuHeiYi',
+        admin: ["LiGuHeiYi"],
+        id: '2021/04/20/2021-04-20-shen-qi-de-unicode/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/04/20/2021-04-20-shen-qi-de-unicode/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="unicode详解以及有关的安全问题">
+                        
+                        <span class="card-title">unicode详解以及有关的安全问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            刷buu碰到了一个很有意思的flask模板注入题，里面的漏洞点实际上是一个unicode编码转换引发的问题，于是顺着wp找到了很多关于unicode的资料，学到很多基础知识。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/计算机科学技术/" target="_blank">
+                        <span class="chip bg-color">计算机科学技术</span>
+                    </a>
+                    
+                    <a href="/tags/编码/" target="_blank">
+                        <span class="chip bg-color">编码</span>
+                    </a>
+                    
+                    <a href="/tags/Unicode/" target="_blank">
+                        <span class="chip bg-color">Unicode</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/08/2021-3-8-open-basedir-xiang-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="open_basedir详解">
+                        
+                        <span class="card-title">open_basedir详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            open_basedir详解PHP 的 open_basedir 和 disable_functions 这两个配置在web中非常常见，前几天粗浅地研究了bypass disable_functions，再来了解一下open_basedir
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog/" class="post-category" target="_blank">
+                                    blog
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web/" target="_blank">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/PHP/" target="_blank">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                    <a href="/tags/open-basedir/" target="_blank">
+                        <span class="chip bg-color">open_basedir</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Liloong3t's Blog<br />'
+            + '作者: Liloong3t<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，转载请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2021 Liloong3t. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">98.1k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LiGuHeiYi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=857340909@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/mu-ren-qing-32" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=857340909&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        // var t1 = Date.UTC(2020, 10, 01, 00, 00, 00); //北京时间2020-10-1 00:00:00
+        // var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        // var diff = t2 - t1;
+        // var diffYears = Math.floor(diff / years);
+        // var diffDays = Math.floor((diff / days) - diffYears * 365);
+        // var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        // var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        // var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        //     minutes) / seconds);
+        // document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+        //     " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+
+        
+
+        <!-- 2021.02.01 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "喔哟，404啦！Σ(っ °Д °;)っ", clearTimeout(st)) : (document.title =
+                    "φ(゜▽゜*)♪咦，又好了！~", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  add 2019.09.09 -->
+        
+
+        <!-- 背景樱花飘落特效 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效  add 2019.09.10-->
+        
+
+        <!-- 背景雪花飘落特效  add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具   add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义   add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带   add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带   add 2019.09.15-->
+        
+
+        <!-- 天气接口控件  add 2021.02.01 -->
+        
+            <script type="text/javascript">
+    WIDGET = {FID: '1tFpFZ5Mtj'}
+  </script>
+  <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+  
+  <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+    </script>
+        
+
+    </body>
+</html>
